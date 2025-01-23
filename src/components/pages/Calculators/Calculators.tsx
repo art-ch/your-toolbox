@@ -15,7 +15,7 @@ export const Calculators = () => {
           href="/navigation/calculators/ascetic-exercise-duration"
           icon={<LuCalculator />}
           title="Ascetic Exercise Duration"
-          subtitle="Description pending"
+          subtitle="Regular exercising boosts your well-being. Use this calculator to determine your workout duration."
         />
       </NavigationContainer>
     </div>

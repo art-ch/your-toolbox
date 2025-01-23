@@ -2,7 +2,7 @@ import { CalculatorForm } from '@/components/CalculatorForm/CalculatorForm';
 import {
   SpeedField,
   DurationField
-} from '../DynamicExerciseDurationFormFields';
+} from '../../DynamicExerciseDurationFormFields';
 import {
   CalculateCleansingCyclesFormData,
   CalculateCleansingCyclesFormModel
@@ -11,6 +11,7 @@ import {
   CalculateCleansingCyclesReturnType,
   dynamicExerciseDurationCalculator
 } from '../../../services/DynamicExerciseDuration';
+import { CalculateCleansingCyclesFormResult } from './CalculateCleansingCyclesFormResult';
 
 export const CalculateCleansingCyclesForm = () => {
   const handleSubmit = (
@@ -24,7 +25,8 @@ export const CalculateCleansingCyclesForm = () => {
 
   return (
     <CalculatorForm
-      title="Calculate Mental Layers"
+      title="Calculate Cleaned Mental Layers"
+      subtitle="Calculate how many mental layers you will have cleaned if you walk or run at a set speed for a certain amount of time"
       formModel={CalculateCleansingCyclesFormModel}
       onSubmit={handleSubmit}
       renderFields={(form) => (
@@ -33,17 +35,8 @@ export const CalculateCleansingCyclesForm = () => {
           <DurationField form={form} name="duration" />
         </>
       )}
-      renderResult={(result) => (
-        <div>
-          <h3 className="text-lg font-semibold leading-none tracking-tight">
-            Result:
-          </h3>
-          <div>You cleaned {result.completedCycles} mental layers</div>
-          <div>
-            You have to walk {result.remainingMinutes} more minutes to clean 1
-            more mental layer
-          </div>
-        </div>
+      renderResult={(result, form) => (
+        <CalculateCleansingCyclesFormResult result={result} form={form} />
       )}
     />
   );

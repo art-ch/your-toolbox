@@ -2,12 +2,13 @@ import { CalculatorForm } from '@/components/CalculatorForm/CalculatorForm';
 import {
   CleansingCyclesField,
   DurationField
-} from '../DynamicExerciseDurationFormFields';
+} from '../../DynamicExerciseDurationFormFields';
 import { dynamicExerciseDurationCalculator } from '../../../services/DynamicExerciseDuration/DynamicExerciseDurationService';
 import {
   CalculateSpeedFormData,
   CalculateSpeedFormModel
 } from './CalculateSpeedForm.model';
+import { CalculateSpeedFormResult } from './CalculateSpeedFormResult';
 
 export const CalculateSpeedForm = () => {
   const handleSubmit = (data: CalculateSpeedFormData) => {
@@ -20,6 +21,7 @@ export const CalculateSpeedForm = () => {
   return (
     <CalculatorForm
       title="Calculate Speed"
+      subtitle="Calculate the speed required to clean a specified number of mental layers while walking or running for a specified amount of time."
       formModel={CalculateSpeedFormModel}
       onSubmit={handleSubmit}
       renderFields={(form) => (
@@ -29,16 +31,7 @@ export const CalculateSpeedForm = () => {
         </>
       )}
       renderResult={(result, form) => (
-        <div>
-          <h3 className="text-lg font-semibold leading-none tracking-tight">
-            Result:
-          </h3>
-          <div>
-            You need to walk with the speed of {result} km/h to clean{' '}
-            {form.getValues().cleansingCycles} mental layers in{' '}
-            {form.getValues().duration} minutes
-          </div>
-        </div>
+        <CalculateSpeedFormResult result={result} form={form} />
       )}
     />
   );

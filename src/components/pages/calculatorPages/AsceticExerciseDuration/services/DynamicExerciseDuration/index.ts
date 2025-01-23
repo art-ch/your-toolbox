@@ -1,2 +1,2 @@
 export * from './DynamicExerciseDurationService';
-export * from './DynamicExerciseDurationService.types';
+export * from './CleansingCyclesCalculator';

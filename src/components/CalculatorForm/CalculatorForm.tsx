@@ -12,6 +12,7 @@ export type CalculatorFormProps<T extends FieldValues, R> = FormProps<T, R> & {
 
 export const CalculatorForm = <T extends FieldValues, R>({
   title,
+  subtitle,
   formModel,
   onSubmit,
   renderFields,
@@ -31,18 +32,23 @@ export const CalculatorForm = <T extends FieldValues, R>({
   };
 
   return (
-    <section>
-      <h2 className="text-xl md:text-2xl font-semibold leading-none tracking-tight">
-        {title}
-      </h2>
+    <article>
+      <div className="lg:pb-4">
+        <h2 className="text-xl md:text-2xl font-semibold leading-none tracking-tight pb-2 sm:pb-0">
+          {title}
+        </h2>
+        {subtitle && <div>{subtitle}</div>}
+      </div>
 
       <div className="flex w-full flex-col gap-4 lg:flex-row lg:gap-6">
         <ShadCnForm {...form}>
           <form
             onSubmit={form.handleSubmit(handleFormSubmit)}
-            className="lg:flex-grow lg:max-w-[50%]"
+            className="lg:min-w-[50%]"
           >
-            <div className="py-2 flex flex-col gap-4">{renderFields(form)}</div>
+            <div className="py-3 sm:py-2 flex flex-col gap-4">
+              {renderFields(form)}
+            </div>
             <Button type="submit" size="sm">
               Submit
             </Button>
@@ -50,9 +56,14 @@ export const CalculatorForm = <T extends FieldValues, R>({
         </ShadCnForm>
 
         {calculationResult && formData && (
-          <div>{renderResult(calculationResult, form)}</div>
+          <div className="flex flex-col">
+            <h3 className="text-lg font-semibold leading-none tracking-tight pb-1">
+              Result:
+            </h3>
+            <div>{renderResult(calculationResult, form)}</div>
+          </div>
         )}
       </div>
-    </section>
+    </article>
   );
 };

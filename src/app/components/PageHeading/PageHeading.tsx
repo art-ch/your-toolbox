@@ -30,10 +30,10 @@ export type PageHeadingProps = PageTitleProps & { subtitle?: string };
 
 export const PageHeading = ({ title, subtitle }: PageHeadingProps) => {
   return (
-    <div className="text-center py-3">
+    <header className="text-center py-3">
       <PageTitle title={title} />
       {subtitle && <p className="mt-3">{subtitle}</p>}
-    </div>
+    </header>
   );
 };
 
@@ -49,7 +49,7 @@ export const ToolPageHeading = ({
   subtitle
 }: ToolPageHeadingProps) => {
   return (
-    <div className="flex gap-2 md:gap-4 justify-center py-3">
+    <header className="flex gap-2 md:gap-4 justify-center py-3">
       <div className="text-xl sm:text-2xl md:text-4xl pt-0.5">{icon}</div>
       <PageTitle
         title={title}
@@ -57,6 +57,6 @@ export const ToolPageHeading = ({
         className="text-xl sm:text-2xl"
       />
       {subtitle && <p className="mt-3">{subtitle}</p>}
-    </div>
+    </header>
   );
 };

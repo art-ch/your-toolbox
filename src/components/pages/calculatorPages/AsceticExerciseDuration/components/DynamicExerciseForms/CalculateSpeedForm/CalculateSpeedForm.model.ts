@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {
   cleansingCycles,
   duration
-} from '../DynamicExerciseDurationFormFields/DynamicExerciseDurationFormFields.model';
+} from '../../DynamicExerciseDurationFormFields/DynamicExerciseDurationFormFields.model';
 
 export const CalculateSpeedFormModel = z.object({
   cleansingCycles,

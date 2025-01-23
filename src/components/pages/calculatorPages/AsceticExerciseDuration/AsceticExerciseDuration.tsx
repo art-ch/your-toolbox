@@ -15,11 +15,11 @@ export const AsceticExerciseDuration = () => {
         title="Ascetic Exercise Duration"
         authorMention={TORSUNOV}
       />
-      <div className="flex flex-col gap-y-8 py-2 sm:py-4 md:py-6">
+      <section className="flex flex-col gap-y-8 py-2 sm:py-4 md:py-6">
         <CalculateCleansingCyclesForm />
         <CalculateSpeedForm />
         <CalculateTotalTimeForm />
-      </div>
+      </section>
     </div>
   );
 };

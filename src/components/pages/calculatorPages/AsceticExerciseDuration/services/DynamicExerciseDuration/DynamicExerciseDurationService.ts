@@ -1,4 +1,7 @@
-import { CalculateCleansingCyclesReturnType } from './DynamicExerciseDurationService.types';
+import {
+  CalculateCleansingCyclesReturnType,
+  CleansingCyclesCalculator
+} from './CleansingCyclesCalculator';
 
 /**
  * A calculator for mental layer cleansing cycles through hiking, based on a methodology by O.G. Torsunov.
@@ -41,8 +44,11 @@ export class DynamicExerciseDurationCalculator {
    * various speeds and durations.
    */
   private readonly distancePerCleansingCycle: number = 4;
+  private cleansingCyclesCalculator: CleansingCyclesCalculator;
 
-  constructor() {}
+  constructor() {
+    this.cleansingCyclesCalculator = new CleansingCyclesCalculator();
+  }
 
   /**
    * Calculates the cleansing cycle time for a given speed.
@@ -68,25 +74,27 @@ export class DynamicExerciseDurationCalculator {
   }
 
   /**
-   * Calculates the number of complete cleansing cycles and remaining time for a given speed and total time.
+   * Calculates the number of complete cleansing cycles and related time information for a given speed and total time.
    *
    * @param {number} speed - The speed in km/h.
    * @param {number} totalTimeMinutes - The total time in minutes.
-   * @returns {Object} An object containing cleansing cycle time, complete cycles, and remaining minutes.
+   * @returns {CalculateCleansingCyclesReturnType} An object containing:
+   *   - `cycleTime`: The time for one complete cleansing cycle.
+   *   - `completedCycles`: The number of complete cycles finished.
+   *   - `minutesUntilNextCycle`: The time remaining until the next cycle completes.
+   *   - `minutesTo5Cycles`: The additional time needed to clean all 5 mental layers in human body.
+   *   - `recommendedFrequencyDays`: The recommended frequency of doing cycles cleansing in days.
    */
   calculateCleansingCycles(
     speed: number,
     totalTimeMinutes: number
   ): CalculateCleansingCyclesReturnType {
     const cycleTime = this.calculateCleansingCycleTime(speed);
-    const completedCycles = Math.floor(totalTimeMinutes / cycleTime);
-    const remainingMinutes = cycleTime - (totalTimeMinutes % cycleTime);
 
-    return {
+    return this.cleansingCyclesCalculator.calculateAll({
       cycleTime,
-      completedCycles,
-      remainingMinutes
-    };
+      totalTimeMinutes
+    });
   }
 
   /**

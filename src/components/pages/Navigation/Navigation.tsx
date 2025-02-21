@@ -14,13 +14,13 @@ export const Navigation = () => {
       />
       <NavigationContainer>
         <NavigationLinkCard
-          href="/navigation/calculators"
+          href="/calculators"
           icon={<LuCalculator />}
           title="Calculators"
           subtitle="Make your computer do math for you"
         />
         <NavigationLinkCard
-          href="/navigation/specialized-tools"
+          href="/specialized-tools"
           icon={<MdMiscellaneousServices />}
           title="Specialized tools"
           subtitle="Tools that are too specific for any other category"

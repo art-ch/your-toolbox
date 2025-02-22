@@ -16,8 +16,8 @@ export const Header = () => {
       <div className="min-w-full px-4">
         <NavigationMenuList className="min-width-full grid grid-cols-3">
           <AppDrawerTrigger />
-          <Link href="/">
-            <PiToolboxFill className="text-[40px] justify-self-center" />
+          <Link className="justify-self-center" href="/">
+            <PiToolboxFill className="text-[40px]" />
           </Link>
         </NavigationMenuList>
       </div>

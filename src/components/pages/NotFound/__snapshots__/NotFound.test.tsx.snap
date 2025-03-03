@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound component should render correctly 1`] = `
+<div>
+  <div
+    class="my-0 mx-auto py-40 text-center max-w-lg"
+  >
+    <div
+      class="my-0 mx-auto py-2"
+    >
+      <h1
+        class="text-4xl sm:text-6xl font-semibold leading-none tracking-tight"
+      >
+        404
+      </h1>
+      <p
+        class="py-2"
+      >
+        Your curiosity is astounding. Though, at the moment we don't have the treasure you seek
+      </p>
+    </div>
+    <a
+      href="/navigation"
+    >
+      <button
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      >
+        Check available tools
+      </button>
+    </a>
+  </div>
+</div>
+`;

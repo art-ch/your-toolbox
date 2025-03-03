@@ -28,10 +28,14 @@ export const PageTitle = ({
 
 export type PageHeadingProps = PageTitleProps & { subtitle?: string };
 
-export const PageHeading = ({ title, subtitle }: PageHeadingProps) => {
+export const PageHeading = ({
+  title,
+  subtitle,
+  authorMention
+}: PageHeadingProps) => {
   return (
     <header className="text-center py-3">
-      <PageTitle title={title} />
+      <PageTitle title={title} authorMention={authorMention} />
       {subtitle && <p className="mt-3">{subtitle}</p>}
     </header>
   );

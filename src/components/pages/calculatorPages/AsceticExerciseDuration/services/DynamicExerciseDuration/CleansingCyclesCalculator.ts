@@ -71,6 +71,6 @@ export class CleansingCyclesCalculator {
   private calculateRecommendedFrequencyInDays(completedCycles: number): number {
     if (completedCycles >= 5) return 7;
     if (completedCycles === 1) return 1;
-    return Math.round(1 + (completedCycles - 1) * (6 / 4));
+    return Math.max(1, Math.round(1 + (completedCycles - 1) * (6 / 4)));
   }
 }

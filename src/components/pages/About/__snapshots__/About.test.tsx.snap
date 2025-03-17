@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About component should render correctly 1`] = `
+<div>
+  <div
+    class="max-w-4xl my-0 mx-auto"
+  >
+    <header
+      class="text-center py-3"
+    >
+      <h1
+        class="text-2xl md:text-4xl font-semibold leading-none tracking-tight"
+      >
+        About
+      </h1>
+    </header>
+    <p
+      class="py-2"
+    >
+      Welcome! I'm the creator of your-toolbox, a project born out of my love for efficiency and automation. Like many of us, I've always been fascinated by the idea of letting computers handle the repetitive stuff. This space is where I share my experiments, tools, and thoughts on making technology work for us, not the other way around. If you're curious about streamlining your digital life or just enjoy the occasional clever hack, you're in the right place. Let's explore the art of productive laziness together!
+    </p>
+    <div
+      class="flex items-end gap-4 py-3"
+    >
+      <div
+        class="flex flex-col sm:flex-row gap-2"
+      >
+        <div
+          class="flex items-end gap-2 text-lg md:text-4xl font-semibold leading-none tracking-tight"
+        >
+          <svg
+            class="text-3xl"
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 18a4 4 0 0 0-8 0"
+            />
+            <circle
+              cx="12"
+              cy="11"
+              r="3"
+            />
+            <rect
+              height="18"
+              rx="2"
+              width="18"
+              x="3"
+              y="4"
+            />
+            <line
+              x1="8"
+              x2="8"
+              y1="2"
+              y2="4"
+            />
+            <line
+              x1="16"
+              x2="16"
+              y1="2"
+              y2="4"
+            />
+          </svg>
+        </div>
+        <div
+          class="flex flex-wrap gap-x-2 gap-y-1"
+        >
+          <a
+            class="flex items-center gap-1 text-link hover:text-link-hover focus:text-link-focus"
+            href="https://github.com/art-ch"
+          >
+            <svg
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              />
+            </svg>
+            <div>
+              art-ch
+            </div>
+          </a>
+          <a
+            class="flex items-center gap-1 text-link hover:text-link-hover focus:text-link-focus"
+            href="mailto:artem.chekin1997@gmail.com"
+          >
+            <svg
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+              />
+              <path
+                d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"
+              />
+            </svg>
+            <div>
+              artem.chekin1997@gmail.com
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

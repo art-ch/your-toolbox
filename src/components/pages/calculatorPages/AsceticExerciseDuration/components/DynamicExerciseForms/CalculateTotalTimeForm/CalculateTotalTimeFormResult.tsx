@@ -20,7 +20,7 @@ export const CalculateTotalTimeFormResult = ({
   const totalTime = formatTime(result);
 
   return (
-    <p>
+    <p data-testid="calculate-total-time-form-result">
       You have to {isWalking ? 'walk' : 'run'} for {totalTime} to clean{' '}
       {form.getValues().cleansingCycles} mental layers at a speed of{' '}
       {form.getValues().speed} km/h

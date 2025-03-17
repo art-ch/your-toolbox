@@ -29,7 +29,7 @@ export const CalculateCleansingCyclesFormResult = ({
   const recommendedExerciseTime = formatTime(result.recommendedExerciseMinutes);
 
   return (
-    <div>
+    <div data-testid="calculate-cleansing-cycles-form-result">
       <p>
         After {isWalking ? 'walking' : 'running'} for {duration}
       </p>

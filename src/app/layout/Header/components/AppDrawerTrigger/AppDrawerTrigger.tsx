@@ -9,5 +9,11 @@ import { AlignJustify } from 'lucide-react';
 export const AppDrawerTrigger = () => {
   const { drawer } = useAppContext();
 
-  return <AlignJustify className="cursor-pointer" onClick={drawer.open} />;
+  return (
+    <AlignJustify
+      className="cursor-pointer"
+      data-testid="app-drawer-trigger"
+      onClick={drawer.open}
+    />
+  );
 };

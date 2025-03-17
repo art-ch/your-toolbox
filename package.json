@@ -12,7 +12,8 @@
     "lint:typecheck": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "3.9.0",

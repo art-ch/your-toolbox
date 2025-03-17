@@ -97,7 +97,7 @@ describe('CalculatorForm', () => {
     await userEvent.type(value1Input, '5');
     await userEvent.type(value2Input, '10');
 
-    const submitButton = screen.getByRole('button', { name: /submit/i });
+    const submitButton = screen.getByRole('button', { name: /calculate/i });
     await userEvent.click(submitButton);
 
     expect(mockOnSubmit).toHaveBeenCalledWith({ value1: 5, value2: 10 });
@@ -140,7 +140,7 @@ describe('CalculatorForm', () => {
       />
     );
 
-    const submitButton = screen.getByRole('button', { name: /submit/i });
+    const submitButton = screen.getByRole('button', { name: /calculate/i });
     await userEvent.click(submitButton);
 
     expect(mockOnSubmit).not.toHaveBeenCalled();
@@ -148,6 +148,28 @@ describe('CalculatorForm', () => {
     expect(screen.queryByText('Result:')).not.toBeInTheDocument();
 
     console.error = originalConsoleError;
+  });
+
+  it('handles no value case', async () => {
+    render(
+      <CalculatorForm
+        title="Test Calculator"
+        formModel={testFormSchema}
+        onSubmit={mockOnSubmit}
+        renderFields={mockRenderFields}
+        renderResult={mockRenderResult}
+      />
+    );
+
+    const submitButton = screen.getByRole('button', {
+      name: /calculate/i
+    });
+
+    expect(submitButton).toBeDisabled();
+
+    await userEvent.click(submitButton);
+
+    expect(mockOnSubmit).not.toHaveBeenCalled();
   });
 
   it('renders without subtitle when not provided', () => {

@@ -11,6 +11,7 @@
     "lint:eslint": "eslint . --ext .ts,.tsx",
     "lint:typecheck": "tsc --noEmit",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "dependencies": {

@@ -1,0 +1,341 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AsceticExerciseDuration component should render correctly 1`] = `
+<div>
+  <div>
+    <header
+      class="flex gap-2 md:gap-4 justify-center py-3"
+    >
+      <div
+        class="text-xl sm:text-2xl md:text-4xl pt-0.5"
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="20"
+            rx="2"
+            width="16"
+            x="4"
+            y="2"
+          />
+          <line
+            x1="8"
+            x2="16"
+            y1="6"
+            y2="6"
+          />
+          <line
+            x1="16"
+            x2="16"
+            y1="14"
+            y2="18"
+          />
+          <path
+            d="M16 10h.01"
+          />
+          <path
+            d="M12 10h.01"
+          />
+          <path
+            d="M8 10h.01"
+          />
+          <path
+            d="M12 14h.01"
+          />
+          <path
+            d="M8 14h.01"
+          />
+          <path
+            d="M12 18h.01"
+          />
+          <path
+            d="M8 18h.01"
+          />
+        </svg>
+      </div>
+      <h1
+        class="md:text-4xl font-semibold tracking-tight text-xl sm:text-2xl"
+      >
+        Ascetic Exercise Duration
+         
+        by
+         
+        <a
+          class="text-blue-500 hover:text-blue-400 focus:text-blue-600"
+          href="https://torsunov.ru"
+        >
+          O.G. Torsunov
+        </a>
+      </h1>
+    </header>
+    <section
+      class="flex flex-col gap-y-8 py-2 sm:py-4 md:py-6"
+    >
+      <article>
+        <div
+          class="lg:pb-4"
+        >
+          <h2
+            class="text-xl md:text-2xl font-semibold leading-none tracking-tight pb-2 sm:pb-0"
+          >
+            Calculate Cleaned Mental Layers
+          </h2>
+          <div>
+            Calculate how many mental layers you will have cleaned if you walk or run at a set speed for a certain amount of time
+          </div>
+        </div>
+        <div
+          class="flex w-full flex-col gap-4 lg:flex-row lg:gap-6"
+        >
+          <form
+            class="lg:min-w-[50%]"
+          >
+            <div
+              class="py-3 sm:py-2 flex flex-col gap-4"
+            >
+              <div
+                class="space-y-2"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":r0:-form-item"
+                >
+                  Speed (km/h):
+                </label>
+                <input
+                  aria-describedby=":r0:-form-item-description"
+                  aria-invalid="false"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id=":r0:-form-item"
+                  name="speed"
+                  placeholder="Please enter speed value"
+                  type="number"
+                  value=""
+                />
+                <p
+                  class="text-sm text-muted-foreground"
+                  id=":r0:-form-item-description"
+                >
+                  Your walking or running speed
+                </p>
+              </div>
+              <div
+                class="space-y-2"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":r1:-form-item"
+                >
+                  Duration (minutes):
+                </label>
+                <input
+                  aria-describedby=":r1:-form-item-description"
+                  aria-invalid="false"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id=":r1:-form-item"
+                  name="duration"
+                  placeholder="Please enter duration value"
+                  type="number"
+                  value=""
+                />
+                <p
+                  class="text-sm text-muted-foreground"
+                  id=":r1:-form-item-description"
+                >
+                  How many minutes you plan to walk or run
+                </p>
+              </div>
+            </div>
+            <button
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"
+              disabled=""
+              type="submit"
+            >
+              Calculate
+            </button>
+          </form>
+        </div>
+      </article>
+      <article>
+        <div
+          class="lg:pb-4"
+        >
+          <h2
+            class="text-xl md:text-2xl font-semibold leading-none tracking-tight pb-2 sm:pb-0"
+          >
+            Calculate Speed
+          </h2>
+          <div>
+            Calculate the speed required to clean a specified number of mental layers while walking or running for a specified amount of time.
+          </div>
+        </div>
+        <div
+          class="flex w-full flex-col gap-4 lg:flex-row lg:gap-6"
+        >
+          <form
+            class="lg:min-w-[50%]"
+          >
+            <div
+              class="py-3 sm:py-2 flex flex-col gap-4"
+            >
+              <div
+                class="space-y-2"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":r2:-form-item"
+                >
+                  Mental layers:
+                </label>
+                <input
+                  aria-describedby=":r2:-form-item-description"
+                  aria-invalid="false"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id=":r2:-form-item"
+                  name="cleansingCycles"
+                  placeholder="Please enter mental layers value"
+                  type="number"
+                  value=""
+                />
+                <p
+                  class="text-sm text-muted-foreground"
+                  id=":r2:-form-item-description"
+                >
+                  How many mental layers you want to clean
+                </p>
+              </div>
+              <div
+                class="space-y-2"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":r3:-form-item"
+                >
+                  Duration (minutes):
+                </label>
+                <input
+                  aria-describedby=":r3:-form-item-description"
+                  aria-invalid="false"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id=":r3:-form-item"
+                  name="duration"
+                  placeholder="Please enter duration value"
+                  type="number"
+                  value=""
+                />
+                <p
+                  class="text-sm text-muted-foreground"
+                  id=":r3:-form-item-description"
+                >
+                  How many minutes you plan to walk or run
+                </p>
+              </div>
+            </div>
+            <button
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"
+              disabled=""
+              type="submit"
+            >
+              Calculate
+            </button>
+          </form>
+        </div>
+      </article>
+      <article>
+        <div
+          class="lg:pb-4"
+        >
+          <h2
+            class="text-xl md:text-2xl font-semibold leading-none tracking-tight pb-2 sm:pb-0"
+          >
+            Calculate Total Time
+          </h2>
+          <div>
+            Calculate the time required to clean a specified number of mental layers while walking or running at a specified speed.
+          </div>
+        </div>
+        <div
+          class="flex w-full flex-col gap-4 lg:flex-row lg:gap-6"
+        >
+          <form
+            class="lg:min-w-[50%]"
+          >
+            <div
+              class="py-3 sm:py-2 flex flex-col gap-4"
+            >
+              <div
+                class="space-y-2"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":r4:-form-item"
+                >
+                  Mental layers:
+                </label>
+                <input
+                  aria-describedby=":r4:-form-item-description"
+                  aria-invalid="false"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id=":r4:-form-item"
+                  name="cleansingCycles"
+                  placeholder="Please enter mental layers value"
+                  type="number"
+                  value=""
+                />
+                <p
+                  class="text-sm text-muted-foreground"
+                  id=":r4:-form-item-description"
+                >
+                  How many mental layers you want to clean
+                </p>
+              </div>
+              <div
+                class="space-y-2"
+              >
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  for=":r5:-form-item"
+                >
+                  Speed (km/h):
+                </label>
+                <input
+                  aria-describedby=":r5:-form-item-description"
+                  aria-invalid="false"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  id=":r5:-form-item"
+                  name="speed"
+                  placeholder="Please enter speed value"
+                  type="number"
+                  value=""
+                />
+                <p
+                  class="text-sm text-muted-foreground"
+                  id=":r5:-form-item-description"
+                >
+                  Your walking or running speed
+                </p>
+              </div>
+            </div>
+            <button
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"
+              disabled=""
+              type="submit"
+            >
+              Calculate
+            </button>
+          </form>
+        </div>
+      </article>
+    </section>
+  </div>
+</div>
+`;

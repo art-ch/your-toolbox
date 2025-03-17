@@ -69,8 +69,18 @@ export class CleansingCyclesCalculator {
   }
 
   private calculateRecommendedFrequencyInDays(completedCycles: number): number {
-    if (completedCycles >= 5) return 7;
-    if (completedCycles === 1) return 1;
-    return Math.max(1, Math.round(1 + (completedCycles - 1) * (6 / 4)));
+    const MIN_FREQUENCY_DAYS = 1; // every day
+    const MAX_FREQUENCY_DAYS = 7; // once per week
+    const FREQUENCY_INCREASE_RATE = 1.5; // gradual progression from daily to weekly practice
+
+    if (completedCycles >= MENTAL_LAYER_AMOUNT) return MAX_FREQUENCY_DAYS;
+    if (completedCycles === 1) return MIN_FREQUENCY_DAYS;
+
+    return Math.max(
+      MIN_FREQUENCY_DAYS,
+      Math.round(
+        MIN_FREQUENCY_DAYS + (completedCycles - 1) * FREQUENCY_INCREASE_RATE
+      )
+    );
   }
 }

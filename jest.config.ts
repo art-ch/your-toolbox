@@ -11,8 +11,6 @@ const createJestConfig = nextJest({
 });
 
 const config: Config = {
-  clearMocks: true,
-  collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['html', 'text', 'text-summary'],
   moduleDirectories: ['node_modules', '<rootDir>/src'],
@@ -23,20 +21,28 @@ const config: Config = {
   testPathIgnorePatterns: ['<rootDir>/src/components/ui/'],
   modulePathIgnorePatterns: ['<rootDir>/src/components/ui/'],
   coveragePathIgnorePatterns: [
+    // --- shadcn stuff --- //
     '<rootDir>/src/components/ui/',
+    '<rootDir>/src/hooks/use-mobile.tsx',
+    // -------------------- //
+
+    // everything outside components, context and layout folders is tested through children
+    '<rootDir>/src/app/[^/]+\\.(js|jsx|ts|tsx)$',
+
     '.*\\.model\\.ts$',
     '/index\\.ts$',
-    '^app/[^/]+\\.(js|jsx|ts|tsx)$'
+
+    // page.tsx files are tested through children components. No page have async logic at the moment
+    '/page\\.tsx$'
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
   collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',
     'app/components/**/*.{js,jsx,ts,tsx}',
     'app/context/**/*.{js,jsx,ts,tsx}',
     'app/layout/**/*.{js,jsx,ts,tsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
     '!src/**/*.d.ts',
-    '!src/components/ui/**/*', // shadcn stuff
     '!**/node_modules/**'
   ]
 };

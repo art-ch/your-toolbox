@@ -3,7 +3,7 @@ import {
   CleansingCyclesField,
   DurationField
 } from '../../DynamicExerciseDurationFormFields';
-import { dynamicExerciseDurationCalculator } from '../../../services/DynamicExerciseDuration/DynamicExerciseDurationService';
+import { dynamicExerciseDurationCalculator } from '../../../services/DynamicExerciseDuration';
 import {
   CalculateSpeedFormData,
   CalculateSpeedFormModel

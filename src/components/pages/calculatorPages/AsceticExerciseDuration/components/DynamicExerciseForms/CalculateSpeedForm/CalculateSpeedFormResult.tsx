@@ -22,7 +22,7 @@ export const CalculateSpeedFormResult = ({
   const duration = formatTime(form.getValues().duration);
 
   return (
-    <div>
+    <div data-testid="calculate-speed-form-result">
       <p>
         You need to {isWalking ? 'walk' : 'run'} with the speed of {result} km/h
         to clean {form.getValues().cleansingCycles} mental layers in {duration}.

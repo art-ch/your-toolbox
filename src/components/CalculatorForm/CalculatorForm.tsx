@@ -24,6 +24,8 @@ export const CalculatorForm = <T extends FieldValues, R>({
     resolver: zodResolver(formModel)
   });
 
+  const { isValid, isDirty } = form.formState;
+
   const calculationResult = useCalculatorFormResult(formData, onSubmit);
 
   const handleFormSubmit = (data: T) => {
@@ -49,8 +51,8 @@ export const CalculatorForm = <T extends FieldValues, R>({
             <div className="py-3 sm:py-2 flex flex-col gap-4">
               {renderFields(form)}
             </div>
-            <Button type="submit" size="sm">
-              Submit
+            <Button disabled={!isValid || !isDirty} type="submit" size="sm">
+              Calculate
             </Button>
           </form>
         </ShadCnForm>

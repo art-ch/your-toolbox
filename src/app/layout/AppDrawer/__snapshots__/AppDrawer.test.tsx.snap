@@ -4,7 +4,7 @@ exports[`AppDrawer component should render correctly 1`] = `
 <div>
   <div>
     <div
-      class="fixed top-0 left-0 z-20 bottom-auto transition-transform duration-300 ease-in-out shadow bg-white w-60 h-[100dvh] -translate-x-full"
+      class="fixed top-0 left-0 z-20 bottom-auto transition-transform duration-300 ease-in-out shadow-sm bg-white w-60 h-[100dvh] -translate-x-full"
       data-testid="container"
     >
       <div
@@ -20,6 +20,7 @@ exports[`AppDrawer component should render correctly 1`] = `
           </h3>
         </a>
         <svg
+          aria-hidden="true"
           class="lucide lucide-x cursor-pointer"
           fill="none"
           height="24"
@@ -40,7 +41,7 @@ exports[`AppDrawer component should render correctly 1`] = `
         </svg>
       </div>
       <div
-        class="group/sidebar-wrapper flex w-full has-[[data-variant=inset]]:bg-sidebar min-h-0"
+        class="group/sidebar-wrapper flex w-full has-data-[variant=inset]:bg-sidebar min-h-0"
         style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;"
       >
         <div
@@ -60,7 +61,7 @@ exports[`AppDrawer component should render correctly 1`] = `
                 data-sidebar="menu-item"
               >
                 <a
-                  class="peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-8 text-sm font-medium"
+                  class="peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-hidden ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-8 text-sm font-medium"
                   data-active="false"
                   data-sidebar="menu-button"
                   data-size="default"
@@ -126,7 +127,7 @@ exports[`AppDrawer component should render correctly 1`] = `
                 >
                   <li>
                     <a
-                      class="flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground outline-none ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground text-sm group-data-[collapsible=icon]:hidden"
+                      class="flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground outline-hidden ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground text-sm group-data-[collapsible=icon]:hidden"
                       data-sidebar="menu-sub-button"
                       data-size="md"
                       href="/calculators/ascetic-exercise-duration"
@@ -141,7 +142,7 @@ exports[`AppDrawer component should render correctly 1`] = `
                 data-sidebar="menu-item"
               >
                 <a
-                  class="peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-8 text-sm font-medium"
+                  class="peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-hidden ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-8 text-sm font-medium"
                   data-active="false"
                   data-sidebar="menu-button"
                   data-size="default"
@@ -172,7 +173,7 @@ exports[`AppDrawer component should render correctly 1`] = `
                 >
                   <li>
                     <a
-                      class="flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground outline-none ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground text-sm group-data-[collapsible=icon]:hidden"
+                      class="flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground outline-hidden ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground text-sm group-data-[collapsible=icon]:hidden"
                       data-sidebar="menu-sub-button"
                       data-size="md"
                       href="https://rail-signalling-info.netlify.app/"
@@ -205,7 +206,13 @@ exports[`AppDrawer component should render correctly 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M16 18a4 4 0 0 0-8 0"
+              d="M16 2v2"
+            />
+            <path
+              d="M7 22v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"
+            />
+            <path
+              d="M8 2v2"
             />
             <circle
               cx="12"
@@ -218,18 +225,6 @@ exports[`AppDrawer component should render correctly 1`] = `
               width="18"
               x="3"
               y="4"
-            />
-            <line
-              x1="8"
-              x2="8"
-              y1="2"
-              y2="4"
-            />
-            <line
-              x1="16"
-              x2="16"
-              y1="2"
-              y2="4"
             />
           </svg>
           About

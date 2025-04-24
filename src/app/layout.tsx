@@ -32,7 +32,7 @@ export default function RootLayout({
           <AppDrawer />
           <Header />
           {/* 44 (height of header and paddings) + 48 (height of footer) = 92 */}
-          <main className="min-h-[calc(100vh-92px)] max-w-screen-xl my-0 mx-auto px-4 sm:px-6 2xl:px-0">
+          <main className="min-h-[calc(100vh-92px)] max-w-(--breakpoint-xl) my-0 mx-auto px-4 sm:px-6 2xl:px-0">
             {children}
           </main>
           <Footer />

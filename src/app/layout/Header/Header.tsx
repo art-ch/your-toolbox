@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 export const Header = () => {
   return (
-    <NavigationMenu className="min-w-full shadow-sm py-0.5 justify-normal">
+    <NavigationMenu className="min-w-full shadow-xs py-0.5 justify-normal">
       <div className="min-w-full px-4">
         <NavigationMenuList className="min-width-full grid grid-cols-3">
           <AppDrawerTrigger />

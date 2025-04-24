@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { FiGithub } from 'react-icons/fi';
 import { LuAtSign } from 'react-icons/lu';
-import { LuContact2 } from 'react-icons/lu';
+import { LuContact } from 'react-icons/lu';
 import { PageHeading } from '@/app/components/PageHeading/PageHeading';
 import { useBreakpoint } from '@/hooks/useBreakpoint/useBreakpoint';
 
@@ -30,7 +30,7 @@ export const About = () => {
       <div className="flex items-end gap-4 py-3">
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex items-end gap-2 text-lg md:text-4xl font-semibold leading-none tracking-tight">
-            <LuContact2 className="text-3xl" />
+            <LuContact className="text-2xl" />
             {!breakpoint.sm && <h2>Contact info</h2>}
           </div>
           <div className="flex flex-wrap gap-x-2 gap-y-1">

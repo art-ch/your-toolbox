@@ -8,19 +8,15 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
-import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { FormField } from '@/components/Form/components/FormField/FormField';
-
-export type FieldProps<FormType extends FieldValues> = {
-  form: UseFormReturn<FormType, unknown, undefined>;
-  name: Path<FormType>;
-};
+import { FormFieldProps } from '@/components/Form/Form.types';
 
 export const SpeedField = <FormType extends FieldValues>({
   form,
   name
-}: FieldProps<FormType>) => {
+}: FormFieldProps<FormType>) => {
   return (
     <FormField
       form={form}
@@ -30,9 +26,10 @@ export const SpeedField = <FormType extends FieldValues>({
           <FormLabel>Speed (km/h):</FormLabel>
           <FormControl>
             <Input
+              {...field}
               type="number"
               placeholder="Please enter speed value"
-              {...field}
+              value={field.value || ''}
             />
           </FormControl>
           <FormDescription>Your walking or running speed</FormDescription>
@@ -46,7 +43,7 @@ export const SpeedField = <FormType extends FieldValues>({
 export const DurationField = <FormType extends FieldValues>({
   form,
   name
-}: FieldProps<FormType>) => {
+}: FormFieldProps<FormType>) => {
   return (
     <FormField
       form={form}
@@ -56,9 +53,10 @@ export const DurationField = <FormType extends FieldValues>({
           <FormLabel>Duration (minutes):</FormLabel>
           <FormControl>
             <Input
+              {...field}
               type="number"
               placeholder="Please enter duration value"
-              {...field}
+              value={field.value || ''}
             />
           </FormControl>
           <FormDescription>
@@ -74,7 +72,7 @@ export const DurationField = <FormType extends FieldValues>({
 export const CleansingCyclesField = <FormType extends FieldValues>({
   form,
   name
-}: FieldProps<FormType>) => {
+}: FormFieldProps<FormType>) => {
   return (
     <FormField
       form={form}
@@ -84,9 +82,10 @@ export const CleansingCyclesField = <FormType extends FieldValues>({
           <FormLabel>Mental layers:</FormLabel>
           <FormControl>
             <Input
+              {...field}
               type="number"
               placeholder="Please enter mental layers value"
-              {...field}
+              value={field.value || ''}
             />
           </FormControl>
           <FormDescription>

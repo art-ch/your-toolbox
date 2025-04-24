@@ -24,7 +24,7 @@ export const Hero = ({
         <p className="py-2">{subtitle}</p>
       </div>
       <Link href={link}>
-        <Button>{buttonText}</Button>
+        <Button className="cursor-pointer">{buttonText}</Button>
       </Link>
     </div>
   );

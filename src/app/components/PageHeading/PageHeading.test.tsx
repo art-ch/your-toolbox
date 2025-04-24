@@ -41,7 +41,7 @@ describe('PageTitle Component', () => {
 
     expect(screen.getByText('Test Title')).toBeInTheDocument();
     expect(screen.getByTestId('author-mention')).toBeInTheDocument();
-    expect(AuthorMention).toHaveBeenCalledWith(authorMention, {});
+    expect(AuthorMention).toHaveBeenCalledWith(authorMention, undefined);
   });
 
   it('does not render AuthorMention when authorMention prop is not provided', () => {
@@ -84,7 +84,7 @@ describe('PageHeading Component', () => {
     render(<PageHeading title="Page Heading" authorMention={authorMention} />);
 
     expect(screen.getByTestId('author-mention')).toBeInTheDocument();
-    expect(AuthorMention).toHaveBeenCalledWith(authorMention, {});
+    expect(AuthorMention).toHaveBeenCalledWith(authorMention, undefined);
   });
 });
 
@@ -119,7 +119,7 @@ describe('ToolPageHeading Component', () => {
     );
 
     expect(screen.getByTestId('author-mention')).toBeInTheDocument();
-    expect(AuthorMention).toHaveBeenCalledWith(authorMention, {});
+    expect(AuthorMention).toHaveBeenCalledWith(authorMention, undefined);
   });
 
   it('renders all elements together correctly', () => {

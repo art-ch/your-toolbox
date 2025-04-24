@@ -4,7 +4,7 @@ exports[`Header component should render correctly 1`] = `
 <div>
   <nav
     aria-label="Main"
-    class="relative z-10 flex max-w-max flex-1 items-center min-w-full shadow-sm py-0.5 justify-normal"
+    class="relative z-10 flex max-w-max flex-1 items-center min-w-full shadow-xs py-0.5 justify-normal"
     data-orientation="horizontal"
     dir="ltr"
   >
@@ -20,6 +20,7 @@ exports[`Header component should render correctly 1`] = `
           dir="ltr"
         >
           <svg
+            aria-hidden="true"
             class="lucide lucide-align-justify cursor-pointer"
             data-testid="app-drawer-trigger"
             fill="none"

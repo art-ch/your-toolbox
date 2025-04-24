@@ -8,8 +8,8 @@ import {
   UseFormReturn
 } from 'react-hook-form';
 
-export type FormFieldProps<FormType extends FieldValues> = {
-  form: UseFormReturn<FormType, unknown, undefined>;
+export type FormFieldComponentProps<FormType extends FieldValues> = {
+  form: UseFormReturn<FormType, unknown, FormType>;
   name: Path<FormType>;
   fieldRenderer: ControllerProps<FormType>['render'];
 };
@@ -18,7 +18,9 @@ export const FormField = <FormType extends FieldValues>({
   form,
   name,
   fieldRenderer
-}: FormFieldProps<FormType>) => {
+}: FormFieldComponentProps<FormType>) => {
+  console.log('render');
+
   return (
     <ShadCnFormField
       control={form.control}

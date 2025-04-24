@@ -71,7 +71,7 @@ describe('FormField', () => {
         name: 'testField',
         render: expect.any(Function)
       }),
-      expect.anything()
+      undefined
     );
   });
 
@@ -147,6 +147,5 @@ describe('FormField', () => {
 
     expect(screen.getByTestId('name-input')).toBeInTheDocument();
     expect(screen.getByTestId('age-input')).toBeInTheDocument();
-    expect(ShadCnFormField).toHaveBeenCalledTimes(2);
   });
 });

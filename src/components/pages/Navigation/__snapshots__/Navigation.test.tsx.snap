@@ -24,7 +24,7 @@ exports[`Navigation component should render correctly 1`] = `
         href="/calculators"
       >
         <div
-          class="rounded-lg border bg-card text-card-foreground shadow-sm min-h-full"
+          class="rounded-lg border bg-card text-card-foreground shadow-xs min-h-full"
         >
           <div
             class="flex flex-col space-y-1.5 p-6"
@@ -102,7 +102,7 @@ exports[`Navigation component should render correctly 1`] = `
         href="/specialized-tools"
       >
         <div
-          class="rounded-lg border bg-card text-card-foreground shadow-sm min-h-full"
+          class="rounded-lg border bg-card text-card-foreground shadow-xs min-h-full"
         >
           <div
             class="flex flex-col space-y-1.5 p-6"

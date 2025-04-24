@@ -29,7 +29,7 @@ exports[`About component should render correctly 1`] = `
           class="flex items-end gap-2 text-lg md:text-4xl font-semibold leading-none tracking-tight"
         >
           <svg
-            class="text-3xl"
+            class="text-2xl"
             fill="none"
             height="1em"
             stroke="currentColor"
@@ -41,7 +41,13 @@ exports[`About component should render correctly 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M16 18a4 4 0 0 0-8 0"
+              d="M16 2v2"
+            />
+            <path
+              d="M7 22v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"
+            />
+            <path
+              d="M8 2v2"
             />
             <circle
               cx="12"
@@ -54,18 +60,6 @@ exports[`About component should render correctly 1`] = `
               width="18"
               x="3"
               y="4"
-            />
-            <line
-              x1="8"
-              x2="8"
-              y1="2"
-              y2="4"
-            />
-            <line
-              x1="16"
-              x2="16"
-              y1="2"
-              y2="4"
             />
           </svg>
         </div>

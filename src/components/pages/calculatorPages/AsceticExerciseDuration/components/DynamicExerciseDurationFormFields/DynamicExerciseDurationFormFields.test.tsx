@@ -16,7 +16,7 @@ import {
 
 type FieldWrapperProps = {
   children: (
-    form: UseFormReturn<FieldValues, unknown, undefined>
+    form: UseFormReturn<FieldValues, unknown, FieldValues>
   ) => React.ReactNode;
 };
 

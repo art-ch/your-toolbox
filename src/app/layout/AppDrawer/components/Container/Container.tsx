@@ -16,7 +16,7 @@ export const Container = ({ children }: ContainerProps) => {
   return (
     <div
       className={cn(
-        'fixed top-0 left-0 z-20 bottom-auto transition-transform duration-300 ease-in-out shadow bg-white w-60 h-[100dvh]',
+        'fixed top-0 left-0 z-20 bottom-auto transition-transform duration-300 ease-in-out shadow-sm bg-white w-60 h-[100dvh]',
         drawerPosition
       )}
       data-testid="container"

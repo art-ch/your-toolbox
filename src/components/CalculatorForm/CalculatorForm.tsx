@@ -51,7 +51,12 @@ export const CalculatorForm = <T extends FieldValues, R>({
             <div className="py-3 sm:py-2 flex flex-col gap-4">
               {renderFields(form)}
             </div>
-            <Button disabled={!isValid || !isDirty} type="submit" size="sm">
+            <Button
+              className="cursor-pointer"
+              disabled={!isValid || !isDirty}
+              type="submit"
+              size="sm"
+            >
               Calculate
             </Button>
           </form>

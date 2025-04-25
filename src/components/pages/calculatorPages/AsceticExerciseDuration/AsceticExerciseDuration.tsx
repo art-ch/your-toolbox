@@ -6,6 +6,8 @@ import { TORSUNOV } from '@/constants/authorMentions';
 import { CalculateCleansingCyclesForm } from './components/DynamicExerciseForms/CalculateCleansingCyclesForm/CalculateCleansingCyclesForm';
 import { CalculateSpeedForm } from './components/DynamicExerciseForms/CalculateSpeedForm';
 import { CalculateTotalTimeForm } from './components/DynamicExerciseForms/CalculateTotalTimeForm';
+import { CalculateDurationFromLayersForm } from './components/StaticExerciseForms/CalculateDurationFromLayers';
+import { CalculateLayersFromDurationForm } from './components/StaticExerciseForms/CalculateLayersFromDuration';
 
 export const AsceticExerciseDuration = () => {
   return (
@@ -15,6 +17,10 @@ export const AsceticExerciseDuration = () => {
         title="Ascetic Exercise Duration"
         authorMention={TORSUNOV}
       />
+      <section className="flex flex-col gap-y-8 py-2 sm:py-4 md:py-6">
+        <CalculateDurationFromLayersForm />
+        <CalculateLayersFromDurationForm />
+      </section>
       <section className="flex flex-col gap-y-8 py-2 sm:py-4 md:py-6">
         <CalculateCleansingCyclesForm />
         <CalculateSpeedForm />

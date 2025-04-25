@@ -1,19 +1,17 @@
 import { CalculatorForm } from '@/components/CalculatorForm/CalculatorForm';
-import {
-  CleansingCyclesField,
-  DurationField
-} from '../../DynamicExerciseDurationFormFields';
 import { dynamicExerciseDurationCalculator } from '../../../services/DynamicExerciseDuration';
 import {
   CalculateSpeedFormData,
   CalculateSpeedFormModel
 } from './CalculateSpeedForm.model';
 import { CalculateSpeedFormResult } from './CalculateSpeedFormResult';
+import { DurationField, MentalLayersField } from '../../FormFields';
+import { DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION } from '../../../constants/DynamicExercise.constants';
 
 export const CalculateSpeedForm = () => {
   const handleSubmit = (data: CalculateSpeedFormData) => {
     return dynamicExerciseDurationCalculator.calculateSpeedFromCyclesAndTime(
-      data.cleansingCycles,
+      data.mentalLayers,
       data.duration
     );
   };
@@ -26,8 +24,12 @@ export const CalculateSpeedForm = () => {
       onSubmit={handleSubmit}
       renderFields={(form) => (
         <>
-          <CleansingCyclesField form={form} name="cleansingCycles" />
-          <DurationField form={form} name="duration" />
+          <MentalLayersField form={form} name="mentalLayers" />
+          <DurationField
+            form={form}
+            name="duration"
+            description={DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION}
+          />
         </>
       )}
       renderResult={(result, form) => (

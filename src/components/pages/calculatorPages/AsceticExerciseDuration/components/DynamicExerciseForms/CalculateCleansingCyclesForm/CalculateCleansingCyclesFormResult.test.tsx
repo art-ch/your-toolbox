@@ -5,9 +5,8 @@ import {
   CalculateCleansingCyclesFormResultProps
 } from './CalculateCleansingCyclesFormResult';
 import { formatTime } from '@/utils/timeUtils';
-import { getIsWalking } from '../../../utils/DynamicExerciseUtils/utils';
+import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
 
-// Mock dependencies
 jest.mock('@/utils/timeUtils', () => ({
   formatTime: jest.fn((minutes) => `${minutes} minutes`)
 }));

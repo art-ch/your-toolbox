@@ -12,7 +12,7 @@ import { Input } from '@/components/ui/input';
 import { FormField } from '@/components/Form/components/FormField/FormField';
 import { FormFieldProps } from '@/components/Form/Form.types';
 
-export const SpeedField = <FormType extends FieldValues>({
+export const TemperatureField = <FormType extends FieldValues>({
   form,
   name
 }: FormFieldProps<FormType>) => {
@@ -22,16 +22,16 @@ export const SpeedField = <FormType extends FieldValues>({
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>Speed (km/h):</FormLabel>
+          <FormLabel>Temperature (°C):</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder="Please enter speed value"
+              placeholder="Please enter temperature value"
               value={field.value || ''}
             />
           </FormControl>
-          <FormDescription>Your walking or running speed</FormDescription>
+          <FormDescription>Your water temperature</FormDescription>
           <FormMessage />
         </FormItem>
       )}

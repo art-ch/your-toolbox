@@ -1,40 +1,71 @@
+import { InterpolationUtils } from '@/utils/interpolationUtils';
+
 /**
  * A calculator for mental layer cleansing cycles through static exercising, based on a methodology by O.G. Torsunov.
  *
- * Class for calculating static exercise duration based on mental layers using linear interpolation.
- * Based on the proportion: 1 layer = 14 minutes, 2 layers = 27 minutes, which is derived roughly from doctor's teachings
+ * Class for calculating static exercise duration based on mental layers using interpolation between data points.
+ * Based on empirical data: 1 layer = 14 minutes, 2 layers = 27 minutes, 3 layers = 39 minutes,
+ * 4 layers = 52 minutes, 5 layers = 64 minutes. This proportion is derived roughly from doctor's teachings
  */
 export class StaticExerciseDurationCalculator {
   /**
-   * Slope of the linear equation, calculated as (27-14)/(2-1) = 13
+   * Data points representing the relationship between mental layers and required exercise duration.
+   * These values are derived from doctor Torsunov's teachings.
    */
-  private readonly slope: number = 13;
-
-  /**
-   * Y-intercept of the linear equation, calculated as 14 - 13*1 = 1
-   */
-  private readonly yIntercept: number = 1;
+  private readonly dataPoints: Array<{
+    /** Amount of cleaned mental layers */
+    mentalLayers: number;
+    /** Duration in minutes */
+    duration: number;
+  }> = [
+    { mentalLayers: 1, duration: 14 },
+    { mentalLayers: 2, duration: 27 },
+    { mentalLayers: 3, duration: 39 },
+    { mentalLayers: 4, duration: 52 },
+    { mentalLayers: 5, duration: 64 }
+  ];
 
   /**
    * Calculates the duration of exercising in minutes based on the number of mental layers
    *
-   * @param {number} mentalLayers - The number of mental layers (typically between 1 and 5)
-   * @returns {number} - The calculated duration in minutes
+   * @param {number} mentalLayers - The number of mental layers
+   * @returns {number} - The calculated duration in minutes, rounded to one decimal place
    */
   calculateDurationFromLayers(mentalLayers: number): number {
-    // Using the line equation: duration = slope * mentalLayers + yIntercept
-    return this.slope * mentalLayers + this.yIntercept;
+    // Convert data points to format needed for interpolation
+    const interpolationPoints = this.dataPoints.map((point) => ({
+      x: point.mentalLayers,
+      y: point.duration
+    }));
+
+    return InterpolationUtils.interpolateY(
+      mentalLayers,
+      interpolationPoints,
+      1
+    );
   }
 
   /**
    * Calculates the number of mental layers based on the duration in minutes
    *
    * @param {number} duration - The duration in minutes
-   * @returns {number} calculated number of mental layers
+   * @returns {number} calculated number of mental layers, rounded to two decimal places
    */
   calculateLayersFromDuration(duration: number): number {
-    // Inverse of the line equation: mentalLayers = (minutes - yIntercept) / slope
-    return (duration - this.yIntercept) / this.slope;
+    // Convert data points to format needed for interpolation
+    const interpolationPoints = this.dataPoints.map((point) => ({
+      x: point.mentalLayers,
+      y: point.duration
+    }));
+
+    /**  Use interpolateX to find the x-value (mentalLayers) for a given y-value (duration) */
+    const interpolatedValue = InterpolationUtils.interpolateX(
+      duration,
+      interpolationPoints
+    );
+
+    // Strip decimal points, we cannot have 1.5 layers
+    return Math.floor(interpolatedValue);
   }
 }
 

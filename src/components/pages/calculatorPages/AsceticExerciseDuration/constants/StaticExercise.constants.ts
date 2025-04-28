@@ -2,3 +2,6 @@ export const MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED = 2;
 export const MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED = 25;
 
 export const MAX_SAFE_WATER_TEMPERATURE = 40;
+
+export const WATER_EXPOSURE_DURATION_FORM_FIELD_DESCRIPTION =
+  'How many minutes you plan to sit in the water';

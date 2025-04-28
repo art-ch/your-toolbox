@@ -1,38 +1,30 @@
+import { InterpolationUtils } from '@/utils/interpolationUtils';
+
 /**
  * A calculator for mental layer cleansing through water exposure.
  *
  * This class provides methods to calculate various aspects of mental layer cleansing
- * through water exposure at different temperatures, including:
- * - Number of mental layers cleansed given temperature and exposure time
- * - Required exposure time for a given temperature and desired mental layers
- * - Required temperature for a given exposure time and desired mental layers
- *
- * The calculations are based on interpolation between empirically determined data points
- * that represent the relationship between water temperature, exposure time, and mental layers.
- *
- * Units used:
- * - Temperature: degrees Celsius (°C)
- * - Time: minutes (min)
- * - Mental layers: dimensionless unit
+ * through water exposure at different temperatures.
  */
 export class WaterExposureDurationCalculator {
   /**
-   * Data points representing the relationship between water temperature, exposure time, and mental layers.
-   * Each data point represents the time required at a specific temperature to cleanse 1 mental layer.
+   * Data points representing the relationship between water temperature and exposure time for one mental layer.
    * These values are derived roughly from doctor's teachings.
    */
   private readonly dataPoints: Array<{
+    /** Water temperature in degrees Celsius */
     temperature: number;
-    duration: number;
+    /** Duration for one mental layer in minutes */
+    minDuration: number;
   }> = [
-    { temperature: 3.5, duration: 1 },
-    { temperature: 10, duration: 3 },
-    { temperature: 15, duration: 4 },
-    { temperature: 20, duration: 6 },
-    { temperature: 25, duration: 12 },
-    { temperature: 30, duration: 16 },
-    { temperature: 35, duration: 19 },
-    { temperature: 40, duration: 20 }
+    { temperature: 3.5, minDuration: 1 },
+    { temperature: 10, minDuration: 3 },
+    { temperature: 15, minDuration: 4 },
+    { temperature: 20, minDuration: 6 },
+    { temperature: 25, minDuration: 12 },
+    { temperature: 30, minDuration: 16 },
+    { temperature: 35, minDuration: 19 },
+    { temperature: 40, minDuration: 20 }
   ];
 
   /**
@@ -46,13 +38,22 @@ export class WaterExposureDurationCalculator {
     temperature: number,
     exposureTime: number
   ): number {
+    // Convert data points to format needed for interpolation
+    const durationPoints = this.dataPoints.map((point) => ({
+      x: point.temperature,
+      y: point.minDuration
+    }));
+
     // Find the required time for 1 mental layer at this temperature
-    const timeForOneMentalLayer = this.interpolateDuration(temperature);
+    const timeForOneMentalLayer = InterpolationUtils.interpolateY(
+      temperature,
+      durationPoints
+    );
 
     // Calculate mental layers cleansed
     const mentalLayers = exposureTime / timeForOneMentalLayer;
 
-    return Math.round(mentalLayers * 100) / 100;
+    return Math.floor(Math.round(mentalLayers * 100) / 100);
   }
 
   /**
@@ -60,19 +61,27 @@ export class WaterExposureDurationCalculator {
    *
    * @param {number} temperature - The water temperature in degrees Celsius.
    * @param {number} mentalLayers - The desired number of mental layers to cleanse.
-   * @returns {number} The required exposure time in minutes, rounded to one decimal place.
+   * @returns {object} An object containing the required time in minutes.
    */
   calculateTotalExposureTime(
     temperature: number,
     mentalLayers: number
   ): number {
+    // Convert data points to format needed for interpolation
+    const minDurationPoints = this.dataPoints.map((point) => ({
+      x: point.temperature,
+      y: point.minDuration
+    }));
+
     // Find the required time for 1 mental layer at this temperature
-    const timeForOneMentalLayer = this.interpolateDuration(temperature);
+    const timeForOneMentalLayer = InterpolationUtils.interpolateY(
+      temperature,
+      minDurationPoints,
+      1
+    );
 
-    // Calculate total time
-    const totalTime = timeForOneMentalLayer * mentalLayers;
-
-    return Math.round(totalTime * 10) / 10;
+    // Calculate total required time
+    return Math.round(timeForOneMentalLayer * mentalLayers * 10) / 10;
   }
 
   /**
@@ -89,97 +98,19 @@ export class WaterExposureDurationCalculator {
     // Calculate time needed for one mental layer
     const timeForOneMentalLayer = exposureTime / mentalLayers;
 
-    // Find the temperature that corresponds to this time
-    const temperature = this.interpolateTemperature(timeForOneMentalLayer);
+    // Convert data points to format needed for interpolation
+    const interpolationPoints = this.dataPoints.map((point) => ({
+      x: point.temperature,
+      y: point.minDuration
+    }));
 
-    return Math.round(temperature * 10) / 10;
-  }
-
-  /**
-   * Interpolates the time required for one mental layer at a given water temperature.
-   *
-   * @param {number} temperature - The water temperature in degrees Celsius.
-   * @returns {number} The time required for one mental layer in minutes.
-   * @private
-   */
-  private interpolateDuration(temperature: number): number {
-    // Handle edge cases
-    if (temperature <= this.dataPoints[0].temperature) {
-      return this.dataPoints[0].duration;
-    }
-
-    if (
-      temperature >= this.dataPoints[this.dataPoints.length - 1].temperature
-    ) {
-      return this.dataPoints[this.dataPoints.length - 1].duration;
-    }
-
-    // Find the two data points to interpolate between
-    let lowerPoint = this.dataPoints[0];
-    let upperPoint = this.dataPoints[1];
-
-    // Start from index 1 to compare each element with its predecessor
-    // This allows us to find the two data points that bracket our target value
-    for (let i = 1; i < this.dataPoints.length; i++) {
-      if (temperature <= this.dataPoints[i].temperature) {
-        lowerPoint = this.dataPoints[i - 1];
-        upperPoint = this.dataPoints[i];
-        break;
-      }
-    }
-
-    // Linear interpolation
-    const ratio =
-      (temperature - lowerPoint.temperature) /
-      (upperPoint.temperature - lowerPoint.temperature);
-
-    return (
-      lowerPoint.duration + ratio * (upperPoint.duration - lowerPoint.duration)
-    );
-  }
-
-  /**
-   * Interpolates the water temperature required for a given time per mental layer.
-   *
-   * @param {number} durationPerMentalLayer - The time per mental layer in minutes.
-   * @returns {number} The required water temperature in degrees Celsius.
-   * @private
-   */
-  private interpolateTemperature(durationPerMentalLayer: number): number {
-    // Handle edge cases
-    if (durationPerMentalLayer <= this.dataPoints[0].duration) {
-      return this.dataPoints[0].temperature;
-    }
-
-    if (
-      durationPerMentalLayer >=
-      this.dataPoints[this.dataPoints.length - 1].duration
-    ) {
-      return this.dataPoints[this.dataPoints.length - 1].temperature;
-    }
-
-    // Find the two data points to interpolate between
-    let lowerPoint = this.dataPoints[0];
-    let upperPoint = this.dataPoints[1];
-
-    // Start from index 1 to compare each element with its predecessor
-    // This allows us to find the two data points that bracket our target value
-    for (let i = 1; i < this.dataPoints.length; i++) {
-      if (durationPerMentalLayer <= this.dataPoints[i].duration) {
-        lowerPoint = this.dataPoints[i - 1];
-        upperPoint = this.dataPoints[i];
-        break;
-      }
-    }
-
-    // Linear interpolation
-    const ratio =
-      (durationPerMentalLayer - lowerPoint.duration) /
-      (upperPoint.duration - lowerPoint.duration);
-
-    return (
-      lowerPoint.temperature +
-      ratio * (upperPoint.temperature - lowerPoint.temperature)
+    return InterpolationUtils.interpolateX(
+      timeForOneMentalLayer,
+      interpolationPoints,
+      1
     );
   }
 }
+
+export const waterExposureDurationCalculator =
+  new WaterExposureDurationCalculator();

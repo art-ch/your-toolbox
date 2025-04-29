@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { CalculateLayersFromDurationForm } from './CalculateLayersFromDurationForm';
 import { staticExerciseDurationCalculator } from '../../../services/StaticExerciseDuration/StaticExerciseDurationService';
 
-// Mock the service
 jest.mock(
   '../../../services/StaticExerciseDuration/StaticExerciseDurationService',
   () => ({

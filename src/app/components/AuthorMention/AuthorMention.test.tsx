@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { AuthorMention, AuthorMentionProps } from './AuthorMention';
 import { LinkProps } from '../Link/Link';
 
-// Mock the Link component
 jest.mock('../Link/Link', () => ({
   Link: ({ href, className, children }: LinkProps) => (
     <a

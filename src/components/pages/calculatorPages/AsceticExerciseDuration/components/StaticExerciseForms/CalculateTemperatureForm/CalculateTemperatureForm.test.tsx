@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { CalculateTemperatureForm } from './CalculateTemperatureForm';
 import { waterExposureDurationCalculator } from '../../../services/StaticExerciseDuration/WaterExposureDurationService';
 
-// Mock the service
 jest.mock(
   '../../../services/StaticExerciseDuration/WaterExposureDurationService',
   () => ({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
+import { getIsWalking } from '@/components/pages/calculatorPages/AsceticExerciseDuration/utils/dynamicExerciseUtils/utils';
 import { formatTime } from '@/utils/timeUtils';
 
 export type CalculateSpeedFormResultProps = {

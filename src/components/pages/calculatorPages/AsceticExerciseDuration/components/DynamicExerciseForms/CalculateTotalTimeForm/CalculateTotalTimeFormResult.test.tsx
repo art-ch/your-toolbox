@@ -8,7 +8,7 @@ import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
 import { formatTime } from '@/utils/timeUtils';
 import { MENTAL_LAYER_AMOUNT } from '../../../constants/contants';
 
-jest.mock('../../../utils/DynamicExerciseUtils/utils', () => ({
+jest.mock('../../../utils/dynamicExerciseUtils/utils', () => ({
   getIsWalking: jest.fn()
 }));
 

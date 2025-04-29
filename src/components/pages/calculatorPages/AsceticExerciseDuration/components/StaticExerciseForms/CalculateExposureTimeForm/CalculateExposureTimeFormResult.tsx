@@ -16,19 +16,17 @@ export const CalculateExposureTimeFormResult = ({
   form
 }: CalculateExposureTimeFormResultProps) => {
   const time = formatTime(result);
+  const temperature = form.getValues().temperature;
 
   return (
     <div data-testid="calculate-exposure-time-form-result">
       <p>
-        To clean {form.getValues().mentalLayers} mental layers in{' '}
-        {form.getValues().temperature} °C water
+        To clean {form.getValues().mentalLayers} mental layers in {temperature}{' '}
+        °C water
       </p>
       <p>You will have to sit still in it for {time}</p>
 
-      <WaterExposureWarning
-        temperature={form.getValues().temperature}
-        duration={result}
-      />
+      <WaterExposureWarning temperature={temperature} duration={result} />
     </div>
   );
 };

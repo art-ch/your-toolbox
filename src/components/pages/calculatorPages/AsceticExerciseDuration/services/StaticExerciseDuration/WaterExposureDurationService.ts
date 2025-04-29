@@ -1,7 +1,7 @@
 import { InterpolationUtils } from '@/utils/interpolationUtils';
 
 /**
- * A calculator for mental layer cleansing through water exposure.
+ * A calculator for mental layer cleansing through water exposure, based on a methodology by O.G. Torsunov.
  *
  * This class provides methods to calculate various aspects of mental layer cleansing
  * through water exposure at different temperatures.
@@ -12,9 +12,7 @@ export class WaterExposureDurationCalculator {
    * These values are derived roughly from doctor's teachings.
    */
   private readonly dataPoints: Array<{
-    /** Water temperature in degrees Celsius */
     temperature: number;
-    /** Duration for one mental layer in minutes */
     minDuration: number;
   }> = [
     { temperature: 3.5, minDuration: 1 },

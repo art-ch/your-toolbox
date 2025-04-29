@@ -10,12 +10,9 @@ import { InterpolationUtils } from '@/utils/interpolationUtils';
 export class StaticExerciseDurationCalculator {
   /**
    * Data points representing the relationship between mental layers and required exercise duration.
-   * These values are derived from doctor Torsunov's teachings.
    */
   private readonly dataPoints: Array<{
-    /** Amount of cleaned mental layers */
     mentalLayers: number;
-    /** Duration in minutes */
     duration: number;
   }> = [
     { mentalLayers: 1, duration: 14 },
@@ -49,7 +46,7 @@ export class StaticExerciseDurationCalculator {
    * Calculates the number of mental layers based on the duration in minutes
    *
    * @param {number} duration - The duration in minutes
-   * @returns {number} calculated number of mental layers, rounded to two decimal places
+   * @returns {number} calculated number of mental layers
    */
   calculateLayersFromDuration(duration: number): number {
     // Convert data points to format needed for interpolation

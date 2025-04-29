@@ -11,7 +11,7 @@ jest.mock('@/utils/timeUtils', () => ({
   formatTime: jest.fn((minutes) => `${minutes} minutes`)
 }));
 
-jest.mock('../../../utils/DynamicExerciseUtils/utils', () => ({
+jest.mock('../../../utils/dynamicExerciseUtils/utils', () => ({
   getIsWalking: jest.fn()
 }));
 

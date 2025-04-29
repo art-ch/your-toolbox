@@ -4,8 +4,9 @@ import {
   CalculateTotalTimeFormResult,
   CalculateTotalTimeFormResultProps
 } from './CalculateTotalTimeFormResult';
-import { getIsWalking } from '../../../utils/DynamicExerciseUtils/utils';
+import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
 import { formatTime } from '@/utils/timeUtils';
+import { MENTAL_LAYER_AMOUNT } from '../../../constants/contants';
 
 jest.mock('../../../utils/DynamicExerciseUtils/utils', () => ({
   getIsWalking: jest.fn()
@@ -20,7 +21,7 @@ const getIsWalkingMock = getIsWalking as jest.Mock;
 
 describe('CalculateTotalTimeFormResult', () => {
   const getValues = jest.fn().mockImplementation(() => ({
-    cleansingCycles: 3,
+    mentalLayers: 3,
     speed: 5
   }));
 
@@ -67,7 +68,7 @@ describe('CalculateTotalTimeFormResult', () => {
     getIsWalkingMock.mockReturnValue(true);
     const result = 60;
     getValues.mockImplementation(() => ({
-      cleansingCycles: 5,
+      mentalLayers: MENTAL_LAYER_AMOUNT,
       speed: 7
     }));
 

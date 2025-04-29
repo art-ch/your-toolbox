@@ -24,13 +24,26 @@ export const CalculatorForm = <T extends FieldValues, R>({
     resolver: zodResolver(formModel)
   });
 
-  const { isValid, isDirty } = form.formState;
-
   const calculationResult = useCalculatorFormResult(formData, onSubmit);
 
   const handleFormSubmit = (data: T) => {
     setFormData(data);
     onSubmit(data);
+  };
+
+  const renderResultSection = () => {
+    if (formData === null || calculationResult === null) {
+      return null;
+    }
+
+    return (
+      <div className="flex flex-col">
+        <h3 className="text-lg font-semibold leading-none tracking-tight pb-1">
+          Result:
+        </h3>
+        <div>{renderResult(calculationResult, form)}</div>
+      </div>
+    );
   };
 
   return (
@@ -51,25 +64,13 @@ export const CalculatorForm = <T extends FieldValues, R>({
             <div className="py-3 sm:py-2 flex flex-col gap-4">
               {renderFields(form)}
             </div>
-            <Button
-              className="cursor-pointer"
-              disabled={!isValid || !isDirty}
-              type="submit"
-              size="sm"
-            >
+            <Button className="cursor-pointer" type="submit" size="sm">
               Calculate
             </Button>
           </form>
         </ShadCnForm>
 
-        {calculationResult && formData && (
-          <div className="flex flex-col">
-            <h3 className="text-lg font-semibold leading-none tracking-tight pb-1">
-              Result:
-            </h3>
-            <div>{renderResult(calculationResult, form)}</div>
-          </div>
-        )}
+        {renderResultSection()}
       </div>
     </article>
   );

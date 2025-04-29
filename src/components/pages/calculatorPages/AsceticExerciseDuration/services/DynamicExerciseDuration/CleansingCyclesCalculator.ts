@@ -1,4 +1,4 @@
-import { MENTAL_LAYER_AMOUNT } from '../../constants/DynamicExercise.constants';
+import { MENTAL_LAYER_AMOUNT } from '../../constants/contants';
 
 export type CleansingCycleData = {
   cycleTime: number;

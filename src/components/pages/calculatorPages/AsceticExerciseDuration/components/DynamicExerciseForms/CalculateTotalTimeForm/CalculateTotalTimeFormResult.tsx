@@ -1,12 +1,12 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { getIsWalking } from '../../../utils/DynamicExerciseUtils/utils';
+import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
 import { formatTime } from '@/utils/timeUtils';
 
 export type CalculateTotalTimeFormResultProps = {
   result: number;
   form: UseFormReturn<{
-    cleansingCycles: number;
+    mentalLayers: number;
     speed: number;
   }>;
 };
@@ -22,7 +22,7 @@ export const CalculateTotalTimeFormResult = ({
   return (
     <p data-testid="calculate-total-time-form-result">
       You have to {isWalking ? 'walk' : 'run'} for {totalTime} to clean{' '}
-      {form.getValues().cleansingCycles} mental layers at a speed of{' '}
+      {form.getValues().mentalLayers} mental layers at a speed of{' '}
       {form.getValues().speed} km/h
     </p>
   );

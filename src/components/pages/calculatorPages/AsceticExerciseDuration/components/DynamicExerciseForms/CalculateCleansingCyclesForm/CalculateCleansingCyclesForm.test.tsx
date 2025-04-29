@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CalculateCleansingCyclesForm } from './CalculateCleansingCyclesForm';
 import { dynamicExerciseDurationCalculator } from '../../../services/DynamicExerciseDuration';
+import { MENTAL_LAYER_AMOUNT } from '../../../constants/contants';
 
 jest.mock('../../../services/DynamicExerciseDuration', () => ({
   dynamicExerciseDurationCalculator: {
@@ -20,7 +21,7 @@ describe('CalculateCleansingCyclesForm', () => {
 
   it('should call calculateCleansingCycles with correct parameters when form is submitted', async () => {
     const mockResult = {
-      cleansingCycles: 5
+      cleansingCycles: MENTAL_LAYER_AMOUNT
     };
 
     calculateCleansingCyclesMock.mockReturnValue(mockResult);

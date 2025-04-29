@@ -4,8 +4,9 @@ import {
   CalculateSpeedFormResult,
   CalculateSpeedFormResultProps
 } from './CalculateSpeedFormResult';
-import { getIsWalking } from '../../../utils/DynamicExerciseUtils/utils';
+import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
 import { formatTime } from '@/utils/timeUtils';
+import { MENTAL_LAYER_AMOUNT } from '../../../constants/contants';
 
 jest.mock('../../../utils/DynamicExerciseUtils/utils', () => ({
   getIsWalking: jest.fn()
@@ -20,7 +21,7 @@ const getIsWalkingMock = getIsWalking as jest.Mock;
 
 describe('CalculateSpeedFormResult', () => {
   const getValues = jest.fn().mockImplementation(() => ({
-    cleansingCycles: 3,
+    mentalLayers: 3,
     duration: 1800 // 30 minutes in seconds
   }));
 
@@ -90,7 +91,7 @@ describe('CalculateSpeedFormResult', () => {
   test('uses correct form values in the message', () => {
     getIsWalkingMock.mockReturnValue(false);
     getValues.mockImplementation(() => ({
-      cleansingCycles: 5,
+      mentalLayers: MENTAL_LAYER_AMOUNT,
       duration: 3600 // 1 hour in seconds
     }));
     formatTimeMock.mockReturnValue('1 hour');

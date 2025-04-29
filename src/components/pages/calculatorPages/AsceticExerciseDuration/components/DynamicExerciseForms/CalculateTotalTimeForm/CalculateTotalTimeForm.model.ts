@@ -1,12 +1,10 @@
 import { z } from 'zod';
 
-import {
-  cleansingCycles,
-  speed
-} from '../../DynamicExerciseDurationFormFields/DynamicExerciseDurationFormFields.model';
+import { speed } from '../../DynamicExerciseDurationFormFields/DynamicExerciseDurationFormFields.model';
+import { mentalLayers } from '../../FormFields/FormFields.model';
 
 export const CalculateTotalTimeFormModel = z.object({
-  cleansingCycles,
+  mentalLayers,
   speed
 });
 

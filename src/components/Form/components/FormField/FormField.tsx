@@ -19,8 +19,6 @@ export const FormField = <FormType extends FieldValues>({
   name,
   fieldRenderer
 }: FormFieldComponentProps<FormType>) => {
-  console.log('render');
-
   return (
     <ShadCnFormField
       control={form.control}

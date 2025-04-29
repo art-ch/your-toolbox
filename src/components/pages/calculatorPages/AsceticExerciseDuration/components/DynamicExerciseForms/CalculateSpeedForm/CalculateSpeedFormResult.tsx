@@ -1,12 +1,12 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { getIsWalking } from '../../../utils/DynamicExerciseUtils/utils';
+import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
 import { formatTime } from '@/utils/timeUtils';
 
 export type CalculateSpeedFormResultProps = {
   result: number;
   form: UseFormReturn<{
-    cleansingCycles: number;
+    mentalLayers: number;
     duration: number;
   }>;
 };
@@ -25,7 +25,7 @@ export const CalculateSpeedFormResult = ({
     <div data-testid="calculate-speed-form-result">
       <p>
         You need to {isWalking ? 'walk' : 'run'} with the speed of {result} km/h
-        to clean {form.getValues().cleansingCycles} mental layers in {duration}.
+        to clean {form.getValues().mentalLayers} mental layers in {duration}.
       </p>
       {isSpeedHardToAchieve && (
         <p>

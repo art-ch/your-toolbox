@@ -165,8 +165,6 @@ describe('CalculatorForm', () => {
       name: /calculate/i
     });
 
-    expect(submitButton).toBeDisabled();
-
     await userEvent.click(submitButton);
 
     expect(mockOnSubmit).not.toHaveBeenCalled();

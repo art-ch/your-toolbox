@@ -10,6 +10,7 @@ export const mentalLayers = z.preprocess(
   (value) => Number(value),
   z
     .number()
+    .int('Only whole numbers are allowed')
     .min(1, 'Value of mental layers should not be less than 1')
     .max(MENTAL_LAYER_AMOUNT, 'Value of mental layers can not be more than 5')
 );

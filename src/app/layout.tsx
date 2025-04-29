@@ -5,6 +5,7 @@ import { Header, Footer } from '@/app/layout/index';
 import './globals.css';
 import { AppDrawer } from './layout/AppDrawer/AppDrawer';
 import { Providers } from './providers';
+import { LastVisitedPageTracker } from './components/LastVisitedPage/LastVisitedPageTracker';
 
 export const metadata: Metadata = {
   title: 'Your Toolbox',
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
+          <LastVisitedPageTracker />
           <AppDrawer />
           <Header />
           {/* 44 (height of header and paddings) + 48 (height of footer) = 92 */}

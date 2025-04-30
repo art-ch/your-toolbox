@@ -21,11 +21,11 @@ import {
 export const ExerciseTypeTabs = () => (
   <Tabs defaultValue="dynamic">
     <TabsList className="my-0 mx-auto">
-      <TabsTrigger value="dynamic">
+      <TabsTrigger value="dynamic" className="cursor-pointer">
         <FaPersonRunning />
         Dynamic
       </TabsTrigger>
-      <TabsTrigger value="static">
+      <TabsTrigger value="static" className="cursor-pointer">
         <FaPerson />
         Static
       </TabsTrigger>
@@ -40,11 +40,11 @@ export const ExerciseTypeTabs = () => (
     <TabsContent value="static">
       <Tabs defaultValue="static_ground">
         <TabsList className="my-0 mx-auto">
-          <TabsTrigger value="static_ground">
+          <TabsTrigger value="static_ground" className="cursor-pointer">
             <GiMeditation />
             Ground
           </TabsTrigger>
-          <TabsTrigger value="static_water">
+          <TabsTrigger value="static_water" className="cursor-pointer">
             <FaPersonSwimming />
             Water
           </TabsTrigger>

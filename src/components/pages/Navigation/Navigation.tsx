@@ -1,29 +1,36 @@
+'use client';
+
 import { LuCalculator } from 'react-icons/lu';
 import { MdMiscellaneousServices } from 'react-icons/md';
 
-import { PageHeading } from '@/app/components/PageHeading/PageHeading';
 import { NavigationContainer } from './components/NavigationContainer/NavigationContainer';
 import { NavigationLinkCard } from './components/NavigationLinkCard/NavigationLinkCard';
+import { PageHeading } from '@/components/PageHeading/PageHeading';
+import { useTranslation } from 'react-i18next';
 
 export const Navigation = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <PageHeading
-        title="Navigation"
-        subtitle="Find all available tools here"
+        title={t('common:navigation')}
+        subtitle={t('common:navPageDescription', {
+          category: t('common:tools').toLowerCase()
+        })}
       />
       <NavigationContainer>
         <NavigationLinkCard
           href="/calculators"
           icon={<LuCalculator />}
-          title="Calculators"
-          subtitle="Make your computer do math for you"
+          title={t('common:calculators')}
+          subtitle={t('common:calculatorsDescription')}
         />
         <NavigationLinkCard
           href="/specialized-tools"
           icon={<MdMiscellaneousServices />}
-          title="Specialized tools"
-          subtitle="Tools that are too specific for any other category"
+          title={t('common:specializedTools')}
+          subtitle={t('common:specializedToolsDescription')}
         />
       </NavigationContainer>
     </div>

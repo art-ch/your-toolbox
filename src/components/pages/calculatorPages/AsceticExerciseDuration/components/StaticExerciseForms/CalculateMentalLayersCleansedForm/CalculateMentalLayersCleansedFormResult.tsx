@@ -24,6 +24,7 @@ export const CalculateMentalLayersCleansedFormResult = ({
         After sitting in a water with {temperature} °C temperature for {time}
       </p>
       <p>You will have {result} mental layers cleaned</p>
+
       <WaterExposureWarning
         temperature={temperature}
         duration={form.getValues().duration}

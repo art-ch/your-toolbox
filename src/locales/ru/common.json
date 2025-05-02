@@ -1,0 +1,10 @@
+{
+  "navigation": "Навигация",
+  "navPageDescription": "Здесь собраны все доступные {{category}}",
+  "tools": "Инструменты",
+  "calculators": "Калькуляторы",
+  "calculatorsDescription": "Заставьте компьютер решать математику за вас",
+  "specializedTools": "Спец. инструменты",
+  "specializedToolsDescription": "Инструменты слишком специфичные для других категорий",
+  "about": "Про нас"
+}

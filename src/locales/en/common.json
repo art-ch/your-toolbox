@@ -1,0 +1,10 @@
+{
+  "navigation": "Navigation",
+  "navPageDescription": "Find all available {{category}} here",
+  "tools": "Tools",
+  "calculators": "Calculators",
+  "calculatorsDescription": "Make your computer do math for you",
+  "specializedTools": "Specialized Tools",
+  "specializedToolsDescription": "Tools that are too specific for any other category",
+  "about": "About"
+}

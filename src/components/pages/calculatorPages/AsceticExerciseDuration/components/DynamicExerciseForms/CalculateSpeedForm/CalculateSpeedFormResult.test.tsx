@@ -4,7 +4,7 @@ import {
   CalculateSpeedFormResult,
   CalculateSpeedFormResultProps
 } from './CalculateSpeedFormResult';
-import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
+import { getIsWalking } from '../../../hooks/useMovementTranslation';
 import { formatTime } from '@/utils/timeUtils';
 import { MENTAL_LAYER_AMOUNT } from '../../../constants/contants';
 

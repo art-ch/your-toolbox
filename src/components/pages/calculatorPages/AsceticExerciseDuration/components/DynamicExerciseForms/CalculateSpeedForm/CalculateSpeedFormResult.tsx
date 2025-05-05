@@ -1,7 +1,8 @@
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
+import { useMovementTranslation } from '../../../hooks/useMovementTranslation';
 import { formatTime } from '@/utils/timeUtils';
+import { useTranslation } from 'react-i18next';
 
 export type CalculateSpeedFormResultProps = {
   result: number;
@@ -15,25 +16,25 @@ export const CalculateSpeedFormResult = ({
   result,
   form
 }: CalculateSpeedFormResultProps) => {
-  const isWalking = getIsWalking(result);
+  const { t } = useTranslation('asceticExerciseDuration');
+
+  const { baseMovementTranslation } = useMovementTranslation(result);
 
   const isSpeedHardToAchieve = result > 45;
-
-  const duration = formatTime(form.getValues().duration);
 
   return (
     <div data-testid="calculate-speed-form-result">
       <p>
-        You need to {isWalking ? 'walk' : 'run'} with the speed of {result} km/h
-        to clean {form.getValues().mentalLayers} mental layers in {duration}.
+        {t('calculateSpeedResult', {
+          speed: result,
+          movement: baseMovementTranslation,
+          mentalLayerAmount: t('mentalLayerAmount', {
+            count: Number(form.getValues().mentalLayers)
+          }),
+          duration: formatTime(form.getValues().duration, t)
+        })}
       </p>
-      {isSpeedHardToAchieve && (
-        <p>
-          That&apos;s lightning fast! The current world record for sprint speed
-          is about 45 km/h. Are you aiming to break it? If not, consider
-          choosing a longer time period for a more typical running pace.
-        </p>
-      )}
+      {isSpeedHardToAchieve && <p>{t('speedHardToAchieve')}</p>}
     </div>
   );
 };

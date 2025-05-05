@@ -6,5 +6,5 @@ export const MAX_WALKING_SPEED = 7;
 
 export const MAX_SPEED = 45;
 
-export const DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION =
-  'How many minutes you plan to walk or run';
+export const DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION_TRANSLATION_KEY =
+  'asceticExerciseDuration:durationDescription';

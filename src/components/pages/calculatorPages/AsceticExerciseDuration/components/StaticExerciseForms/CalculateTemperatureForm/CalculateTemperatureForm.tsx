@@ -6,9 +6,12 @@ import {
 import { CalculateTemperatureFormResult } from './CalculateTemperatureFormResult';
 import { DurationField, MentalLayersField } from '../../FormFields';
 import { waterExposureDurationCalculator } from '../../../services/StaticExerciseDuration/WaterExposureDurationService';
-import { WATER_EXPOSURE_DURATION_FORM_FIELD_DESCRIPTION } from '../../../constants/StaticExercise.constants';
+import { WATER_EXPOSURE_DURATION_FORM_FIELD_DESCRIPTION_TRANSLATION_KEY } from '../../../constants/StaticExercise.constants';
+import { useTranslation } from 'react-i18next';
 
 export const CalculateTemperatureForm = () => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   const handleSubmit = (data: CalculateTemperatureFormData) => {
     return waterExposureDurationCalculator.calculateRequiredTemperature(
       data.mentalLayers,
@@ -18,8 +21,8 @@ export const CalculateTemperatureForm = () => {
 
   return (
     <CalculatorForm
-      title="Calculate Temperature"
-      subtitle="Calculate a water temperature to expose oneself to required to clean a specified number of mental layers."
+      title={t('calculateTemperatureTitle')}
+      subtitle={t('calculateTemperatureSubtitle')}
       formModel={CalculateTemperatureFormModel}
       onSubmit={handleSubmit}
       renderFields={(form) => (
@@ -28,7 +31,9 @@ export const CalculateTemperatureForm = () => {
           <DurationField
             form={form}
             name="duration"
-            description={WATER_EXPOSURE_DURATION_FORM_FIELD_DESCRIPTION}
+            description={t(
+              WATER_EXPOSURE_DURATION_FORM_FIELD_DESCRIPTION_TRANSLATION_KEY
+            )}
           />
         </>
       )}

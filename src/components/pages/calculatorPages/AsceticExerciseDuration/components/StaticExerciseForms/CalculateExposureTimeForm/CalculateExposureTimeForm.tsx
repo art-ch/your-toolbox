@@ -1,3 +1,5 @@
+'use client';
+
 import { CalculatorForm } from '@/components/CalculatorForm/CalculatorForm';
 import {
   CalculateExposureTimeFormData,
@@ -7,8 +9,11 @@ import { CalculateExposureTimeFormResult } from './CalculateExposureTimeFormResu
 import { MentalLayersField } from '../../FormFields';
 import { waterExposureDurationCalculator } from '../../../services/StaticExerciseDuration/WaterExposureDurationService';
 import { TemperatureField } from '../../StaticExerciseDurationFormFields';
+import { useTranslation } from 'react-i18next';
 
 export const CalculateExposureTimeForm = () => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   const handleSubmit = (data: CalculateExposureTimeFormData) => {
     return waterExposureDurationCalculator.calculateTotalExposureTime(
       data.temperature,
@@ -18,8 +23,8 @@ export const CalculateExposureTimeForm = () => {
 
   return (
     <CalculatorForm
-      title="Calculate Exposure Time"
-      subtitle="Calculate the time required to clean a specified number of mental layers while sitting in a water with specified temperature (°C)."
+      title={t('calculateExposureTimeTitle')}
+      subtitle={t('calculateExposureTimeSubtitle')}
       formModel={CalculateExposureTimeFormModel}
       onSubmit={handleSubmit}
       renderFields={(form) => (

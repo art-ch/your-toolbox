@@ -11,27 +11,30 @@ import { FieldValues } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { FormField } from '@/components/Form/components/FormField/FormField';
 import { FormFieldProps } from '@/components/Form/Form.types';
+import { useTranslation } from 'react-i18next';
 
 export const TemperatureField = <FormType extends FieldValues>({
   form,
   name
 }: FormFieldProps<FormType>) => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   return (
     <FormField
       form={form}
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>Temperature (°C):</FormLabel>
+          <FormLabel>{t('temperature')}:</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder="Please enter temperature value"
+              placeholder={t('temperatureValue')}
               value={field.value || ''}
             />
           </FormControl>
-          <FormDescription>Your water temperature</FormDescription>
+          <FormDescription>{t('temperatureDuration')}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

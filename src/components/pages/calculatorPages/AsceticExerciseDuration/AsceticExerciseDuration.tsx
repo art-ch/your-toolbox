@@ -1,9 +1,9 @@
 'use client';
 
-import { ToolPageHeading } from '@/app/components/PageHeading/PageHeading';
 import { LuCalculator } from 'react-icons/lu';
 import { TORSUNOV } from '@/constants/authorMentions';
 import { ExerciseTypeTabs } from './components/ExerciseTypeTabs/ExerciseTypeTabs';
+import { ToolPageHeading } from '@/components/PageHeading/PageHeading';
 
 export const AsceticExerciseDuration = () => (
   <div>

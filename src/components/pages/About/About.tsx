@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { FiGithub } from 'react-icons/fi';
 import { LuAtSign } from 'react-icons/lu';
 import { LuContact } from 'react-icons/lu';
-import { PageHeading } from '@/app/components/PageHeading/PageHeading';
 import { useBreakpoint } from '@/hooks/useBreakpoint/useBreakpoint';
+import { PageHeading } from '@/components/PageHeading/PageHeading';
 
 export const About = () => {
   const breakpoint = useBreakpoint();

@@ -12,6 +12,7 @@ import { FieldValues } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { FormField } from '@/components/Form/components/FormField/FormField';
 import { FormFieldProps } from '@/components/Form/Form.types';
+import { useTranslation } from 'react-i18next';
 
 export type DurationFieldProps<FormType extends FieldValues> =
   FormFieldProps<FormType> & {
@@ -23,22 +24,24 @@ export const DurationField = <FormType extends FieldValues>({
   name,
   description
 }: DurationFieldProps<FormType>) => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   return (
     <FormField
       form={form}
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>Duration (minutes):</FormLabel>
+          <FormLabel>{t('duration')}:</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder="Please enter duration value"
+              placeholder={t('durationValue')}
               value={field.value || ''}
             />
           </FormControl>
-          <FormDescription>{description}</FormDescription>
+          <FormDescription>{t(description)}</FormDescription>
           <FormMessage />
         </FormItem>
       )}
@@ -50,24 +53,24 @@ export const MentalLayersField = <FormType extends FieldValues>({
   form,
   name
 }: FormFieldProps<FormType>) => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   return (
     <FormField
       form={form}
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>Mental layers:</FormLabel>
+          <FormLabel>{t('mentalLayers')}:</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder="Please enter mental layers value"
+              placeholder={t('mentalLayersValue')}
               value={field.value || ''}
             />
           </FormControl>
-          <FormDescription>
-            How many mental layers you want to clean
-          </FormDescription>
+          <FormDescription>{t('mentalLayersDescription')}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import {
@@ -16,16 +18,21 @@ import {
   MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED
 } from '../../constants/StaticExercise.constants';
 import { formatTime } from '@/utils/timeUtils';
+import { useTranslation } from 'react-i18next';
 
 export type WaterExposureWarningProps = {
   temperature: number;
   duration: number;
+  formattedDuration: string;
 };
 
 export const WaterExposureWarning = ({
   temperature,
-  duration
+  duration,
+  formattedDuration
 }: WaterExposureWarningProps) => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   // Extremely cold water (≤2°C)
   const isExtremelyColdWater =
     temperature <= MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED;
@@ -69,19 +76,23 @@ export const WaterExposureWarning = ({
       {isExtremelyColdWater && (
         <>
           <p className="text-red-500">
-            <strong>EXTREME DANGER:</strong> Water at {temperature}°C is below
-            the minimum safe temperature even for trained individuals.
+            <strong>{t('extremelyColdWaterDanger')}:</strong>{' '}
+            {t('extremelyColdWaterDangerDescription', { temperature })}
           </p>
           {isDangerousExtremeColdDuration ? (
             <p className="text-red-500">
-              <strong>URGENT:</strong> {duration} minutes exceeds safe limits.
-              Choose a warmer water source.
+              <strong>{t('extremelyColdWaterDangerousDuration')}:</strong>{' '}
+              {t('extremelyColdWaterDangerousDurationDescription', {
+                duration: formattedDuration
+              })}
             </p>
           ) : (
             <p className="text-amber-500">
-              Only trained cold water specialists should exercise in this water.
-              Limit exposure to less than {MAX_SAFE_DURATION_EXTREME_COLD}{' '}
-              minutes.
+              {t('extremelyColdWaterForTrainedSpecialists', {
+                duration: t('common:time.minutes', {
+                  count: MAX_SAFE_DURATION_EXTREME_COLD
+                })
+              })}
             </p>
           )}
         </>
@@ -90,19 +101,23 @@ export const WaterExposureWarning = ({
       {isVeryColdWater && (
         <>
           <p className="text-red-500">
-            <strong>WARNING:</strong> Water at {temperature}°C is only safe for
-            trained cold water individuals.
+            <strong>{t('veryColdWaterWarning')}:</strong>{' '}
+            {t('veryColdWaterWarningDescription', { temperature })}
           </p>
           {isDangerousVeryColdDuration ? (
             <p className="text-red-500">
-              <strong>DANGER:</strong> {duration} minutes exceeds safe limits
-              even for trained individuals. Consider a warmer water source.
+              <strong>{t('veryColdWaterDangerousDuration')}:</strong>{' '}
+              {t('veryColdWaterDangerousDurationDescription', {
+                duration: formattedDuration
+              })}
             </p>
           ) : (
             <p className="text-amber-500">
-              Trained individuals should limit exposure to less than{' '}
-              {MAX_SAFE_DURATION_VERY_COLD} minutes. Not safe for untrained
-              individuals.
+              {t('veryColdWaterTrainedIndividuals', {
+                duration: t('common:time.minutes', {
+                  count: MAX_SAFE_DURATION_VERY_COLD
+                })
+              })}
             </p>
           )}
         </>
@@ -111,18 +126,22 @@ export const WaterExposureWarning = ({
       {isColdWater && (
         <>
           <p className="text-amber-500">
-            <strong>CAUTION:</strong> Water at {temperature}°C is below the
-            minimum safe temperature for untrained individuals.
+            <strong>{t('coldWaterCaution')}:</strong>{' '}
+            {t('coldWaterCautionDescription', { temperature })}
           </p>
           {isDangerousColdDuration ? (
             <p className="text-red-500">
-              {duration} minutes exceeds recommended duration for trained
-              individuals. Risk of hypothermia increases.
+              {t('coldWaterDangerousDuration', {
+                duration: formattedDuration
+              })}
             </p>
           ) : (
             <p className="text-emerald-500">
-              Only trained individuals should exercise in this water. Limit
-              exposure to less than {MAX_SAFE_DURATION_COLD} minutes.
+              {t('coldWaterTrainedIndividuals', {
+                duration: t('common:time.minutes', {
+                  count: MAX_SAFE_DURATION_COLD
+                })
+              })}
             </p>
           )}
         </>
@@ -131,18 +150,19 @@ export const WaterExposureWarning = ({
       {isNormalWater && (
         <>
           <p className="text-emerald-500">
-            Water at {temperature}°C is within safe range for untrained
-            individuals.
+            {t('normalWaterDescription', { temperature })}
           </p>
           {isLongNormalDuration ? (
             <p className="text-amber-500">
-              {duration} minutes is an extended session. Consider taking
-              periodic breaks to rest.
+              {t('normalWaterLongDuration', {
+                duration: formattedDuration
+              })}
             </p>
           ) : (
             <p className="text-emerald-500">
-              Safe for exposure for up to {formatTime(MAX_SAFE_DURATION_NORMAL)}
-              .
+              {t('normalWaterSafeForExposure', {
+                duration: formatTime(MAX_SAFE_DURATION_NORMAL, t)
+              })}
             </p>
           )}
         </>
@@ -151,18 +171,20 @@ export const WaterExposureWarning = ({
       {isWarmWater && (
         <>
           <p className="text-amber-500">
-            <strong>NOTICE:</strong> Water at {temperature}°C is warm and
-            approaching maximum safe temperature.
+            <strong>{t('warmWaterNotice')}:</strong>{' '}
+            {t('warmWaterNoticeDescription', { temperature })}
           </p>
           {isDangerousWarmDuration ? (
             <p className="text-red-500">
-              {duration} minutes exceeds recommended duration. Risk of
-              overheating increases.
+              {t('warmWaterDangerousDuration', {
+                duration: formattedDuration
+              })}
             </p>
           ) : (
             <p className="text-emerald-500">
-              Limit continuous exposure to {formatTime(MAX_SAFE_DURATION_WARM)}{' '}
-              and stay hydrated.
+              {t('warmWaterLimitExposure', {
+                duration: formatTime(MAX_SAFE_DURATION_WARM, t)
+              })}
             </p>
           )}
         </>
@@ -171,18 +193,21 @@ export const WaterExposureWarning = ({
       {isHotWater && (
         <>
           <p className="text-red-500">
-            <strong>DANGER:</strong> Water at {temperature}°C exceeds maximum
-            safe water temperature.
+            <strong>{t('hotWaterDanger')}:</strong>{' '}
+            {t('hotWaterDangerDescription', { temperature })}
           </p>
           {isDangerousHotDuration ? (
             <p className="text-red-500">
-              <strong>URGENT:</strong> {duration} minutes is excessive. Choose a
-              cooler water source.
+              <strong>{t('hotWaterDangerousDuration')}:</strong>{' '}
+              {t('hotWaterDangerousDurationDescription', {
+                duration: formattedDuration
+              })}
             </p>
           ) : (
             <p className="text-red-500">
-              Not recommended for exercising. If necessary, limit exposure to
-              less than {MAX_SAFE_DURATION_HOT} minutes or cool the water.
+              {t('hotWaterNotSuitableForExercising', {
+                duration: formatTime(MAX_SAFE_DURATION_HOT, t)
+              })}
             </p>
           )}
         </>

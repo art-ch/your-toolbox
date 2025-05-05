@@ -1,5 +1,9 @@
+'use client';
+
+import { formatTime } from '@/utils/timeUtils';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 export type CalculateLayersFromDurationFormResultProps = {
   result: number;
@@ -12,13 +16,18 @@ export const CalculateLayersFromDurationFormResult = ({
   result,
   form
 }: CalculateLayersFromDurationFormResultProps) => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
+  const duration = formatTime(form.getValues().duration, t);
+
   return (
     <div data-testid="calculate-layers-from-duration-form-result">
+      <p>{t('calculateLayersFromDurationResult1', { duration })}</p>
       <p>
-        After you have sit in a seated asana pose or have standed still
-        uninteruptedly for {form.getValues().duration} minutes
+        {t('calculateLayersFromDurationResult2', {
+          mentalLayerAmount: t('mentalLayerAmount', { count: result })
+        })}
       </p>
-      <p>You will have {result} mental layers cleaned</p>
     </div>
   );
 };

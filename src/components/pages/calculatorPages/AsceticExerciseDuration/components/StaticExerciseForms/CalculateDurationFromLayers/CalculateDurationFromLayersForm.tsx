@@ -1,3 +1,5 @@
+'use client';
+
 import { CalculatorForm } from '@/components/CalculatorForm/CalculatorForm';
 import {
   CalculateDurationFromLayersFormData,
@@ -7,8 +9,11 @@ import {
 import { CalculateDurationFromLayersFormResult } from './CalculateDurationFromLayersFormResult';
 import { MentalLayersField } from '../../FormFields';
 import { staticExerciseDurationCalculator } from '../../../services/StaticExerciseDuration/StaticExerciseDurationService';
+import { useTranslation } from 'react-i18next';
 
 export const CalculateDurationFromLayersForm = () => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   const handleSubmit = (data: CalculateDurationFromLayersFormData): number => {
     return staticExerciseDurationCalculator.calculateDurationFromLayers(
       data.mentalLayers
@@ -17,8 +22,8 @@ export const CalculateDurationFromLayersForm = () => {
 
   return (
     <CalculatorForm
-      title="Calculate Duration"
-      subtitle="Calculate how long you have to sit in a seated asana pose or stand uninteruptedly to clean a certain amount of mental layers"
+      title={t('calculateDurationFromLayersTitle')}
+      subtitle={t('calculateDurationFromLayersSubtitle')}
       formModel={CalculateDurationFromLayersFormModel}
       onSubmit={handleSubmit}
       renderFields={(form) => (

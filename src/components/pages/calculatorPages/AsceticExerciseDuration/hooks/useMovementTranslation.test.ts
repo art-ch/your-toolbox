@@ -1,5 +1,5 @@
-import { RUNNING_SPEED } from '../../constants/DynamicExercise.constants';
-import { getIsWalking } from './utils';
+import { RUNNING_SPEED } from '../constants/DynamicExercise.constants';
+import { getIsWalking } from './useMovementTranslation';
 
 describe('getIsWalking', () => {
   it('returns true when speed is below running threshold', () => {

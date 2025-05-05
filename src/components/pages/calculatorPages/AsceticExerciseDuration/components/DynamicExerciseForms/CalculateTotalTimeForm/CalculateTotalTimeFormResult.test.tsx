@@ -4,7 +4,7 @@ import {
   CalculateTotalTimeFormResult,
   CalculateTotalTimeFormResultProps
 } from './CalculateTotalTimeFormResult';
-import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
+import { getIsWalking } from '../../../hooks/useMovementTranslation';
 import { MENTAL_LAYER_AMOUNT } from '../../../constants/contants';
 import { formatTime } from '@/utils/timeUtils';
 

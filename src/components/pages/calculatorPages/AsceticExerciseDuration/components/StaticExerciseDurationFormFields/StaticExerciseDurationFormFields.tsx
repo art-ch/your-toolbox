@@ -17,7 +17,7 @@ export const TemperatureField = <FormType extends FieldValues>({
   form,
   name
 }: FormFieldProps<FormType>) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('asceticExerciseDuration');
 
   return (
     <FormField
@@ -25,18 +25,16 @@ export const TemperatureField = <FormType extends FieldValues>({
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>{t('asceticExerciseDuration:temperature')}:</FormLabel>
+          <FormLabel>{t('temperature')}:</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder={t('asceticExerciseDuration:temperatureValue')}
+              placeholder={t('temperatureValue')}
               value={field.value || ''}
             />
           </FormControl>
-          <FormDescription>
-            {t('asceticExerciseDuration:temperatureDuration')}
-          </FormDescription>
+          <FormDescription>{t('temperatureDuration')}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

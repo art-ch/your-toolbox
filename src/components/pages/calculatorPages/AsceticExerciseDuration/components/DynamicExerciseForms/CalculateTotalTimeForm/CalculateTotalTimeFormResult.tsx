@@ -1,7 +1,10 @@
+'use client';
+
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { getIsWalking } from '../../../utils/dynamicExerciseUtils/utils';
+import { useMovementTranslation } from '../../../hooks/useMovementTranslation';
 import { formatTime } from '@/utils/timeUtils';
+import { useTranslation } from 'react-i18next';
 
 export type CalculateTotalTimeFormResultProps = {
   result: number;
@@ -15,15 +18,24 @@ export const CalculateTotalTimeFormResult = ({
   result,
   form
 }: CalculateTotalTimeFormResultProps) => {
-  const isWalking = getIsWalking(form.getValues().speed);
+  const { t } = useTranslation('asceticExerciseDuration');
 
-  const totalTime = formatTime(result);
+  const { baseMovementTranslation } = useMovementTranslation(
+    form.getValues().speed
+  );
+
+  const totalTime = formatTime(result, t);
 
   return (
     <p data-testid="calculate-total-time-form-result">
-      You have to {isWalking ? 'walk' : 'run'} for {totalTime} to clean{' '}
-      {form.getValues().mentalLayers} mental layers at a speed of{' '}
-      {form.getValues().speed} km/h
+      {t('calculateTotalTimeResult', {
+        movement: baseMovementTranslation,
+        totalTime,
+        mentalLayerAmount: t('mentalLayerAmount', {
+          count: Number(form.getValues().mentalLayers)
+        }),
+        speed: form.getValues().speed
+      })}
     </p>
   );
 };

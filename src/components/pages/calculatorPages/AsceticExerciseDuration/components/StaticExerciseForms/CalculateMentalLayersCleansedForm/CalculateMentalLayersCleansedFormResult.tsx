@@ -2,6 +2,7 @@ import { formatTime } from '@/utils/timeUtils';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { WaterExposureWarning } from '../../WaterExposureWarning/WaterExposureWarning';
+import { useTranslation } from 'react-i18next';
 
 export type CalculateMentalLayersCleansedFormResultProps = {
   result: number;
@@ -15,19 +16,30 @@ export const CalculateMentalLayersCleansedFormResult = ({
   result,
   form
 }: CalculateMentalLayersCleansedFormResultProps) => {
-  const time = formatTime(form.getValues().duration);
+  const { t } = useTranslation('asceticExerciseDuration');
+
+  const duration = form.getValues().duration;
+  const formattedDuration = formatTime(duration, t);
   const temperature = form.getValues().temperature;
 
   return (
     <div data-testid="calculate-mental-layers-cleansed-form-result">
       <p>
-        After sitting in a water with {temperature} °C temperature for {time}
+        {t('calculateMentalLayersCleansedResult1', {
+          temperature,
+          duration: formattedDuration
+        })}
       </p>
-      <p>You will have {result} mental layers cleaned</p>
+      <p>
+        {t('calculateMentalLayersCleansedResult2', {
+          mentalLayerAmount: t('mentalLayerAmount', { count: result })
+        })}
+      </p>
 
       <WaterExposureWarning
         temperature={temperature}
-        duration={form.getValues().duration}
+        duration={duration}
+        formattedDuration={formattedDuration}
       />
     </div>
   );

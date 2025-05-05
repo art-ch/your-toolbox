@@ -6,5 +6,13 @@
   "calculatorsDescription": "Make your computer do math for you",
   "specializedTools": "Specialized Tools",
   "specializedToolsDescription": "Tools that are too specific for any other category",
-  "about": "About"
+  "about": "About",
+
+  "time": {
+    "hours_one": "{{count}} hour",
+    "hours_other": "{{count}} hours",
+    "minutes_one": "{{count}} minute",
+    "minutes_other": "{{count}} minutes",
+    "and": "and"
+  }
 }

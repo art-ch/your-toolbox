@@ -24,7 +24,7 @@ export const DurationField = <FormType extends FieldValues>({
   name,
   description
 }: DurationFieldProps<FormType>) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('asceticExerciseDuration');
 
   return (
     <FormField
@@ -32,12 +32,12 @@ export const DurationField = <FormType extends FieldValues>({
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>{t('asceticExerciseDuration:duration')}:</FormLabel>
+          <FormLabel>{t('duration')}:</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder={t('asceticExerciseDuration:durationValue')}
+              placeholder={t('durationValue')}
               value={field.value || ''}
             />
           </FormControl>
@@ -53,7 +53,7 @@ export const MentalLayersField = <FormType extends FieldValues>({
   form,
   name
 }: FormFieldProps<FormType>) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('asceticExerciseDuration');
 
   return (
     <FormField
@@ -61,18 +61,16 @@ export const MentalLayersField = <FormType extends FieldValues>({
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>{t('asceticExerciseDuration:mentalLayers')}:</FormLabel>
+          <FormLabel>{t('mentalLayers')}:</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder={t('asceticExerciseDuration:mentalLayersValue')}
+              placeholder={t('mentalLayersValue')}
               value={field.value || ''}
             />
           </FormControl>
-          <FormDescription>
-            {t('asceticExerciseDuration:mentalLayersDescription')}
-          </FormDescription>
+          <FormDescription>{t('mentalLayersDescription')}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

@@ -17,7 +17,7 @@ export const SpeedField = <FormType extends FieldValues>({
   form,
   name
 }: FormFieldProps<FormType>) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('asceticExerciseDuration');
 
   return (
     <FormField
@@ -25,18 +25,16 @@ export const SpeedField = <FormType extends FieldValues>({
       name={name}
       fieldRenderer={({ field }) => (
         <FormItem>
-          <FormLabel>{t('asceticExerciseDuration:speed')}:</FormLabel>
+          <FormLabel>{t('speed')}:</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="number"
-              placeholder={t('asceticExerciseDuration:speedValue')}
+              placeholder={t('speedValue')}
               value={field.value || ''}
             />
           </FormControl>
-          <FormDescription>
-            {t('asceticExerciseDuration:speedDescription')}
-          </FormDescription>
+          <FormDescription>{t('speedDescription')}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

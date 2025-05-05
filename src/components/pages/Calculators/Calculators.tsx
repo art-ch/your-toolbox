@@ -19,8 +19,8 @@ export const Calculators = () => {
         <NavigationLinkCard
           href="/calculators/ascetic-exercise-duration"
           icon={<LuCalculator />}
-          title="Ascetic Exercise Duration"
-          subtitle="Regular exercising boosts your well-being. Use this calculator to determine your workout duration."
+          title={t('asceticExerciseDuration:title')}
+          subtitle={t('asceticExerciseDuration:subtitle')}
         />
       </NavigationContainer>
     </div>

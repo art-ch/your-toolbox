@@ -6,5 +6,13 @@
   "calculatorsDescription": "Змусьте комп'ютер робити за вас математику",
   "specializedTools": "Спеціалізовані інструменти",
   "specializedToolsDescription": "Занадто специфічні для інших категорій інструменти ",
-  "about": "Про нас"
+  "about": "Про нас",
+
+  "time": {
+    "hours_one": "{{count}} годину",
+    "hours_other": "{{count}} години",
+    "minutes_one": "{{count}} хвилини",
+    "minutes_other": "{{count}} хвилин",
+    "and": " "
+  }
 }

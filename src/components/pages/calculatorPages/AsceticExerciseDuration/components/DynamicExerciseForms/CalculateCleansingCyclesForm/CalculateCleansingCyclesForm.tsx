@@ -1,3 +1,5 @@
+'use client';
+
 import { CalculatorForm } from '@/components/CalculatorForm/CalculatorForm';
 import { SpeedField } from '../../DynamicExerciseDurationFormFields';
 import {
@@ -10,9 +12,12 @@ import {
 } from '../../../services/DynamicExerciseDuration';
 import { CalculateCleansingCyclesFormResult } from './CalculateCleansingCyclesFormResult';
 import { DurationField } from '../../FormFields';
-import { DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION } from '../../../constants/DynamicExercise.constants';
+import { DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION_TRANSLATION_KEY } from '../../../constants/DynamicExercise.constants';
+import { useTranslation } from 'react-i18next';
 
 export const CalculateCleansingCyclesForm = () => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   const handleSubmit = (
     data: CalculateCleansingCyclesFormData
   ): CalculateCleansingCyclesReturnType => {
@@ -24,8 +29,8 @@ export const CalculateCleansingCyclesForm = () => {
 
   return (
     <CalculatorForm
-      title="Calculate Cleaned Mental Layers"
-      subtitle="Calculate how many mental layers you will have cleaned if you walk or run uninteruptedly at a set speed for a certain amount of time"
+      title={t('calculateCleanedMentalLayersTitle')}
+      subtitle={t('calculateCleanedMentalLayersSubtitle')}
       formModel={CalculateCleansingCyclesFormModel}
       onSubmit={handleSubmit}
       renderFields={(form) => (
@@ -34,7 +39,9 @@ export const CalculateCleansingCyclesForm = () => {
           <DurationField
             form={form}
             name="duration"
-            description={DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION}
+            description={t(
+              DYNAMIC_EXERCISE_DURATION_FORM_FIELD_DESCRIPTION_TRANSLATION_KEY
+            )}
           />
         </>
       )}

@@ -1,3 +1,5 @@
+'use client';
+
 import { CalculatorForm } from '@/components/CalculatorForm/CalculatorForm';
 import { SpeedField } from '../../DynamicExerciseDurationFormFields';
 import { dynamicExerciseDurationCalculator } from '../../../services/DynamicExerciseDuration';
@@ -7,8 +9,11 @@ import {
 } from './CalculateTotalTimeForm.model';
 import { CalculateTotalTimeFormResult } from './CalculateTotalTimeFormResult';
 import { MentalLayersField } from '../../FormFields';
+import { useTranslation } from 'react-i18next';
 
 export const CalculateTotalTimeForm = () => {
+  const { t } = useTranslation('asceticExerciseDuration');
+
   const handleSubmit = (data: CalculateTotalTimeFormData) => {
     return dynamicExerciseDurationCalculator.calculateTotalTime(
       data.speed,
@@ -18,8 +23,8 @@ export const CalculateTotalTimeForm = () => {
 
   return (
     <CalculatorForm
-      title="Calculate Total Time"
-      subtitle="Calculate the time required to clean a specified number of mental layers while walking or running at a specified speed."
+      title={t('calculateTotalTimeTitle')}
+      subtitle={t('calculateTotalTimeSubtitle')}
       formModel={CalculateTotalTimeFormModel}
       onSubmit={handleSubmit}
       renderFields={(form) => (

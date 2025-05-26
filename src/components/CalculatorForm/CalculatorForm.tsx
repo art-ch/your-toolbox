@@ -5,6 +5,7 @@ import { Form as ShadCnForm } from '@/components/ui/form';
 import { Button } from '../ui/button';
 import { FormProps } from '../Form/Form.types';
 import { useCalculatorFormResult } from './hooks/useCalculatorFormResult';
+import { useTranslation } from 'react-i18next';
 
 export type CalculatorFormProps<T extends FieldValues, R> = FormProps<T, R> & {
   renderResult: (result: R, form: UseFormReturn<T>) => React.ReactNode;
@@ -19,6 +20,7 @@ export const CalculatorForm = <T extends FieldValues, R>({
   renderResult
 }: CalculatorFormProps<T, R>) => {
   const [formData, setFormData] = useState<T | null>(null);
+  const { t } = useTranslation('common');
 
   const form = useForm<T>({
     resolver: zodResolver(formModel)
@@ -65,7 +67,7 @@ export const CalculatorForm = <T extends FieldValues, R>({
               {renderFields(form)}
             </div>
             <Button className="cursor-pointer" type="submit" size="sm">
-              Calculate
+              {t('calculate')}
             </Button>
           </form>
         </ShadCnForm>

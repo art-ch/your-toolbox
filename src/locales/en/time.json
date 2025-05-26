@@ -1,0 +1,13 @@
+{
+  "hours_one": "{{count}} hour",
+  "hours_other": "{{count}} hours",
+  "minutes_one": "{{count}} minute",
+  "minutes_other": "{{count}} minutes",
+  "days_one": "{{count}} day",
+  "days_other": "{{count}} days",
+
+  "everyday": "every day",
+  "onceEvery": "once every",
+
+  "and": "and"
+}

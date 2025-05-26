@@ -1,0 +1,41 @@
+{
+  "hours_one": "{{count}} година",
+  "hours_few": "{{count}} години",
+  "hours_many": "{{count}} годин",
+  "hours_other": "{{count}} годин",
+
+  "hours_genitive_one": "{{count}} години",
+  "hours_genitive_few": "{{count}} годин",
+  "hours_genitive_many": "{{count}} годин",
+  "hours_genitive_other": "{{count}} годин",
+
+  "hours_accusative_one": "{{count}} годину",
+  "hours_accusative_few": "{{count}} години",
+  "hours_accusative_many": "{{count}} годин",
+  "hours_accusative_other": "{{count}} годин",
+
+  "minutes_one": "{{count}} хвилина",
+  "minutes_few": "{{count}} хвилини",
+  "minutes_many": "{{count}} хвилин",
+  "minutes_other": "{{count}} хвилин",
+
+  "minutes_genitive_one": "{{count}} хвилини",
+  "minutes_genitive_few": "{{count}} хвилин",
+  "minutes_genitive_many": "{{count}} хвилин",
+  "minutes_genitive_other": "{{count}} хвилин",
+
+  "minutes_accusative_one": "{{count}} хвилину",
+  "minutes_accusative_few": "{{count}} хвилини",
+  "minutes_accusative_many": "{{count}} хвилин",
+  "minutes_accusative_other": "{{count}} хвилин",
+
+  "days_one": "{{count}} день",
+  "days_few": "{{count}} дні",
+  "days_many": "{{count}} днів",
+  "days_other": "{{count}} днів",
+
+  "everyday": "щодня",
+  "onceEvery": "раз на",
+
+  "and": ""
+}

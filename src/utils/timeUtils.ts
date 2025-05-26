@@ -11,19 +11,3 @@ export function convertMinutesToHoursAndMinutes(
 
   return { hours, minutes };
 }
-
-export function formatTime(totalMinutes: number): string {
-  const { hours, minutes } = convertMinutesToHoursAndMinutes(totalMinutes);
-
-  const hourPart =
-    hours > 0 ? `${hours} ${hours === 1 ? 'hour' : 'hours'}` : '';
-
-  const minutePart =
-    minutes > 0 || hours === 0
-      ? `${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`
-      : '';
-
-  const connector = hours > 0 && minutes > 0 ? 'and' : '';
-
-  return `${hourPart} ${connector} ${minutePart}`.trim();
-}

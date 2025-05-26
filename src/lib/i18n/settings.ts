@@ -1,4 +1,4 @@
-export const languages = ['en', 'ua', 'ru'];
+export const languages = ['en', 'uk', 'ru'];
 export const defaultLanguage = 'en';
 export const defaultNamespace = 'common';
 

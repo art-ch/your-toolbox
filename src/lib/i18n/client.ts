@@ -14,6 +14,14 @@ i18next
         import(`../../locales/${language}/${namespace}.json`)
     )
   )
-  .init(getI18nOptions());
+  .init({
+    ...getI18nOptions(),
+    react: {
+      useSuspense: true,
+      transEmptyNodeValue: '',
+      transSupportBasicHtmlNodes: true,
+      transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p']
+    }
+  });
 
 export default i18next;

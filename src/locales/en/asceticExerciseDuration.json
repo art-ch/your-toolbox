@@ -12,6 +12,7 @@
   "run": "run",
   "walking": "walking",
   "running": "running",
+
   "mentalLayerAmount_one": "{{count}} mental layer",
   "mentalLayerAmount_other": "{{count}} mental layers",
 
@@ -21,7 +22,6 @@
   "mentalLayers": "Mental layers",
   "mentalLayersValue": "Please enter mental layers value",
   "mentalLayersDescription": "How many mental layers you want to clean",
-  "submit": "Submit",
 
   "speed": "Speed (km/h)",
   "speedValue": "Please enter speed value",
@@ -29,15 +29,29 @@
   "temperature": "Temperature",
   "temperatureValue": "Please enter temperature value",
   "temperatureDescription": "Water temperature",
+  "allMentalLayers": "all 5 of your mental layers",
+
+  "validation": {
+    "invalidNumber": "Please enter the number",
+
+    "duration": "Duration must be at least 1 munute",
+
+    "mentalLayers": "Value of mental layers should not be less than 1",
+    "mentalLayersMax": "Value of mental layers can not be more than 5",
+    "mentalLayersWholeNumbers": "Only whole numbers are allowed",
+
+    "speedMin": "Speed must be at least 2 km/h (minimal walking speed)",
+    "speedMax": "Speed can't exceed 45 km/h (fastest human sprint)",
+    "validSpeed": "For walking, speed should be 2-7 km/h. For running, speed should be 7-45 km/h."
+  },
 
   "calculateCleanedMentalLayersTitle": "Calculate Cleaned Mental Layers",
   "calculateCleanedMentalLayersSubtitle": "Calculate how many mental layers you will have cleaned if you walk or run uninteruptedly at a set speed for a certain amount of time",
   "movedForDuration": "After {{movement}} for {{duration}}",
   "movedForDurationResult": "You will have {{mentalLayerAmount}} cleaned",
-  "allMentalLayers": "all 5 of your",
   "okayToExerciseMore1": "You have to {{movement}} {{timeToNextCycle}} more to clean 1 more mental layer",
   "okayToExerciseMore2": "You will have to {{movement}} {{timeTo5Cycles}} more to clean all mental layers",
-  "recommendedExerciseTime": "It is recommended to do this exercise once every {{recommendedFrequencyDays}} days",
+  "recommendedExerciseTime": "It is recommended to do this exercise {{onceEvery}} {{recommendedFrequencyDays}}",
   "recommendedExerciseTimeOverextended1": "It is recommended to limit this exercise to {{recommendedExerciseTime}}",
   "recommendedExerciseTimeOverextended2": "Avoid overexertion, excessive exercising can be counterproductive.",
 
@@ -59,6 +73,7 @@
   "calculateLayersFromDurationDescription": "How many minutes you plan to sit or stand",
   "calculateLayersFromDurationResult1": "After you have sit in a seated asana pose or have standed still uninteruptedly for {{duration}}",
   "calculateLayersFromDurationResult2": "You will have {{mentalLayerAmount}} cleaned",
+  "calculateLayersFromDurationOverextending": "Overextending can be counterproductive.",
 
   "calculateExposureTimeTitle": "Calculate Exposure Time",
   "calculateExposureTimeSubtitle": "Calculate the time required to clean a specified number of mental layers while sitting in a water with specified temperature (°C).",
@@ -69,6 +84,7 @@
   "calculateMentalLayersCleansedDuration": "How many minutes you plan to sit in the water",
   "calculateMentalLayersCleansedResult1": "After sitting in a water with {{temperature}} °C temperature for {{duration}}",
   "calculateMentalLayersCleansedResult2": "You will have {{mentalLayerAmount}} cleaned",
+  "calculateMentalLayersCleansedOverextending": "Overextending can be counterproductive.",
 
   "calculateTemperatureTitle": "Calculate Temperature",
   "calculateTemperatureSubtitle": "Calculate a water temperature to expose oneself to required to clean a specified number of mental layers.",

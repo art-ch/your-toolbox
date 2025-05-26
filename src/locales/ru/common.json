@@ -4,15 +4,8 @@
   "tools": "Инструменты",
   "calculators": "Калькуляторы",
   "calculatorsDescription": "Заставьте компьютер решать математику за вас",
+  "calculate": "Расчитать",
   "specializedTools": "Спец. инструменты",
   "specializedToolsDescription": "Инструменты слишком специфичные для других категорий",
-  "about": "Про нас",
-
-  "time": {
-    "hours_one": "{{count}} час",
-    "hours_other": "{{count}} часа",
-    "minutes_one": "{{count}} минуты",
-    "minutes_other": "{{count}} минут",
-    "and": " "
-  }
+  "about": "Про нас"
 }

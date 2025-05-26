@@ -24,27 +24,37 @@ export const Content = () => {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {APP_DRAWER_CONTENT.map((item) => (
-              <SidebarMenuItem key={item.translationKey}>
-                <SidebarMenuButton asChild>
-                  <a href={item.url} className="font-medium">
-                    {item?.icon}
-                    {t(item.translationKey)}
-                  </a>
-                </SidebarMenuButton>
-                {item.items?.length ? (
-                  <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
-                    {item.items.map((item) => (
-                      <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton asChild>
-                          <a href={item.url}>{item.title}</a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                ) : null}
-              </SidebarMenuItem>
-            ))}
+            {APP_DRAWER_CONTENT.map(
+              ({ translationKey, url, icon, menuOptions }) => (
+                <SidebarMenuItem key={translationKey}>
+                  <SidebarMenuButton asChild>
+                    <a href={url} className="font-medium">
+                      {icon}
+                      {t(translationKey)}
+                    </a>
+                  </SidebarMenuButton>
+                  {menuOptions?.length ? (
+                    <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
+                      {menuOptions.map((menuOption) => {
+                        const linkText =
+                          // use translationKey if it exists, or title if translation is not available
+                          'translationKey' in menuOption
+                            ? t(menuOption.translationKey)
+                            : menuOption.title;
+
+                        return (
+                          <SidebarMenuSubItem key={linkText}>
+                            <SidebarMenuSubButton asChild>
+                              <a href={menuOption.url}>{linkText}</a>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
+                    </SidebarMenuSub>
+                  ) : null}
+                </SidebarMenuItem>
+              )
+            )}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

@@ -6,9 +6,9 @@ export const APP_DRAWER_CONTENT = [
     icon: <LuCalculator />,
     translationKey: 'common:calculators',
     url: '/calculators',
-    items: [
+    menuOptions: [
       {
-        title: 'Ascetic Exercise Duration',
+        translationKey: 'asceticExerciseDuration:title',
         url: '/calculators/ascetic-exercise-duration'
       }
     ]
@@ -17,7 +17,7 @@ export const APP_DRAWER_CONTENT = [
     icon: <MdMiscellaneousServices />,
     translationKey: 'common:specializedTools',
     url: '/specialized-tools',
-    items: [
+    menuOptions: [
       {
         title: 'Rail Signalling Info',
         url: 'https://rail-signalling-info.netlify.app/'

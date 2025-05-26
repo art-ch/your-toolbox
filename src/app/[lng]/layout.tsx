@@ -6,7 +6,13 @@ import { Providers } from '@/app/providers';
 import { AppDrawer } from '@/components/layout/AppDrawer/AppDrawer';
 import { Footer, Header } from '@/components/layout';
 
-const namespaces = ['common', 'homePage', 'footer', 'asceticExerciseDuration'];
+const namespaces = [
+  'common',
+  'homePage',
+  'footer',
+  'time',
+  'asceticExerciseDuration'
+];
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -19,7 +25,7 @@ export default async function LanguageLayout({
   children: React.ReactNode;
   params: { lng: string };
 }) {
-  const { lng } = await params;
+  const { lng } = params;
 
   if (!lng) {
     throw new Error('Language parameter is missing');

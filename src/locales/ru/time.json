@@ -1,0 +1,41 @@
+{
+  "hours_one": "{{count}} час",
+  "hours_few": "{{count}} часa",
+  "hours_many": "{{count}} часов",
+  "hours_other": "{{count}} часов",
+
+  "hours_genitive_one": "{{count}} часа",
+  "hours_genitive_few": "{{count}} часов",
+  "hours_genitive_many": "{{count}} часов",
+  "hours_genitive_other": "{{count}} часов",
+
+  "hours_accusative_one": "{{count}} час",
+  "hours_accusative_few": "{{count}} часa",
+  "hours_accusative_many": "{{count}} часов",
+  "hours_accusative_other": "{{count}} часов",
+
+  "minutes_one": "{{count}} минута",
+  "minutes_few": "{{count}} минуты",
+  "minutes_many": "{{count}} минут",
+  "minutes_other": "{{count}} минут",
+
+  "minutes_genitive_one": "{{count}} минуты",
+  "minutes_genitive_few": "{{count}} минут",
+  "minutes_genitive_many": "{{count}} минут",
+  "minutes_genitive_other": "{{count}} минут",
+
+  "minutes_accusative_one": "{{count}} минуту",
+  "minutes_accusative_few": "{{count}} минуты",
+  "minutes_accusative_many": "{{count}} минут",
+  "minutes_accusative_other": "{{count}} минут",
+
+  "days_one": "{{count}} день",
+  "days_few": "{{count}} дня",
+  "days_many": "{{count}} дней",
+  "days_other": "{{count}} дней",
+
+  "everyday": "каждый день",
+  "onceEvery": "раз в",
+
+  "and": " "
+}

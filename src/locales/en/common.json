@@ -7,5 +7,11 @@
   "calculate": "Calculate",
   "specializedTools": "Specialized Tools",
   "specializedToolsDescription": "Tools that are too specific for any other category",
-  "about": "About"
+  "about": "About",
+
+  "metadata": {
+    "description": "Make your computer do stuff for you"
+  },
+
+  "byAuthor": "by"
 }

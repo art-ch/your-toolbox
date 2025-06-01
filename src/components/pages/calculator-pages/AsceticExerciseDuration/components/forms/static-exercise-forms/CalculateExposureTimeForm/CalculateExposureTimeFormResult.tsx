@@ -3,6 +3,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { formatTime } from '@/utils/i18n';
 import { WaterExposureWarning } from '../../../WaterExposureWarning/WaterExposureWarning';
 import { useTranslation } from 'react-i18next';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type CalculateExposureTimeFormResultProps = {
   result: number;
@@ -18,10 +19,12 @@ export const CalculateExposureTimeFormResult = ({
 }: CalculateExposureTimeFormResultProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
 
+  const language = parseLanguage(i18n.language);
+
   const formattedDuration = formatTime({
     totalMinutes: result,
     t,
-    language: i18n.language
+    language
   });
   const temperature = form.getValues().temperature;
   const mentalLayerAmount = t('mentalLayerAmount', {

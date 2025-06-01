@@ -11,6 +11,7 @@ import {
   timeTo5CyclesCaseConfig,
   timeToNextCycleCaseConfig
 } from './CalculateCleansingCyclesForm.config';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type CalculateCleansingCyclesFormResultProps = {
   result: CalculateCleansingCyclesReturnType;
@@ -26,6 +27,8 @@ export const CalculateCleansingCyclesFormResult = ({
 }: CalculateCleansingCyclesFormResultProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
 
+  const language = parseLanguage(i18n.language);
+
   const { baseMovementTranslation, gerundMovementTranslation } =
     useMovementTranslation(form.getValues().speed);
 
@@ -39,19 +42,19 @@ export const CalculateCleansingCyclesFormResult = ({
     totalMinutes: form.getValues().duration,
     grammarCaseConfig: durationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
   const timeToNextCycle = formatTime({
     totalMinutes: result.minutesUntilNextCycle,
     grammarCaseConfig: timeToNextCycleCaseConfig,
     t,
-    language: i18n.language
+    language
   });
   const timeTo5Cycles = formatTime({
     totalMinutes: result.minutesTo5Cycles,
     grammarCaseConfig: timeTo5CyclesCaseConfig,
     t,
-    language: i18n.language
+    language
   });
   const recommendedFrequencyDays = formatDays(
     result.recommendedFrequencyDays,
@@ -60,7 +63,7 @@ export const CalculateCleansingCyclesFormResult = ({
   const recommendedExerciseTime = formatTime({
     totalMinutes: result.recommendedExerciseMinutes,
     t,
-    language: i18n.language
+    language
   });
   const mentalLayerAmount = isNotOkayToExerciseMore
     ? t('allMentalLayers')

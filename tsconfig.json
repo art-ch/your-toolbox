@@ -35,6 +35,8 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
+    // types contradict with server errors regarding `await params`
+    ".next/types/app/[lng]/layout.ts",
     "node_modules"
   ]
 }

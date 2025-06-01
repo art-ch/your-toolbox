@@ -9,23 +9,29 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { languageSwitcherConfig } from './LanguageSwitcher.config';
+import { Language } from '@/lib/i18n/types';
 
-export function LanguageSwitcher({ currentLng }: { currentLng: string }) {
+type LanguageSwitcherProps = {
+  currentLanguage: Language;
+};
+
+export function LanguageSwitcher({ currentLanguage }: LanguageSwitcherProps) {
   const { changeLanguage } = useLanguagePreference();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="max-w-fit justify-self-end cursor-pointer">
-        {currentLng.toUpperCase()}
+        {languageSwitcherConfig[currentLanguage].label}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {languages.map((lng) => (
+        {languages.map((language) => (
           <DropdownMenuItem
-            key={lng}
-            className={`${currentLng === lng ? 'font-bold' : ''}`}
-            onClick={() => changeLanguage(lng)}
+            key={language}
+            className={`${currentLanguage === language ? 'font-bold' : ''}`}
+            onClick={() => changeLanguage(language)}
           >
-            {lng.toUpperCase()}
+            {languageSwitcherConfig[language].label}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

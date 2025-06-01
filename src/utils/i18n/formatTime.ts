@@ -1,12 +1,13 @@
 import { TFunction } from 'i18next';
 import { convertMinutesToHoursAndMinutes } from '@/utils/timeUtils';
 import { applyGrammarCase, GrammarCaseConfig } from './applyGrammarCase';
+import { Language } from '@/lib/i18n/types';
 
 export type FormatTimeProps = {
   totalMinutes: number;
   grammarCaseConfig?: GrammarCaseConfig;
   t: TFunction;
-  language: string;
+  language: Language;
 };
 
 export function formatTime({

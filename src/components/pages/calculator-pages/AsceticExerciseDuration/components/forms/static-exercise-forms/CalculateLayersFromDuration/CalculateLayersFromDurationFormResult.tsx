@@ -6,6 +6,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { MENTAL_LAYER_AMOUNT } from '../../../../constants/contants';
 import { durationCaseConfig } from './CalculateLayersFromDurationForm.config';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type CalculateLayersFromDurationFormResultProps = {
   result: number;
@@ -20,11 +21,13 @@ export const CalculateLayersFromDurationFormResult = ({
 }: CalculateLayersFromDurationFormResultProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
 
+  const language = parseLanguage(i18n.language);
+
   const duration = formatTime({
     totalMinutes: form.getValues().duration,
     grammarCaseConfig: durationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const allMentalLayersCleaned = result >= MENTAL_LAYER_AMOUNT;

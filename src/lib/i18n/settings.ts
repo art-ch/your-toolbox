@@ -1,10 +1,21 @@
-export const languages = ['en', 'uk', 'ru'];
-export const defaultLanguage = 'en';
-export const defaultNamespace = 'common';
+import { Language, DefaultLanguage, TranslationNamespace } from './types';
+
+export const defaultLanguage: DefaultLanguage = 'en' as const;
+export const languages: Language[] = [defaultLanguage, 'uk', 'ru'] as const;
+
+export const namespaces: TranslationNamespace[] = [
+  'common',
+  'homePage',
+  'footer',
+  'time',
+  'asceticExerciseDuration'
+] as const;
+
+export const defaultNamespace: TranslationNamespace = 'common';
 
 export function getI18nOptions(
-  lng = defaultLanguage,
-  ns: string | string[] = defaultNamespace
+  lng: Language = defaultLanguage,
+  ns: TranslationNamespace | TranslationNamespace[] = defaultNamespace
 ) {
   return {
     supportedLngs: languages,

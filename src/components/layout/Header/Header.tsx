@@ -10,12 +10,13 @@ import {
 import { AppDrawerTrigger } from './components/AppDrawerTrigger/AppDrawerTrigger';
 import Link from 'next/link';
 import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher';
+import { Language } from '@/lib/i18n/types';
 
 export type HeaderProps = {
-  lng: string;
+  language: Language;
 };
 
-export const Header = ({ lng }: HeaderProps) => {
+export const Header = ({ language }: HeaderProps) => {
   return (
     <NavigationMenu className="min-w-full shadow-xs py-0.5 justify-normal">
       <div className="min-w-full px-4">
@@ -24,7 +25,7 @@ export const Header = ({ lng }: HeaderProps) => {
           <Link className="justify-self-center" href="/">
             <PiToolboxFill className="text-[40px]" />
           </Link>
-          <LanguageSwitcher currentLng={lng} />
+          <LanguageSwitcher currentLanguage={language} />
         </NavigationMenuList>
       </div>
     </NavigationMenu>

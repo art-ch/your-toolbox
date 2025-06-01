@@ -1,13 +1,10 @@
 import { z } from 'zod';
 
+import { preprocessNumericValue } from '@/components/Form/Form.utils';
+
 export const createTemperatureModel = (t: (key: string) => string) =>
   z.preprocess(
-    (value) => {
-      if (value === '' || value === null || value === undefined) {
-        return NaN;
-      }
-      return Number(value);
-    },
+    preprocessNumericValue,
     z.number({
       invalid_type_error: t('validation.invalidNumber')
     })

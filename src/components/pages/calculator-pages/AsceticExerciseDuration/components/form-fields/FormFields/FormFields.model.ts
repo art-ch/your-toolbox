@@ -1,14 +1,10 @@
 import { z } from 'zod';
 import { MENTAL_LAYER_AMOUNT } from '../../../constants/contants';
+import { preprocessNumericValue } from '@/components/Form/Form.utils';
 
 export const createDurationModel = (t: (key: string) => string) => {
   return z.preprocess(
-    (value) => {
-      if (value === '' || value === null || value === undefined) {
-        return NaN;
-      }
-      return Number(value);
-    },
+    preprocessNumericValue,
     z
       .number({
         invalid_type_error: t('validation.invalidNumber')
@@ -19,12 +15,7 @@ export const createDurationModel = (t: (key: string) => string) => {
 
 export const createMentalLayersModel = (t: (key: string) => string) => {
   return z.preprocess(
-    (value) => {
-      if (value === '' || value === null || value === undefined) {
-        return NaN;
-      }
-      return Number(value);
-    },
+    preprocessNumericValue,
     z
       .number({
         invalid_type_error: t('validation.invalidNumber')

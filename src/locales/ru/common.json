@@ -7,5 +7,11 @@
   "calculate": "Расчитать",
   "specializedTools": "Спец. инструменты",
   "specializedToolsDescription": "Инструменты слишком специфичные для других категорий",
-  "about": "Про нас"
+  "about": "Про нас",
+
+  "metadata": {
+    "description": "Заставьте компьютер работать на вас"
+  },
+
+  "byAuthor": ""
 }

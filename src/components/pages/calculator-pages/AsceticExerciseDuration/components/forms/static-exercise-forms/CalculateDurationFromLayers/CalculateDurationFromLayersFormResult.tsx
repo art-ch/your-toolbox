@@ -5,6 +5,7 @@ import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { durationCaseConfig } from './СalculateDurationFromLayers.config';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type CalculateDurationFromLayersFormResultProps = {
   result: number;
@@ -19,11 +20,13 @@ export const CalculateDurationFromLayersFormResult = ({
 }: CalculateDurationFromLayersFormResultProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
 
+  const language = parseLanguage(i18n.language);
+
   const duration = formatTime({
     totalMinutes: result,
     grammarCaseConfig: durationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const mentalLayerAmount = t('mentalLayerAmount', {

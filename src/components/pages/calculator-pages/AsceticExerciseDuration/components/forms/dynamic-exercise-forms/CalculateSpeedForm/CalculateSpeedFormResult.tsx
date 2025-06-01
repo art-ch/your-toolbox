@@ -4,6 +4,7 @@ import { useMovementTranslation } from '../../../../hooks/useMovementTranslation
 import { formatTime } from '@/utils/i18n';
 import { useTranslation } from 'react-i18next';
 import { durationCaseConfig } from './CalculateSpeedForm.config';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type CalculateSpeedFormResultProps = {
   result: number;
@@ -18,6 +19,8 @@ export const CalculateSpeedFormResult = ({
   form
 }: CalculateSpeedFormResultProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
+
+  const language = parseLanguage(i18n.language);
 
   const { baseMovementTranslation } = useMovementTranslation(result);
 
@@ -36,7 +39,7 @@ export const CalculateSpeedFormResult = ({
             totalMinutes: form.getValues().duration,
             grammarCaseConfig: durationCaseConfig,
             t,
-            language: i18n.language
+            language
           })
         })}
       </p>

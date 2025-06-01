@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { languages, defaultLanguage } from './lib/i18n/settings';
+import { parseLanguage } from './utils/i18n/parseLanguage';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -8,7 +9,8 @@ export function middleware(request: NextRequest) {
   if (
     pathname.includes('.') ||
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/api')
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/favicon.ico')
   ) {
     return NextResponse.next();
   }
@@ -21,7 +23,9 @@ export function middleware(request: NextRequest) {
   // Only redirect if there is no locale in the pathname
   if (pathnameIsMissingLocale) {
     // Check for language preference in cookie
-    const preferredLanguage = request.cookies.get('NEXT_LOCALE')?.value;
+    const preferredLanguage = parseLanguage(
+      request.cookies.get('NEXT_LOCALE')?.value
+    );
 
     // Use preferred language if valid, otherwise use default
     const locale =

@@ -4,9 +4,12 @@ import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { languages } from '@/lib/i18n/settings';
 import Cookies from 'js-cookie';
+import { enrichPathWithLanguage } from '@/utils/i18n';
+import { Language } from '@/lib/i18n/types';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export function useLanguagePreference() {
-  const [preferredLanguage, setPreferredLanguage] = useState<string | null>(
+  const [preferredLanguage, setPreferredLanguage] = useState<Language | null>(
     null
   );
   const router = useRouter();
@@ -14,14 +17,15 @@ export function useLanguagePreference() {
 
   // Load saved preference on component mount
   useEffect(() => {
-    const savedLanguage = Cookies.get('NEXT_LOCALE');
+    const savedLanguage = parseLanguage(Cookies.get('NEXT_LOCALE'));
+
     if (savedLanguage && languages.includes(savedLanguage)) {
       setPreferredLanguage(savedLanguage);
     }
   }, []);
 
   // Change language and save preference
-  const changeLanguage = (newLanguage: string) => {
+  const changeLanguage = (newLanguage: Language) => {
     if (!languages.includes(newLanguage)) {
       console.error(`Language ${newLanguage} is not supported`);
       return;
@@ -37,11 +41,7 @@ export function useLanguagePreference() {
     setPreferredLanguage(newLanguage);
 
     // Update URL to reflect language change
-    const segments = pathname.split('/');
-    segments[1] = newLanguage; // Replace the language segment
-    const newPath = segments.join('/');
-
-    router.push(newPath);
+    enrichPathWithLanguage(pathname, newLanguage, router);
   };
 
   return { preferredLanguage, changeLanguage };

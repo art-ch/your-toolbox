@@ -4,6 +4,7 @@ import { formatTime } from '@/utils/i18n';
 import { WaterExposureWarning } from '../../../WaterExposureWarning/WaterExposureWarning';
 import { useTranslation } from 'react-i18next';
 import { durationCaseConfig } from './CalculateTemperatureForm.config';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type CalculateTemperatureFormResultProps = {
   result: number;
@@ -19,12 +20,14 @@ export const CalculateTemperatureFormResult = ({
 }: CalculateTemperatureFormResultProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
 
+  const language = parseLanguage(i18n.language);
+
   const duration = form.getValues().duration;
   const formattedDuration = formatTime({
     totalMinutes: duration,
     grammarCaseConfig: durationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
   const mentalLayerAmount = t('mentalLayerAmount', {
     count: Number(form.getValues().mentalLayers)

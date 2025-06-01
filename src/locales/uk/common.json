@@ -9,11 +9,9 @@
   "specializedToolsDescription": "Занадто специфічні для інших категорій інструменти ",
   "about": "Про нас",
 
-  "time": {
-    "hours_one": "{{count}} годину",
-    "hours_other": "{{count}} години",
-    "minutes_one": "{{count}} хвилини",
-    "minutes_other": "{{count}} хвилин",
-    "and": " "
-  }
+  "metadata": {
+    "description": "Змусьте комп'ютер працювати на вас"
+  },
+
+  "byAuthor": ""
 }

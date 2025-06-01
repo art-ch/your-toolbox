@@ -4,15 +4,11 @@ import {
   MAX_WALKING_SPEED,
   MAX_SPEED
 } from '../../../constants/DynamicExercise.constants';
+import { preprocessNumericValue } from '@/components/Form/Form.utils';
 
 export const createSpeedModel = (t: (key: string) => string) => {
   return z.preprocess(
-    (value) => {
-      if (value === '' || value === null || value === undefined) {
-        return NaN;
-      }
-      return Number(value);
-    },
+    preprocessNumericValue,
     z
       .number({
         invalid_type_error: t('validation.invalidNumber')

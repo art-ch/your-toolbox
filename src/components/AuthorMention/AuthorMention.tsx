@@ -3,6 +3,7 @@ import React from 'react';
 import { AuthorMentionType } from '@/types/types';
 
 import { Link } from '../Link/Link';
+import { useTranslation } from 'react-i18next';
 
 export type AuthorMentionProps = AuthorMentionType & { className?: string };
 
@@ -11,10 +12,12 @@ export const AuthorMention = ({
   href,
   className
 }: AuthorMentionProps) => {
+  const { t } = useTranslation('common');
+
   return (
     <>
       {' '}
-      by{' '}
+      {t('byAuthor')}{' '}
       <Link href={href} className={className}>
         {name}
       </Link>

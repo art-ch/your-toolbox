@@ -23,6 +23,7 @@ import {
   safeDurationCaseConfig,
   tooLongDurationCaseConfig
 } from './WaterExposureWarning.config';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type WaterExposureWarningProps = {
   temperature: number;
@@ -35,53 +36,55 @@ export const WaterExposureWarning = ({
 }: WaterExposureWarningProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
 
+  const language = parseLanguage(i18n.language);
+
   const formattedTooLongDuration = formatTime({
     totalMinutes: duration,
     grammarCaseConfig: tooLongDurationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const formattedSafeExtremeColdDuration = formatTime({
     totalMinutes: MAX_SAFE_DURATION_EXTREME_COLD,
     grammarCaseConfig: safeDurationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const formattedSafeVeryColdDuration = formatTime({
     totalMinutes: MAX_SAFE_DURATION_VERY_COLD,
     grammarCaseConfig: safeDurationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const formattedSafeColdDuration = formatTime({
     totalMinutes: MAX_SAFE_DURATION_COLD,
     grammarCaseConfig: safeDurationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const formattedSafeNormalDuration = formatTime({
     totalMinutes: MAX_SAFE_DURATION_NORMAL,
     grammarCaseConfig: safeDurationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const formattedSafeWarmDuration = formatTime({
     totalMinutes: MAX_SAFE_DURATION_WARM,
     grammarCaseConfig: safeDurationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const formattedSafeHotDuration = formatTime({
     totalMinutes: MAX_SAFE_DURATION_HOT,
     grammarCaseConfig: safeDurationCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   // Extremely cold water (≤2°C)

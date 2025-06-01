@@ -2,29 +2,30 @@
 
 import { ReactNode, useEffect } from 'react';
 import i18next from '@/lib/i18n/client';
+import { Language } from '@/lib/i18n/types';
 
 export type TranslationsProviderProps = {
   children: ReactNode;
-  locale: string;
+  language: Language;
   namespaces: string[];
   resources: Record<string, unknown>;
 };
 
 export function TranslationsProvider({
   children,
-  locale,
+  language,
   namespaces,
   resources
 }: TranslationsProviderProps) {
   useEffect(() => {
     // Add resources that were loaded on the server
     namespaces.forEach((ns) => {
-      i18next.addResourceBundle(locale, ns, resources[ns]);
+      i18next.addResourceBundle(language, ns, resources[ns]);
     });
 
     // Set language based on URL parameter
-    i18next.changeLanguage(locale);
-  }, [locale, namespaces, resources]);
+    i18next.changeLanguage(language);
+  }, [language, namespaces, resources]);
 
   return children;
 }

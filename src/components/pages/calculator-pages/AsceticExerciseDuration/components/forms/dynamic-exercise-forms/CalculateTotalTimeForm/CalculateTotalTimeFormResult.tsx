@@ -6,6 +6,7 @@ import { useMovementTranslation } from '../../../../hooks/useMovementTranslation
 import { formatTime } from '@/utils/i18n';
 import { useTranslation } from 'react-i18next';
 import { totalTimeCaseConfig } from './CalculateTotalTimeForm.config';
+import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 export type CalculateTotalTimeFormResultProps = {
   result: number;
@@ -21,6 +22,8 @@ export const CalculateTotalTimeFormResult = ({
 }: CalculateTotalTimeFormResultProps) => {
   const { t, i18n } = useTranslation('asceticExerciseDuration');
 
+  const language = parseLanguage(i18n.language);
+
   const speed = form.getValues().speed;
 
   const { baseMovementTranslation } = useMovementTranslation(speed);
@@ -29,7 +32,7 @@ export const CalculateTotalTimeFormResult = ({
     totalMinutes: result,
     grammarCaseConfig: totalTimeCaseConfig,
     t,
-    language: i18n.language
+    language
   });
 
   const mentalLayerAmount = t('mentalLayerAmount', {

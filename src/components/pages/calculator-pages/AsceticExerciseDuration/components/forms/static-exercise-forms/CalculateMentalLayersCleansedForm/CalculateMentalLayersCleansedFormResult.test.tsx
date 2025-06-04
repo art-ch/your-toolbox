@@ -6,15 +6,33 @@ import {
 } from './CalculateMentalLayersCleansedFormResult';
 import { formatTime } from '@/utils/i18n';
 import { WaterExposureWarning } from '../../../WaterExposureWarning/WaterExposureWarning';
+import { MENTAL_LAYER_AMOUNT } from '../../../../constants/contants';
 
-jest.mock('@/lib/i18n/utils', () => ({
+// Mock formatTime
+jest.mock('@/utils/i18n', () => ({
   formatTime: jest.fn()
 }));
 
+// Mock WaterExposureWarning
 jest.mock('../../../WaterExposureWarning/WaterExposureWarning', () => ({
   WaterExposureWarning: jest.fn(() => (
     <div data-testid="water-exposure-warning" />
   ))
+}));
+
+// Mock parseLanguage
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key, // Simple key-return mock
+    i18n: {
+      language: 'en'
+    }
+  })
 }));
 
 const formatTimeMock = formatTime as jest.Mock;
@@ -32,7 +50,9 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    formatTimeMock.mockImplementation((time) => `${time} minutes`);
+    formatTimeMock.mockImplementation(
+      ({ totalMinutes }) => `${totalMinutes} minutes`
+    );
   });
 
   it('renders the component with correct duration and temperature', () => {
@@ -49,11 +69,9 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
       screen.getByTestId('calculate-mental-layers-cleansed-form-result')
     ).toBeInTheDocument();
     expect(
-      screen.getByText(
-        'After sitting in a water with 15 °C temperature for 30 minutes'
-      )
+      screen.getByText('calculateMentalLayersCleansedResult1')
     ).toBeInTheDocument();
-    expect(mockForm.getValues).toHaveBeenCalledTimes(3);
+    expect(mockForm.getValues).toHaveBeenCalledTimes(2);
   });
 
   it('displays the correct number of mental layers cleaned', () => {
@@ -67,7 +85,7 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
     );
 
     expect(
-      screen.getByText('You will have 3 mental layers cleaned')
+      screen.getByText('calculateMentalLayersCleansedResult2')
     ).toBeInTheDocument();
   });
 
@@ -82,11 +100,14 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
       />
     );
 
-    expect(formatTime).toHaveBeenCalledWith(30);
+    expect(formatTime).toHaveBeenCalledWith({
+      totalMinutes: 30,
+      grammarCaseConfig: expect.anything(),
+      t: expect.any(Function),
+      language: 'en'
+    });
     expect(
-      screen.getByText(
-        'After sitting in a water with 15 °C temperature for 30 minutes'
-      )
+      screen.getByText('calculateMentalLayersCleansedResult1')
     ).toBeInTheDocument();
   });
 
@@ -126,12 +147,10 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
     );
 
     expect(
-      screen.getByText(
-        'After sitting in a water with 10 °C temperature for 1 hour'
-      )
+      screen.getByText('calculateMentalLayersCleansedResult1')
     ).toBeInTheDocument();
     expect(
-      screen.getByText('You will have 5 mental layers cleaned')
+      screen.getByText('calculateMentalLayersCleansedResult2')
     ).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
@@ -142,8 +161,8 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
     );
   });
 
-  it('handles single mental layer case', () => {
-    const result = 1;
+  it('shows overextending message when result > MENTAL_LAYER_AMOUNT', () => {
+    const result = MENTAL_LAYER_AMOUNT + 1;
 
     render(
       <CalculateMentalLayersCleansedFormResult
@@ -153,7 +172,7 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
     );
 
     expect(
-      screen.getByText('You will have 1 mental layers cleaned')
+      screen.getByText('calculateMentalLayersCleansedOverextending')
     ).toBeInTheDocument();
   });
 
@@ -173,9 +192,7 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
     );
 
     expect(
-      screen.getByText(
-        'After sitting in a water with 25 °C temperature for 20 minutes'
-      )
+      screen.getByText('calculateMentalLayersCleansedResult1')
     ).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
@@ -202,9 +219,7 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
     );
 
     expect(
-      screen.getByText(
-        'After sitting in a water with 5 °C temperature for 10 minutes'
-      )
+      screen.getByText('calculateMentalLayersCleansedResult1')
     ).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
@@ -231,9 +246,7 @@ describe('CalculateMentalLayersCleansedFormResult', () => {
     );
 
     expect(
-      screen.getByText(
-        'After sitting in a water with 15 °C temperature for 2 hours'
-      )
+      screen.getByText('calculateMentalLayersCleansedResult1')
     ).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {

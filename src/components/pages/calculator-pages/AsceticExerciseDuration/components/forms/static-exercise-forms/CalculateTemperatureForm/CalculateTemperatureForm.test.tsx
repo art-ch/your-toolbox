@@ -3,6 +3,23 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CalculateTemperatureForm } from './CalculateTemperatureForm';
 import { waterExposureDurationCalculator } from '../../../../services/StaticExerciseDuration/WaterExposureDurationService';
+import { formatTime } from '@/utils/i18n';
+
+// Mock formatTime utility
+jest.mock('@/utils/i18n', () => ({
+  formatTime: jest.fn(),
+  parseLanguage: jest.fn(() => 'en')
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key, // Simple key-return mock
+    i18n: {
+      language: 'en'
+    }
+  })
+}));
 
 jest.mock(
   '../../../../services/StaticExerciseDuration/WaterExposureDurationService',
@@ -16,9 +33,12 @@ jest.mock(
 const calculateRequiredTemperatureMock =
   waterExposureDurationCalculator.calculateRequiredTemperature as jest.Mock;
 
+const formatTimeMock = formatTime as jest.Mock;
+
 describe('CalculateTemperatureForm', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    formatTimeMock.mockImplementation(() => '30 minutes');
   });
 
   it('should call calculateRequiredTemperature with correct parameters when form is submitted', async () => {
@@ -29,7 +49,7 @@ describe('CalculateTemperatureForm', () => {
     render(<CalculateTemperatureForm />);
 
     // Find the input fields
-    const mentalLayersInput = screen.getByLabelText(/mental layers/i);
+    const mentalLayersInput = screen.getByLabelText(/mentalLayers/i);
     const durationInput = screen.getByLabelText(/duration/i);
 
     // Enter values
@@ -45,10 +65,17 @@ describe('CalculateTemperatureForm', () => {
       waterExposureDurationCalculator.calculateRequiredTemperature
     ).toHaveBeenCalledWith(5, 30);
 
-    // Verify the result is displayed
+    // Verify the result is displayed with correct translations
     await waitFor(() => {
+      const resultElement = screen.getByTestId(
+        'calculate-temperature-form-result'
+      );
+      expect(resultElement).toBeInTheDocument();
       expect(
-        screen.getByTestId('calculate-temperature-form-result')
+        screen.getByText(/calculateTemperatureResult1/)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/calculateTemperatureResult2/)
       ).toBeInTheDocument();
     });
   });

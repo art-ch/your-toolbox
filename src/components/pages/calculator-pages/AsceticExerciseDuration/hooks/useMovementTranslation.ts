@@ -1,10 +1,6 @@
-import { RUNNING_SPEED } from '../constants/DynamicExercise.constants';
-
-export const getIsWalking = (speed: number) => {
-  return speed < RUNNING_SPEED;
-};
-
 import { useTranslation } from 'react-i18next';
+
+import { getIsWalking } from '../utils/dynamicExerciseUtils';
 
 type MovementTranslations = {
   baseMovementTranslation: string;

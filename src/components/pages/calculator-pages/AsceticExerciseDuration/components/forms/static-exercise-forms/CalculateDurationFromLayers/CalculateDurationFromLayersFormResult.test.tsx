@@ -4,6 +4,29 @@ import {
   CalculateDurationFromLayersFormResult,
   CalculateDurationFromLayersFormResultProps
 } from './CalculateDurationFromLayersFormResult';
+import { formatTime } from '@/utils/i18n';
+
+// Mock formatTime
+jest.mock('@/utils/i18n', () => ({
+  formatTime: jest.fn()
+}));
+
+// Mock parseLanguage
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: {
+      language: 'en'
+    }
+  })
+}));
+
+const formatTimeMock = formatTime as jest.Mock;
 
 describe('CalculateDurationFromLayersFormResult', () => {
   const getValues = jest.fn().mockImplementation(() => ({
@@ -16,6 +39,9 @@ describe('CalculateDurationFromLayersFormResult', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    formatTimeMock.mockImplementation(
+      ({ totalMinutes }) => `${totalMinutes} minutes`
+    );
   });
 
   it('renders the component with correct mental layers count', () => {
@@ -28,7 +54,9 @@ describe('CalculateDurationFromLayersFormResult', () => {
     expect(
       screen.getByTestId('calculate-duration-from-layers-form-result')
     ).toBeInTheDocument();
-    expect(screen.getByText('To clean 3 mental layers')).toBeInTheDocument();
+    expect(
+      screen.getByText(/calculateDurationFromLayersResult1/)
+    ).toBeInTheDocument();
     expect(mockForm.getValues).toHaveBeenCalledTimes(1);
   });
 
@@ -39,10 +67,14 @@ describe('CalculateDurationFromLayersFormResult', () => {
       <CalculateDurationFromLayersFormResult result={result} form={mockForm} />
     );
 
+    expect(formatTime).toHaveBeenCalledWith({
+      totalMinutes: 30,
+      grammarCaseConfig: expect.anything(),
+      t: expect.any(Function),
+      language: 'en'
+    });
     expect(
-      screen.getByText(
-        'You have to sit in a seated asana pose or stand still uninteruptedly for 30 minutes'
-      )
+      screen.getByText(/calculateDurationFromLayersResult2/)
     ).toBeInTheDocument();
   });
 
@@ -56,11 +88,11 @@ describe('CalculateDurationFromLayersFormResult', () => {
       <CalculateDurationFromLayersFormResult result={result} form={mockForm} />
     );
 
-    expect(screen.getByText('To clean 5 mental layers')).toBeInTheDocument();
     expect(
-      screen.getByText(
-        'You have to sit in a seated asana pose or stand still uninteruptedly for 60 minutes'
-      )
+      screen.getByText(/calculateDurationFromLayersResult1/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/calculateDurationFromLayersResult2/)
     ).toBeInTheDocument();
     expect(mockForm.getValues).toHaveBeenCalledTimes(1);
   });
@@ -75,11 +107,11 @@ describe('CalculateDurationFromLayersFormResult', () => {
       <CalculateDurationFromLayersFormResult result={result} form={mockForm} />
     );
 
-    expect(screen.getByText('To clean 1 mental layers')).toBeInTheDocument();
     expect(
-      screen.getByText(
-        'You have to sit in a seated asana pose or stand still uninteruptedly for 15 minutes'
-      )
+      screen.getByText(/calculateDurationFromLayersResult1/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/calculateDurationFromLayersResult2/)
     ).toBeInTheDocument();
   });
 });

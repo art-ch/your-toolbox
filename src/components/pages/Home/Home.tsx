@@ -10,7 +10,7 @@ export const Home = () => {
     <Hero
       title="Your Toolbox"
       subtitle={t('homePage:subtitle')}
-      buttonText={t('homePage:buttonText')}
+      buttonText={t('common:checkAvailableTools')}
     />
   );
 };

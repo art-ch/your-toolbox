@@ -8,6 +8,7 @@
   "specializedTools": "Specialized Tools",
   "specializedToolsDescription": "Tools that are too specific for any other category",
   "about": "About",
+  "checkAvailableTools": "Check available tools",
 
   "metadata": {
     "description": "Make your computer do stuff for you"

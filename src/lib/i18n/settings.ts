@@ -8,7 +8,8 @@ export const namespaces: TranslationNamespace[] = [
   'homePage',
   'footer',
   'time',
-  'asceticExerciseDuration'
+  'asceticExerciseDuration',
+  '404'
 ] as const;
 
 export const defaultNamespace: TranslationNamespace = 'common';

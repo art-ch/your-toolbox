@@ -4,20 +4,44 @@ import {
   CalculateSpeedFormResult,
   CalculateSpeedFormResultProps
 } from './CalculateSpeedFormResult';
-import { getIsWalking } from '../../../../hooks/useMovementTranslation';
+import { getIsWalking } from '../../../../utils/dynamicExerciseUtils';
 import { formatTime } from '@/utils/i18n';
 import { MENTAL_LAYER_AMOUNT } from '../../../../constants/contants';
+import { useMovementTranslation } from '../../../../hooks/useMovementTranslation';
 
-jest.mock('../../../../utils/dynamicExerciseUtils/utils', () => ({
+// Mock formatTime
+jest.mock('@/utils/i18n', () => ({
+  formatTime: jest.fn()
+}));
+
+// Mock dynamicExerciseUtils
+jest.mock('../../../../utils/dynamicExerciseUtils', () => ({
   getIsWalking: jest.fn()
 }));
 
-jest.mock('@/lib/i18n/utils', () => ({
-  formatTime: jest.fn()
+// Mock useMovementTranslation hook
+jest.mock('../../../../hooks/useMovementTranslation', () => ({
+  useMovementTranslation: jest.fn()
+}));
+
+// Mock parseLanguage
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key, // Simple key-return mock
+    i18n: {
+      language: 'en'
+    }
+  })
 }));
 
 const formatTimeMock = formatTime as jest.Mock;
 const getIsWalkingMock = getIsWalking as jest.Mock;
+const useMovementTranslationMock = useMovementTranslation as jest.Mock;
 
 describe('CalculateSpeedFormResult', () => {
   const getValues = jest.fn().mockImplementation(() => ({
@@ -32,6 +56,12 @@ describe('CalculateSpeedFormResult', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     formatTimeMock.mockReturnValue('30 minutes');
+
+    // Set default movement translations
+    useMovementTranslationMock.mockImplementation((speed) => ({
+      baseMovementTranslation: getIsWalking(speed) ? 'walk' : 'run',
+      gerundMovementTranslation: getIsWalking(speed) ? 'walking' : 'running'
+    }));
   });
 
   test('renders walking message when speed indicates walking', () => {
@@ -40,13 +70,15 @@ describe('CalculateSpeedFormResult', () => {
 
     render(<CalculateSpeedFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText(
-        /You need to walk with the speed of 5 km\/h to clean 3 mental layers in 30 minutes./i
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateSpeedResult/)).toBeInTheDocument();
+
     expect(getIsWalking).toHaveBeenCalledWith(result);
-    expect(formatTime).toHaveBeenCalledWith(1800);
+    expect(formatTime).toHaveBeenCalledWith({
+      totalMinutes: 1800,
+      grammarCaseConfig: expect.anything(),
+      t: expect.any(Function),
+      language: 'en'
+    });
   });
 
   test('renders running message when speed indicates running', () => {
@@ -55,11 +87,8 @@ describe('CalculateSpeedFormResult', () => {
 
     render(<CalculateSpeedFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText(
-        /You need to run with the speed of 10 km\/h to clean 3 mental layers in 30 minutes./i
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateSpeedResult/)).toBeInTheDocument();
+
     expect(getIsWalking).toHaveBeenCalledWith(result);
   });
 
@@ -69,9 +98,7 @@ describe('CalculateSpeedFormResult', () => {
 
     render(<CalculateSpeedFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.queryByText(/That's lightning fast!/i)
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/speedHardToAchieve/)).not.toBeInTheDocument();
   });
 
   test('shows warning for speeds that are hard to achieve', () => {
@@ -80,12 +107,7 @@ describe('CalculateSpeedFormResult', () => {
 
     render(<CalculateSpeedFormResult result={result} form={mockForm} />);
 
-    expect(screen.getByText(/That's lightning fast!/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /The current world record for sprint speed is about 45 km\/h/i
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText(/speedHardToAchieve/)).toBeInTheDocument();
   });
 
   test('uses correct form values in the message', () => {
@@ -99,10 +121,6 @@ describe('CalculateSpeedFormResult', () => {
 
     render(<CalculateSpeedFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText(
-        /You need to run with the speed of 12 km\/h to clean 5 mental layers in 1 hour./i
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateSpeedResult/)).toBeInTheDocument();
   });
 });

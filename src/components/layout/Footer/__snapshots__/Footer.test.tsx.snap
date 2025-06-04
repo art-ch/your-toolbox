@@ -9,7 +9,7 @@ exports[`Footer component should render correctly 1`] = `
       class="flex gap-1 justify-center text-sm text-secondary"
     >
       <p>
-        made by
+        footer:madeBy
       </p>
       <a
         class="text-blue-400 hover:text-blue-300 focus:text-blue-500"

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LanguageSwitcher Component should match a snapshot 1`] = `
+<div>
+  <div
+    data-testid="dropdown-menu"
+  >
+    <button
+      class="max-w-fit justify-self-end cursor-pointer"
+      data-testid="dropdown-trigger"
+    >
+      English
+    </button>
+    <div
+      data-testid="dropdown-content"
+    >
+      <div
+        class="font-bold"
+        data-testid="dropdown-item"
+        role="menuitem"
+      >
+        English
+      </div>
+      <div
+        class=""
+        data-testid="dropdown-item"
+        role="menuitem"
+      >
+        Українська
+      </div>
+      <div
+        class=""
+        data-testid="dropdown-item"
+        role="menuitem"
+      >
+        Русский
+      </div>
+    </div>
+  </div>
+</div>
+`;

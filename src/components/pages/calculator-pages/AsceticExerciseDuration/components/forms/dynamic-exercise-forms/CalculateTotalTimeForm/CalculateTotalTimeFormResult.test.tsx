@@ -4,20 +4,44 @@ import {
   CalculateTotalTimeFormResult,
   CalculateTotalTimeFormResultProps
 } from './CalculateTotalTimeFormResult';
-import { getIsWalking } from '../../../../hooks/useMovementTranslation';
+import { getIsWalking } from '../../../../utils/dynamicExerciseUtils';
 import { MENTAL_LAYER_AMOUNT } from '../../../../constants/contants';
 import { formatTime } from '@/utils/i18n';
+import { useMovementTranslation } from '../../../../hooks/useMovementTranslation';
 
-jest.mock('../../../utils/dynamicExerciseUtils/utils', () => ({
+// Mock formatTime
+jest.mock('@/utils/i18n', () => ({
+  formatTime: jest.fn()
+}));
+
+// Mock dynamicExerciseUtils
+jest.mock('../../../../utils/dynamicExerciseUtils', () => ({
   getIsWalking: jest.fn()
 }));
 
-jest.mock('@/lib/i18n/utils', () => ({
-  formatTime: jest.fn()
+// Mock useMovementTranslation hook
+jest.mock('../../../../hooks/useMovementTranslation', () => ({
+  useMovementTranslation: jest.fn()
+}));
+
+// Mock parseLanguage
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key, // Simple key-return mock
+    i18n: {
+      language: 'en'
+    }
+  })
 }));
 
 const formatTimeMock = formatTime as jest.Mock;
 const getIsWalkingMock = getIsWalking as jest.Mock;
+const useMovementTranslationMock = useMovementTranslation as jest.Mock;
 
 describe('CalculateTotalTimeFormResult', () => {
   const getValues = jest.fn().mockImplementation(() => ({
@@ -31,7 +55,15 @@ describe('CalculateTotalTimeFormResult', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    formatTimeMock.mockImplementation((time) => `${time} minutes`);
+    formatTimeMock.mockImplementation(
+      ({ totalMinutes }) => `${totalMinutes} minutes`
+    );
+
+    // Set default movement translations
+    useMovementTranslationMock.mockImplementation((speed) => ({
+      baseMovementTranslation: getIsWalking(speed) ? 'walk' : 'run',
+      gerundMovementTranslation: getIsWalking(speed) ? 'walking' : 'running'
+    }));
   });
 
   it('renders walking message when speed indicates walking', () => {
@@ -41,12 +73,13 @@ describe('CalculateTotalTimeFormResult', () => {
     render(<CalculateTotalTimeFormResult result={result} form={mockForm} />);
 
     expect(getIsWalking).toHaveBeenCalledWith(5);
-    expect(formatTime).toHaveBeenCalledWith(45);
-    expect(
-      screen.getByText(
-        /You have to walk for 45 minutes to clean 3 mental layers at a speed of 5 km\/h/i
-      )
-    ).toBeInTheDocument();
+    expect(formatTime).toHaveBeenCalledWith({
+      totalMinutes: 45,
+      grammarCaseConfig: expect.anything(),
+      t: expect.any(Function),
+      language: 'en'
+    });
+    expect(screen.getByText(/calculateTotalTimeResult/)).toBeInTheDocument();
   });
 
   it('renders running message when speed indicates running', () => {
@@ -56,12 +89,13 @@ describe('CalculateTotalTimeFormResult', () => {
     render(<CalculateTotalTimeFormResult result={result} form={mockForm} />);
 
     expect(getIsWalking).toHaveBeenCalledWith(5);
-    expect(formatTime).toHaveBeenCalledWith(30);
-    expect(
-      screen.getByText(
-        /You have to run for 30 minutes to clean 3 mental layers at a speed of 5 km\/h/i
-      )
-    ).toBeInTheDocument();
+    expect(formatTime).toHaveBeenCalledWith({
+      totalMinutes: 30,
+      grammarCaseConfig: expect.anything(),
+      t: expect.any(Function),
+      language: 'en'
+    });
+    expect(screen.getByText(/calculateTotalTimeResult/)).toBeInTheDocument();
   });
 
   it('uses values from form correctly', () => {
@@ -75,13 +109,14 @@ describe('CalculateTotalTimeFormResult', () => {
     render(<CalculateTotalTimeFormResult result={result} form={mockForm} />);
 
     expect(getIsWalking).toHaveBeenCalledWith(7);
-    expect(formatTime).toHaveBeenCalledWith(60);
-    expect(
-      screen.getByText(
-        /You have to walk for 60 minutes to clean 5 mental layers at a speed of 7 km\/h/i
-      )
-    ).toBeInTheDocument();
+    expect(formatTime).toHaveBeenCalledWith({
+      totalMinutes: 60,
+      grammarCaseConfig: expect.anything(),
+      t: expect.any(Function),
+      language: 'en'
+    });
+    expect(screen.getByText(/calculateTotalTimeResult/)).toBeInTheDocument();
 
-    expect(mockForm.getValues).toHaveBeenCalledTimes(3);
+    expect(mockForm.getValues).toHaveBeenCalledTimes(2);
   });
 });

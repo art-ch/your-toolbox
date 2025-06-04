@@ -5,7 +5,7 @@ import { CalculateCleansingCyclesForm } from './CalculateCleansingCyclesForm';
 import { dynamicExerciseDurationCalculator } from '../../../../services/DynamicExerciseDuration';
 import { MENTAL_LAYER_AMOUNT } from '../../../../constants/contants';
 
-jest.mock('../../../services/DynamicExerciseDuration', () => ({
+jest.mock('../../../../services/DynamicExerciseDuration', () => ({
   dynamicExerciseDurationCalculator: {
     calculateCleansingCycles: jest.fn()
   }

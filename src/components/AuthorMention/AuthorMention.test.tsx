@@ -3,6 +3,13 @@ import { render, screen } from '@testing-library/react';
 import { AuthorMention, AuthorMentionProps } from './AuthorMention';
 import { LinkProps } from '../Link/Link';
 
+// Mock the react-i18next module
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => (key === 'byAuthor' ? 'by' : key)
+  })
+}));
+
 jest.mock('../Link/Link', () => ({
   Link: ({ href, className, children }: LinkProps) => (
     <a
@@ -16,9 +23,9 @@ jest.mock('../Link/Link', () => ({
 }));
 
 describe('AuthorMention', () => {
-  const defaultProps = {
+  const defaultProps: AuthorMentionProps = {
     name: 'John Doe',
-    href: 'https://example.com/author/john-doe' as AuthorMentionProps['href']
+    href: 'https://example.com/author/john-doe'
   };
 
   it('renders correctly with required props', () => {
@@ -41,9 +48,9 @@ describe('AuthorMention', () => {
   });
 
   it('renders with different author information', () => {
-    const customProps = {
+    const customProps: AuthorMentionProps = {
       name: 'Jane Smith',
-      href: 'https://example.com/author/jane-smith' as AuthorMentionProps['href']
+      href: 'https://example.com/author/jane-smith'
     };
 
     render(<AuthorMention {...customProps} />);
@@ -53,7 +60,7 @@ describe('AuthorMention', () => {
     expect(link).toHaveAttribute('href', customProps.href);
   });
 
-  it('maintains proper spacing around "by" text', () => {
+  it('uses the translated "byAuthor" text', () => {
     const { container } = render(<AuthorMention {...defaultProps} />);
 
     expect(container.textContent).toMatch(/ by /);

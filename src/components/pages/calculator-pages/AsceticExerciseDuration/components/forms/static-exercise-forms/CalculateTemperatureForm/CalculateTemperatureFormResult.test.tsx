@@ -4,11 +4,27 @@ import {
   CalculateTemperatureFormResult,
   CalculateTemperatureFormResultProps
 } from './CalculateTemperatureFormResult';
-import { formatTime } from '@/utils/i18n';
 import { WaterExposureWarning } from '../../../WaterExposureWarning/WaterExposureWarning';
 
+// Mock the necessary modules
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key, // Simple key-return mock
+    i18n: {
+      language: 'en'
+    }
+  })
+}));
+
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
+}));
+
 jest.mock('@/utils/timeUtils', () => ({
-  formatTime: jest.fn()
+  convertMinutesToHoursAndMinutes: jest.fn((minutes) => {
+    const hours = Math.floor(minutes / 60);
+    return { hours, minutes: minutes % 60 };
+  })
 }));
 
 jest.mock('../../../WaterExposureWarning/WaterExposureWarning', () => ({
@@ -17,7 +33,6 @@ jest.mock('../../../WaterExposureWarning/WaterExposureWarning', () => ({
   ))
 }));
 
-const formatTimeMock = formatTime as jest.Mock;
 const WaterExposureWarningMock = WaterExposureWarning as jest.Mock;
 
 describe('CalculateTemperatureFormResult', () => {
@@ -35,7 +50,6 @@ describe('CalculateTemperatureFormResult', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    formatTimeMock.mockImplementation((time) => `${time} minutes`);
   });
 
   it('renders the component with correct mental layers and duration', () => {
@@ -47,9 +61,7 @@ describe('CalculateTemperatureFormResult', () => {
     expect(
       screen.getByTestId('calculate-temperature-form-result')
     ).toBeInTheDocument();
-    expect(
-      screen.getByText('To clean 3 mental layers in 30 minutes')
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult1/)).toBeInTheDocument();
     expect(mockForm.getValues).toHaveBeenCalledTimes(2);
   });
 
@@ -59,22 +71,7 @@ describe('CalculateTemperatureFormResult', () => {
 
     render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText('You will require a water with temperature of 15 °C')
-    ).toBeInTheDocument();
-  });
-
-  it('formats the time correctly using formatTime utility', () => {
-    const mockForm = createMockForm();
-    const result = 12;
-    formatTimeMock.mockReturnValue('30 minutes');
-
-    render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
-
-    expect(formatTime).toHaveBeenCalledWith(30);
-    expect(
-      screen.getByText('To clean 3 mental layers in 30 minutes')
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult2/)).toBeInTheDocument();
   });
 
   it('passes correct props to WaterExposureWarning component', () => {
@@ -99,16 +96,11 @@ describe('CalculateTemperatureFormResult', () => {
       duration: 60
     });
     const result = 8;
-    formatTimeMock.mockReturnValue('1 hour');
 
     render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText('To clean 5 mental layers in 1 hour')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('You will require a water with temperature of 8 °C')
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult1/)).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult2/)).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
         temperature: 8,
@@ -124,16 +116,11 @@ describe('CalculateTemperatureFormResult', () => {
       duration: 20
     });
     const result = 18;
-    formatTimeMock.mockReturnValue('20 minutes');
 
     render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText('To clean 1 mental layers in 20 minutes')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('You will require a water with temperature of 18 °C')
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult1/)).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult2/)).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
         temperature: 18,
@@ -149,9 +136,7 @@ describe('CalculateTemperatureFormResult', () => {
 
     render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText('You will require a water with temperature of 25 °C')
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult2/)).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
         temperature: 25,
@@ -167,9 +152,7 @@ describe('CalculateTemperatureFormResult', () => {
 
     render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText('You will require a water with temperature of 5 °C')
-    ).toBeInTheDocument();
+    expect(screen.getByText(/calculateTemperatureResult2/)).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
         temperature: 5,
@@ -179,23 +162,20 @@ describe('CalculateTemperatureFormResult', () => {
     );
   });
 
-  it('handles long duration', () => {
+  it('handles hour and minute formatting', () => {
     const mockForm = createMockForm({
       mentalLayers: 4,
-      duration: 120
+      duration: 90
     });
     const result = 12;
-    formatTimeMock.mockReturnValue('2 hours');
 
     render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText('To clean 4 mental layers in 2 hours')
-    ).toBeInTheDocument();
+    expect(screen.getByText('calculateTemperatureResult1')).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
         temperature: 12,
-        duration: 120
+        duration: 90
       },
       undefined
     );
@@ -207,9 +187,7 @@ describe('CalculateTemperatureFormResult', () => {
 
     render(<CalculateTemperatureFormResult result={result} form={mockForm} />);
 
-    expect(
-      screen.getByText('You will require a water with temperature of 12.5 °C')
-    ).toBeInTheDocument();
+    expect(screen.getByText('calculateTemperatureResult1')).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
         temperature: 12.5,

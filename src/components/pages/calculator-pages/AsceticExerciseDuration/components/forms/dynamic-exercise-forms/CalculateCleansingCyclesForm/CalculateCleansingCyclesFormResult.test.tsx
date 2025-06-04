@@ -4,18 +4,45 @@ import {
   CalculateCleansingCyclesFormResult,
   CalculateCleansingCyclesFormResultProps
 } from './CalculateCleansingCyclesFormResult';
-import { formatTime } from '@/utils/i18n';
-import { getIsWalking } from '../../../../hooks/useMovementTranslation';
+import { formatTime, formatDays } from '@/utils/i18n';
+import { getIsWalking } from '../../../../utils/dynamicExerciseUtils';
+import { useMovementTranslation } from '../../../../hooks/useMovementTranslation';
 
-jest.mock('@/utils/timeUtils', () => ({
-  formatTime: jest.fn((minutes) => `${minutes} minutes`)
+// Mock formatTime and formatDays
+jest.mock('@/utils/i18n', () => ({
+  formatTime: jest
+    .fn()
+    .mockImplementation(({ totalMinutes }) => `${totalMinutes} minutes`),
+  formatDays: jest.fn().mockImplementation((days) => `${days} days`)
 }));
 
-jest.mock('../../../../utils/dynamicExerciseUtils/utils', () => ({
+// Mock dynamicExerciseUtils
+jest.mock('../../../../utils/dynamicExerciseUtils', () => ({
   getIsWalking: jest.fn()
 }));
 
+// Mock useMovementTranslation hook
+jest.mock('../../../../hooks/useMovementTranslation', () => ({
+  useMovementTranslation: jest.fn()
+}));
+
+// Mock parseLanguage
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key, // Simple key-return mock
+    i18n: {
+      language: 'en'
+    }
+  })
+}));
+
 const getIsWalkingMock = getIsWalking as jest.Mock;
+const useMovementTranslationMock = useMovementTranslation as jest.Mock;
 
 describe('CalculateCleansingCyclesFormResult', () => {
   const getValues = jest.fn().mockReturnValue({ speed: 5, duration: 30 });
@@ -26,6 +53,11 @@ describe('CalculateCleansingCyclesFormResult', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    // Set default movement translations
+    useMovementTranslationMock.mockImplementation((speed) => ({
+      baseMovementTranslation: getIsWalking(speed) ? 'walk' : 'run',
+      gerundMovementTranslation: getIsWalking(speed) ? 'walking' : 'running'
+    }));
   });
 
   describe('Normal exercise scenario', () => {
@@ -48,32 +80,21 @@ describe('CalculateCleansingCyclesFormResult', () => {
         <CalculateCleansingCyclesFormResult result={result} form={mockForm} />
       );
 
-      expect(
-        screen.getByText(/after walking for 30 minutes/i)
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/you will have 3 mental layers cleaned/i)
-      ).toBeInTheDocument();
+      expect(screen.getByText('movedForDuration')).toBeInTheDocument();
+      expect(screen.getByText('movedForDurationResult')).toBeInTheDocument();
 
-      expect(
-        screen.getByText(
-          /you have to walk 10 minutes more to clean 1 more mental layer/i
-        )
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          /you will have to walk 25 minutes more to clean all mental layers/i
-        )
-      ).toBeInTheDocument();
+      expect(screen.getByText('okayToExerciseMore1')).toBeInTheDocument();
+      expect(screen.getByText('okayToExerciseMore2')).toBeInTheDocument();
 
-      expect(
-        screen.getByText(
-          /it is recommended to do this exercise once every 2 days/i
-        )
-      ).toBeInTheDocument();
+      expect(screen.getByText('recommendedExerciseTime')).toBeInTheDocument();
 
-      expect(formatTime).toHaveBeenCalledWith(30);
-      expect(formatTime).toHaveBeenCalledWith(25);
+      expect(formatTime).toHaveBeenCalledWith({
+        totalMinutes: 25,
+        grammarCaseConfig: expect.anything(),
+        t: expect.any(Function),
+        language: 'en'
+      });
+      expect(formatDays).toHaveBeenCalledWith(2, expect.anything());
     });
 
     it('displays correct information when all mental layers are cleaned', () => {
@@ -91,22 +112,9 @@ describe('CalculateCleansingCyclesFormResult', () => {
         <CalculateCleansingCyclesFormResult result={result} form={mockForm} />
       );
 
-      expect(
-        screen.getByText(/after walking for 30 minutes/i)
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/you will have all 5 of your mental layers cleaned/i)
-      ).toBeInTheDocument();
-
-      expect(
-        screen.queryByText(/you have to walk .* minutes more/i)
-      ).not.toBeInTheDocument();
-
-      expect(
-        screen.getByText(
-          /it is recommended to do this exercise once every 3 days/i
-        )
-      ).toBeInTheDocument();
+      expect(screen.getByText('movedForDuration')).toBeInTheDocument();
+      expect(screen.getByText('movedForDurationResult')).toBeInTheDocument();
+      expect(screen.getByText('recommendedExerciseTime')).toBeInTheDocument();
     });
   });
 
@@ -134,12 +142,10 @@ describe('CalculateCleansingCyclesFormResult', () => {
         <CalculateCleansingCyclesFormResult result={result} form={mockForm} />
       );
 
-      expect(
-        screen.getByText(/after running for 20 minutes/i)
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/you have to run 5 minutes more/i)
-      ).toBeInTheDocument();
+      expect(screen.getByText('movedForDuration')).toBeInTheDocument();
+      expect(screen.getByText('recommendedExerciseTime')).toBeInTheDocument();
+      expect(screen.getByText('okayToExerciseMore1')).toBeInTheDocument();
+      expect(screen.getByText('okayToExerciseMore2')).toBeInTheDocument();
     });
   });
 
@@ -166,26 +172,11 @@ describe('CalculateCleansingCyclesFormResult', () => {
       );
 
       expect(
-        screen.getByText(/after walking for 75 minutes/i)
+        screen.getByText('recommendedExerciseTimeOverextended1')
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/you will have all 5 of your mental layers cleaned/i)
+        screen.getByText('recommendedExerciseTimeOverextended2')
       ).toBeInTheDocument();
-
-      expect(
-        screen.getByText(
-          /it is recommended to limit this exercise to 45 minutes/i
-        )
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          /avoid overexertion, excessive exercising can be counterproductive/i
-        )
-      ).toBeInTheDocument();
-
-      expect(
-        screen.queryByText(/it is recommended to do this exercise once every/i)
-      ).not.toBeInTheDocument();
     });
   });
 });

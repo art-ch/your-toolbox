@@ -7,14 +7,31 @@ import {
 import { formatTime } from '@/utils/i18n';
 import { WaterExposureWarning } from '../../../WaterExposureWarning/WaterExposureWarning';
 
-jest.mock('@/lib/i18n/utils', () => ({
+// Mock formatTime
+jest.mock('@/utils/i18n', () => ({
   formatTime: jest.fn()
 }));
 
+// Mock WaterExposureWarning
 jest.mock('../../../WaterExposureWarning/WaterExposureWarning', () => ({
   WaterExposureWarning: jest.fn(() => (
     <div data-testid="water-exposure-warning" />
   ))
+}));
+
+// Mock parseLanguage
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: {
+      language: 'en'
+    }
+  })
 }));
 
 const formatTimeMock = formatTime as jest.Mock;
@@ -32,7 +49,9 @@ describe('CalculateExposureTimeFormResult', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    formatTimeMock.mockImplementation((time) => `${time} minutes`);
+    formatTimeMock.mockImplementation(
+      ({ totalMinutes }) => `${totalMinutes} minutes`
+    );
   });
 
   it('renders the component with correct mental layers and temperature', () => {
@@ -44,7 +63,7 @@ describe('CalculateExposureTimeFormResult', () => {
       screen.getByTestId('calculate-exposure-time-form-result')
     ).toBeInTheDocument();
     expect(
-      screen.getByText('To clean 3 mental layers in 15 °C water')
+      screen.getByText(/calculateExposureTimeResult1/)
     ).toBeInTheDocument();
     expect(mockForm.getValues).toHaveBeenCalledTimes(2);
   });
@@ -55,9 +74,13 @@ describe('CalculateExposureTimeFormResult', () => {
 
     render(<CalculateExposureTimeFormResult result={result} form={mockForm} />);
 
-    expect(formatTime).toHaveBeenCalledWith(30);
+    expect(formatTime).toHaveBeenCalledWith({
+      totalMinutes: 30,
+      t: expect.any(Function),
+      language: 'en'
+    });
     expect(
-      screen.getByText('You will have to sit still in it for 30 minutes')
+      screen.getByText(/calculateExposureTimeResult2/)
     ).toBeInTheDocument();
   });
 
@@ -87,10 +110,10 @@ describe('CalculateExposureTimeFormResult', () => {
     render(<CalculateExposureTimeFormResult result={result} form={mockForm} />);
 
     expect(
-      screen.getByText('To clean 5 mental layers in 10 °C water')
+      screen.getByText(/calculateExposureTimeResult1/)
     ).toBeInTheDocument();
     expect(
-      screen.getByText('You will have to sit still in it for 1 hour 15 minutes')
+      screen.getByText(/calculateExposureTimeResult2/)
     ).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
@@ -112,7 +135,7 @@ describe('CalculateExposureTimeFormResult', () => {
     render(<CalculateExposureTimeFormResult result={result} form={mockForm} />);
 
     expect(
-      screen.getByText('To clean 1 mental layers in 20 °C water')
+      screen.getByText(/calculateExposureTimeResult1/)
     ).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {
@@ -134,7 +157,7 @@ describe('CalculateExposureTimeFormResult', () => {
     render(<CalculateExposureTimeFormResult result={result} form={mockForm} />);
 
     expect(
-      screen.getByText('To clean 2 mental layers in 5 °C water')
+      screen.getByText(/calculateExposureTimeResult1/)
     ).toBeInTheDocument();
     expect(WaterExposureWarningMock).toHaveBeenCalledWith(
       {

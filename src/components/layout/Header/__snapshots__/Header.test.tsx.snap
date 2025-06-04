@@ -62,6 +62,17 @@ exports[`Header component should render correctly 1`] = `
               />
             </svg>
           </a>
+          <button
+            aria-expanded="false"
+            aria-haspopup="menu"
+            class="max-w-fit justify-self-end cursor-pointer"
+            data-slot="dropdown-menu-trigger"
+            data-state="closed"
+            id="radix-«r1»"
+            type="button"
+          >
+            English
+          </button>
         </ul>
       </div>
     </div>

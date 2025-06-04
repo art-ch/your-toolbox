@@ -7,4 +7,5 @@ export type TranslationNamespace =
   | 'homePage'
   | 'footer'
   | 'time'
-  | 'asceticExerciseDuration';
+  | 'asceticExerciseDuration'
+  | '404';

@@ -16,243 +16,309 @@ import {
   MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED,
   MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED
 } from '../../constants/StaticExercise.constants';
-import { formatTime } from '@/utils/i18n';
 
-jest.mock('@/lib/i18n/utils', () => ({
-  formatTime: jest.fn((minutes) => `${minutes} minutes`)
+// Mock translation hooks and utilities
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string, options?: Record<string, string>) => {
+      if (options) {
+        return `${key}_with_${JSON.stringify(options)}`;
+      }
+      return key;
+    },
+    i18n: {
+      language: 'en'
+    }
+  })
+}));
+
+// Mock formatTime utility with grammar case support
+jest.mock('@/utils/i18n', () => ({
+  formatTime: jest.fn((params) => `${params.totalMinutes}_minutes_formatted`)
+}));
+
+// Mock parseLanguage utility
+jest.mock('@/utils/i18n/parseLanguage', () => ({
+  parseLanguage: jest.fn(() => 'en')
 }));
 
 describe('WaterExposureWarning', () => {
-  // Extremely cold water tests
-  describe('Extremely cold water (≤2°C)', () => {
-    it('should display extreme danger warning for water below or at MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED', () => {
-      render(<WaterExposureWarning temperature={1} duration={5} />);
+  const renderComponent = (temperature: number, duration: number) => {
+    return render(
+      <WaterExposureWarning temperature={temperature} duration={duration} />
+    );
+  };
 
-      expect(screen.getByText(/EXTREME DANGER/i)).toBeInTheDocument();
+  describe('Extremely Cold Water (≤2°C)', () => {
+    it('should display extreme cold water danger warning', () => {
+      renderComponent(1, 1);
+
+      expect(screen.getByText('extremelyColdWaterDanger:')).toBeInTheDocument();
       expect(
-        screen.getByText(/below the minimum safe temperature/i)
+        screen.getByText(
+          'extremelyColdWaterDangerDescription_with_{"temperature":1}'
+        )
       ).toBeInTheDocument();
     });
 
-    it('should display additional warning when duration exceeds MAX_SAFE_DURATION_EXTREME_COLD', () => {
-      const dangerousDuration = MAX_SAFE_DURATION_EXTREME_COLD + 1;
-      render(
-        <WaterExposureWarning temperature={1} duration={dangerousDuration} />
-      );
-
-      expect(screen.getByText(/URGENT/i)).toBeInTheDocument();
-      expect(screen.getByText(/exceeds safe limits/i)).toBeInTheDocument();
-    });
-
-    it('should display cautionary advice when duration is within safe limits', () => {
-      const safeDuration = MAX_SAFE_DURATION_EXTREME_COLD - 1;
-      render(<WaterExposureWarning temperature={2} duration={safeDuration} />);
+    it('should display safe duration message for short exposure', () => {
+      renderComponent(2, MAX_SAFE_DURATION_EXTREME_COLD);
 
       expect(
-        screen.getByText(/Only trained cold water specialists/i)
+        screen.getByText(
+          'extremelyColdWaterForTrainedSpecialists_with_{"duration":"2_minutes_formatted"}'
+        )
+      ).toBeInTheDocument();
+    });
+
+    it('should display dangerous duration warning for long exposure', () => {
+      renderComponent(1, MAX_SAFE_DURATION_EXTREME_COLD + 1);
+
+      expect(
+        screen.getByText('extremelyColdWaterDangerousDuration:')
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          new RegExp(
-            `Limit exposure to less than ${MAX_SAFE_DURATION_EXTREME_COLD} minutes`
-          )
+          'extremelyColdWaterDangerousDurationDescription_with_{"duration":"3_minutes_formatted"}'
         )
       ).toBeInTheDocument();
     });
   });
 
-  // Very cold water tests
-  describe('Very cold water (>2°C to ≤10°C)', () => {
-    it('should display warning for water between MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED and VERY_COLD_WATER_THRESHOLD', () => {
-      const temperature =
-        (MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED + VERY_COLD_WATER_THRESHOLD) /
-        2;
-      render(<WaterExposureWarning temperature={temperature} duration={5} />);
+  describe('Very Cold Water (>2°C to ≤10°C)', () => {
+    it('should display very cold water warning', () => {
+      renderComponent(5, 3);
 
-      expect(screen.getByText(/WARNING/i)).toBeInTheDocument();
+      expect(screen.getByText('veryColdWaterWarning:')).toBeInTheDocument();
       expect(
-        screen.getByText(/only safe for trained cold water individuals/i)
+        screen.getByText(
+          'veryColdWaterWarningDescription_with_{"temperature":5}'
+        )
       ).toBeInTheDocument();
     });
 
-    it('should display danger warning when duration exceeds MAX_SAFE_DURATION_VERY_COLD', () => {
-      const dangerousDuration = MAX_SAFE_DURATION_VERY_COLD + 1;
-      render(
-        <WaterExposureWarning temperature={5} duration={dangerousDuration} />
-      );
+    it('should display safe duration message for short exposure', () => {
+      renderComponent(8, MAX_SAFE_DURATION_VERY_COLD);
 
-      expect(screen.getByText(/DANGER/i)).toBeInTheDocument();
       expect(
-        screen.getByText(/exceeds safe limits even for trained individuals/i)
+        screen.getByText(
+          'veryColdWaterTrainedIndividuals_with_{"duration":"5_minutes_formatted"}'
+        )
       ).toBeInTheDocument();
     });
 
-    it('should display cautionary advice when duration is within safe limits', () => {
-      const safeDuration = MAX_SAFE_DURATION_VERY_COLD - 1;
-      render(<WaterExposureWarning temperature={5} duration={safeDuration} />);
+    it('should display dangerous duration warning for long exposure', () => {
+      renderComponent(10, MAX_SAFE_DURATION_VERY_COLD + 1);
 
       expect(
-        screen.getByText(/Trained individuals should limit exposure/i)
+        screen.getByText('veryColdWaterDangerousDuration:')
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          new RegExp(`less than ${MAX_SAFE_DURATION_VERY_COLD} minutes`)
+          'veryColdWaterDangerousDurationDescription_with_{"duration":"6_minutes_formatted"}'
         )
       ).toBeInTheDocument();
     });
   });
 
-  // Cold water tests
-  describe('Cold water (>10°C to <25°C)', () => {
-    it('should display caution for water between VERY_COLD_WATER_THRESHOLD and MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED', () => {
-      const temperature =
-        (VERY_COLD_WATER_THRESHOLD + MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED) /
-        2;
-      render(<WaterExposureWarning temperature={temperature} duration={5} />);
+  describe('Cold Water (>10°C to <25°C)', () => {
+    it('should display cold water caution warning', () => {
+      renderComponent(15, 20);
 
-      expect(screen.getByText(/CAUTION/i)).toBeInTheDocument();
+      expect(screen.getByText('coldWaterCaution:')).toBeInTheDocument();
+      expect(
+        screen.getByText('coldWaterCautionDescription_with_{"temperature":15}')
+      ).toBeInTheDocument();
+    });
+
+    it('should display safe duration message for short exposure', () => {
+      renderComponent(20, MAX_SAFE_DURATION_COLD);
+
       expect(
         screen.getByText(
-          /below the minimum safe temperature for untrained individuals/i
+          'coldWaterTrainedIndividuals_with_{"duration":"30_minutes_formatted"}'
         )
       ).toBeInTheDocument();
     });
 
-    it('should display warning when duration exceeds MAX_SAFE_DURATION_COLD', () => {
-      const dangerousDuration = MAX_SAFE_DURATION_COLD + 1;
-      render(
-        <WaterExposureWarning temperature={15} duration={dangerousDuration} />
-      );
+    it('should display dangerous duration warning for long exposure', () => {
+      renderComponent(24, MAX_SAFE_DURATION_COLD + 1);
 
       expect(
         screen.getByText(
-          /exceeds recommended duration for trained individuals/i
-        )
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/Risk of hypothermia increases/i)
-      ).toBeInTheDocument();
-    });
-
-    it('should display advice when duration is within safe limits', () => {
-      const safeDuration = MAX_SAFE_DURATION_COLD - 1;
-      render(<WaterExposureWarning temperature={15} duration={safeDuration} />);
-
-      expect(
-        screen.getByText(
-          /Only trained individuals should exercise in this water/i
-        )
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          new RegExp(`less than ${MAX_SAFE_DURATION_COLD} minutes`)
+          'coldWaterDangerousDuration_with_{"duration":"31_minutes_formatted"}'
         )
       ).toBeInTheDocument();
     });
   });
 
-  // Normal water tests
-  describe('Normal water (≥25°C to <30°C)', () => {
-    it('should display safe message for water between MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED and WARM_WATER_THRESHOLD', () => {
-      const temperature =
-        (MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED + WARM_WATER_THRESHOLD) / 2;
-      render(<WaterExposureWarning temperature={temperature} duration={5} />);
+  describe('Normal Water (≥25°C to <30°C)', () => {
+    it('should display normal water description', () => {
+      renderComponent(27, 60);
 
       expect(
-        screen.getByText(/within safe range for untrained individuals/i)
+        screen.getByText('normalWaterDescription_with_{"temperature":27}')
       ).toBeInTheDocument();
     });
 
-    it('should display caution when duration exceeds MAX_SAFE_DURATION_NORMAL', () => {
-      const longDuration = MAX_SAFE_DURATION_NORMAL + 1;
-      render(<WaterExposureWarning temperature={27} duration={longDuration} />);
+    it('should display safe duration message for short exposure', () => {
+      renderComponent(28, MAX_SAFE_DURATION_NORMAL);
 
-      expect(screen.getByText(/is an extended session/i)).toBeInTheDocument();
       expect(
-        screen.getByText(/Consider taking periodic breaks/i)
+        screen.getByText(
+          'normalWaterSafeForExposure_with_{"duration":"120_minutes_formatted"}'
+        )
       ).toBeInTheDocument();
     });
 
-    it('should display safe message when duration is within normal limits', () => {
-      const safeDuration = MAX_SAFE_DURATION_NORMAL - 1;
-      render(<WaterExposureWarning temperature={27} duration={safeDuration} />);
+    it('should display long duration warning for extended exposure', () => {
+      renderComponent(29, MAX_SAFE_DURATION_NORMAL + 1);
 
       expect(
-        screen.getByText(/Safe for exposure for up to/i)
+        screen.getByText(
+          'normalWaterLongDuration_with_{"duration":"121_minutes_formatted"}'
+        )
       ).toBeInTheDocument();
-      expect(formatTime).toHaveBeenCalledWith(MAX_SAFE_DURATION_NORMAL);
     });
   });
 
-  // Warm water tests
-  describe('Warm water (≥30°C to ≤40°C)', () => {
-    it('should display notice for water between WARM_WATER_THRESHOLD and MAX_SAFE_WATER_TEMPERATURE', () => {
-      const temperature =
-        (WARM_WATER_THRESHOLD + MAX_SAFE_WATER_TEMPERATURE) / 2;
-      render(<WaterExposureWarning temperature={temperature} duration={5} />);
+  describe('Warm Water (≥30°C to ≤40°C)', () => {
+    it('should display warm water notice', () => {
+      renderComponent(35, 30);
 
-      expect(screen.getByText(/NOTICE/i)).toBeInTheDocument();
+      expect(screen.getByText('warmWaterNotice:')).toBeInTheDocument();
       expect(
-        screen.getByText(/warm and approaching maximum safe temperature/i)
+        screen.getByText('warmWaterNoticeDescription_with_{"temperature":35}')
       ).toBeInTheDocument();
     });
 
-    it('should display warning when duration exceeds MAX_SAFE_DURATION_WARM', () => {
-      const dangerousDuration = MAX_SAFE_DURATION_WARM + 1;
-      render(
-        <WaterExposureWarning temperature={35} duration={dangerousDuration} />
-      );
+    it('should display safe duration message for short exposure', () => {
+      renderComponent(32, MAX_SAFE_DURATION_WARM);
 
       expect(
-        screen.getByText(/exceeds recommended duration/i)
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/Risk of overheating increases/i)
+        screen.getByText(
+          'warmWaterLimitExposure_with_{"duration":"60_minutes_formatted"}'
+        )
       ).toBeInTheDocument();
     });
 
-    it('should display advice when duration is within safe limits', () => {
-      const safeDuration = MAX_SAFE_DURATION_WARM - 1;
-      render(<WaterExposureWarning temperature={35} duration={safeDuration} />);
+    it('should display dangerous duration warning for long exposure', () => {
+      renderComponent(40, MAX_SAFE_DURATION_WARM + 1);
 
       expect(
-        screen.getByText(/Limit continuous exposure/i)
+        screen.getByText(
+          'warmWaterDangerousDuration_with_{"duration":"61_minutes_formatted"}'
+        )
       ).toBeInTheDocument();
-      expect(formatTime).toHaveBeenCalledWith(MAX_SAFE_DURATION_WARM);
     });
   });
 
-  // Hot water tests
-  describe('Hot water (>40°C)', () => {
-    it('should display danger warning for water above MAX_SAFE_WATER_TEMPERATURE', () => {
-      render(<WaterExposureWarning temperature={41} duration={5} />);
+  describe('Hot Water (>40°C)', () => {
+    it('should display hot water danger warning', () => {
+      renderComponent(45, 10);
 
-      expect(screen.getByText(/DANGER/i)).toBeInTheDocument();
+      expect(screen.getByText('hotWaterDanger:')).toBeInTheDocument();
       expect(
-        screen.getByText(/exceeds maximum safe water temperature/i)
+        screen.getByText('hotWaterDangerDescription_with_{"temperature":45}')
       ).toBeInTheDocument();
     });
 
-    it('should display urgent warning when duration exceeds MAX_SAFE_DURATION_HOT', () => {
-      const dangerousDuration = MAX_SAFE_DURATION_HOT + 1;
-      render(
-        <WaterExposureWarning temperature={41} duration={dangerousDuration} />
-      );
-
-      expect(screen.getByText(/URGENT/i)).toBeInTheDocument();
-      expect(screen.getByText(/is excessive/i)).toBeInTheDocument();
-    });
-
-    it('should display advice when duration is within limits', () => {
-      const safeDuration = MAX_SAFE_DURATION_HOT - 1;
-      render(<WaterExposureWarning temperature={41} duration={safeDuration} />);
+    it('should display not suitable message for short exposure', () => {
+      renderComponent(42, MAX_SAFE_DURATION_HOT);
 
       expect(
-        screen.getByText(/Not recommended for exercising/i)
+        screen.getByText(
+          'hotWaterNotSuitableForExercising_with_{"duration":"15_minutes_formatted"}'
+        )
+      ).toBeInTheDocument();
+    });
+
+    it('should display dangerous duration warning for long exposure', () => {
+      renderComponent(50, MAX_SAFE_DURATION_HOT + 1);
+
+      expect(
+        screen.getByText('hotWaterDangerousDuration:')
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          new RegExp(`less than ${MAX_SAFE_DURATION_HOT} minutes`)
+          'hotWaterDangerousDurationDescription_with_{"duration":"16_minutes_formatted"}'
+        )
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe('Edge Cases', () => {
+    it('should handle boundary temperature values correctly', () => {
+      // Test exact boundary at MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED (2°C)
+      renderComponent(MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED, 1);
+      expect(screen.getByText('extremelyColdWaterDanger:')).toBeInTheDocument();
+
+      // Test just above the boundary
+      renderComponent(MIN_SAFE_WATER_TEMPERATURE_FOR_TRAINED + 0.1, 1);
+      expect(screen.getByText('veryColdWaterWarning:')).toBeInTheDocument();
+    });
+
+    it('should handle VERY_COLD_WATER_THRESHOLD boundary correctly', () => {
+      // Test at boundary (10°C)
+      renderComponent(VERY_COLD_WATER_THRESHOLD, 1);
+      expect(screen.getByText('veryColdWaterWarning:')).toBeInTheDocument();
+
+      // Test just above boundary
+      renderComponent(VERY_COLD_WATER_THRESHOLD + 0.1, 1);
+      expect(screen.getByText('coldWaterCaution:')).toBeInTheDocument();
+    });
+
+    it('should handle MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED boundary correctly', () => {
+      // Test just below boundary (24.9°C)
+      renderComponent(MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED - 0.1, 1);
+      expect(screen.getByText('coldWaterCaution:')).toBeInTheDocument();
+
+      // Test at boundary (25°C)
+      renderComponent(MIN_SAFE_WATER_TEMPERATURE_FOR_UNTRAINED, 1);
+      expect(
+        screen.getByText('normalWaterDescription_with_{"temperature":25}')
+      ).toBeInTheDocument();
+    });
+
+    it('should handle WARM_WATER_THRESHOLD boundary correctly', () => {
+      // Test just below boundary (29.9°C)
+      renderComponent(WARM_WATER_THRESHOLD - 0.1, 1);
+      expect(
+        screen.getByText('normalWaterDescription_with_{"temperature":29.9}')
+      ).toBeInTheDocument();
+
+      // Test at boundary (30°C)
+      renderComponent(WARM_WATER_THRESHOLD, 1);
+      expect(screen.getByText('warmWaterNotice:')).toBeInTheDocument();
+    });
+
+    it('should handle MAX_SAFE_WATER_TEMPERATURE boundary correctly', () => {
+      // Test at boundary (40°C)
+      renderComponent(MAX_SAFE_WATER_TEMPERATURE, 1);
+      expect(screen.getByText('warmWaterNotice:')).toBeInTheDocument();
+
+      // Test just above boundary
+      renderComponent(MAX_SAFE_WATER_TEMPERATURE + 0.1, 1);
+      expect(screen.getByText('hotWaterDanger:')).toBeInTheDocument();
+    });
+
+    it('should handle zero duration', () => {
+      renderComponent(25, 0);
+      expect(
+        screen.getByText('normalWaterDescription_with_{"temperature":25}')
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          'normalWaterSafeForExposure_with_{"duration":"120_minutes_formatted"}'
+        )
+      ).toBeInTheDocument();
+    });
+
+    it('should handle very high duration values', () => {
+      renderComponent(25, 1000);
+      expect(
+        screen.getByText(
+          'normalWaterLongDuration_with_{"duration":"1000_minutes_formatted"}'
         )
       ).toBeInTheDocument();
     });

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Content component should render correctly 1`] = `
+<div>
+  <div
+    class="min-h-0"
+    data-testid="sidebar-provider"
+  >
+    <div
+      data-testid="sidebar-content"
+    >
+      <div
+        data-testid="sidebar-group"
+      >
+        <div
+          data-testid="sidebar-menu"
+        >
+          <div
+            data-testid="sidebar-menu-item"
+          >
+            <div
+              data-testid="sidebar-menu-button"
+            >
+              <a
+                class="font-medium"
+                href="/calculators"
+              >
+                common:calculators
+              </a>
+            </div>
+          </div>
+          <div
+            data-testid="sidebar-menu-item"
+          >
+            <div
+              data-testid="sidebar-menu-button"
+            >
+              <a
+                class="font-medium"
+                href="/specialized-tools"
+              >
+                common:specializedTools
+              </a>
+            </div>
+            <div
+              class="ml-0 border-l-0 px-1.5"
+              data-testid="sidebar-menu-sub"
+            >
+              <div
+                data-testid="sidebar-menu-sub-item"
+              >
+                <div
+                  data-testid="sidebar-menu-sub-button"
+                >
+                  <a
+                    href="/tool1"
+                  >
+                    tool1:title
+                  </a>
+                </div>
+              </div>
+              <div
+                data-testid="sidebar-menu-sub-item"
+              >
+                <div
+                  data-testid="sidebar-menu-sub-button"
+                >
+                  <a
+                    href="/tool2"
+                  >
+                    Tool 2
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

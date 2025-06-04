@@ -1,0 +1,18 @@
+{
+  "navigation": "Navigation",
+  "navPageDescription": "Find all available {{category}} here",
+  "tools": "Tools",
+  "calculators": "Calculators",
+  "calculatorsDescription": "Make your computer do math for you",
+  "calculate": "Calculate",
+  "specializedTools": "Specialized Tools",
+  "specializedToolsDescription": "Tools that are too specific for any other category",
+  "about": "About",
+  "checkAvailableTools": "Check available tools",
+
+  "metadata": {
+    "description": "Make your computer do stuff for you"
+  },
+
+  "byAuthor": "by"
+}

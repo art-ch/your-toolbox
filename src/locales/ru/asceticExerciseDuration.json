@@ -1,0 +1,123 @@
+{
+  "title": "Расчёт времени аскез",
+  "subtitle": "Регулярные аскезы улучшат ваше здоровье. Используйте этот инструмент, чтобы узнать, сколько вам нужно заниматься.",
+  "author": "Торсунова О.Г.",
+
+  "exerciseType": "Типы упражнений",
+  "dynamic": "Динамические",
+  "static": "Статические",
+  "ground": "Наземные",
+  "water": "Водные",
+
+  "walk": "ходить",
+  "run": "бегать",
+  "walking": "ходьбы",
+  "running": "бега",
+
+  "mentalLayerAmount_one": "{{count}} психический слой",
+  "mentalLayerAmount_few": "{{count}} психических слоя",
+  "mentalLayerAmount_many": "{{count}} психических слоёв",
+  "mentalLayerAmount_other": "{{count}} психических слоёв",
+
+  "duration": "Длительность в минутах",
+  "durationValue": "Пожалуйста введите длительность",
+  "durationDescription": "Как долго вы собираетесь двигаться",
+  "mentalLayers": "Психические слои",
+  "mentalLayersValue": "Пожалуйста введите количество психических слоёв",
+  "mentalLayersDescription": "Сколько психических слоёв вы хотите очистить",
+
+  "speed": "Скорость (км/ч)",
+  "speedValue": "Пожалуйста введите скорость движения",
+  "speedDescription": "Скорость движения",
+  "temperature": "Температура",
+  "temperatureValue": "Пожалуйста введите температуру",
+  "temperatureDescription": "Температура воды",
+  "allMentalLayers": "все 5 психических слоёв",
+
+  "validation": {
+    "invalidNumber": "Пожалуйста введите число",
+
+    "duration": "Длительность должна быть не менее 1 минуты",
+
+    "mentalLayers": "Количество психических слоёв должно быть не менее 1",
+    "mentalLayersMax": "Количество психических слоёв не может быть более 5",
+    "mentalLayersWholeNumbers": "Допускаются только целые числа",
+
+    "speedMin": "Скорость должна быть не менее 2 км/ч (минимальная скорость ходьбы)",
+    "speedMax": "Скорость не может превышать 45 км/ч (самый быстрый спринт)",
+    "speedWholeNumbers": "Допускаются только целые числа"
+  },
+
+  "calculateCleanedMentalLayersTitle": "Расчёт количества очищенных психических слоёв",
+  "calculateCleanedMentalLayersSubtitle": "Расчитайте сколько психических слоёв вы очистите за определённое время с установленной скоростью",
+  "movedForDuration": "После {{movement}} на протяжении {{duration}}",
+  "movedForDurationResult": "Вы очистите {{mentalLayerAmount}}",
+  "okayToExerciseMore1": "Вам нужно {{movement}} ещё {{timeToNextCycle}} чтоб прочистить ещё один психический слой",
+  "okayToExerciseMore2": "Вам нужно {{movement}} ещё {{timeTo5Cycles}} чтоб прочистить все психические слои",
+  "recommendedExerciseTime": "Рекомендуется делать это упражнение {{onceEvery}} {{recommendedFrequencyDays}}",
+  "recommendedExerciseTimeOverextended1": "Рекомендуется ограничить время исполнения до {{recommendedExerciseTime}}",
+  "recommendedExerciseTimeOverextended2": "Избегайте перегрузки. Чрезмерные нагрузки принесут обратный эффект",
+
+  "calculateSpeedTitle": "Расчёт скорости движения",
+  "calculateSpeedSubtitle": "Расчитайте скорость, необходимую для очищения указанного количества психических слоёв при ходьбе или беге в течении определённого времени.",
+  "calculateSpeedResult": "Вам нужно {{movement}} со скоростью {{speed}} км/ч, чтобы очистить {{mentalLayerAmount}} за {{duration}}.",
+  "speedHardToAchieve": "Это молниеносно быстро! Текущий мировой рекорд скорости спринта составляет около 45 км/ч. Вы стремитесь побить его? Если нет, выберите более длительный период времени для более типичного темпа бега.",
+
+  "calculateTotalTimeTitle": "Расчёт времени исполнения упражнений",
+  "calculateTotalTimeSubtitle": "Расчитайте время, необходимое для очищения указанного количества психических слоёв при ходьбе или беге с определённой скоростью.",
+  "calculateTotalTimeResult": "Вам нужно {{movement}} {{totalTime}}, чтобы очистить {{mentalLayerAmount}} при скорости движения {{speed}} км/ч",
+
+  "calculateDurationFromLayersTitle": "Расчёт длительности пребывания в неподвижном положении",
+  "calculateDurationFromLayersSubtitle": "Расчитайте, как долго вам нужно неподвижно сидеть или стоять, чтобы очистить определённое количество психических слоёв",
+  "calculateDurationFromLayersResult1": "Чтобы очистить {{mentalLayerAmount}}",
+  "calculateDurationFromLayersResult2": "Вам нужно неподвижно сидеть или стоять {{duration}}",
+
+  "calculateLayersFromDurationSubtitle": "Расчитайте, сколько психических слоёв вы очистите, если будете неподвижно сидеть или стоять в течении определённого времени",
+  "calculateLayersFromDurationDescription": "Сколько минут вы планируете сидеть или стоять",
+  "calculateLayersFromDurationResult1": "После того, как вы пробыли в неподвижном положении {{duration}}",
+  "calculateLayersFromDurationResult2": "Вы очистите {{mentalLayerAmount}}",
+  "calculateLayersFromDurationOverextending": "Перегрузка может дать противоположный эффект",
+
+  "calculateExposureTimeTitle": "Расчёт времени пребывания в воде",
+  "calculateExposureTimeSubtitle": "Расчитайте время, необходимое для очищения указанного количества психических слоёв при пребывании в воде с определённой температурой (°C).",
+  "calculateExposureTimeResult1": "Чтобы очистить {{mentalLayerAmount}} в воде с температурой {{temperature}} °C",
+  "calculateExposureTimeResult2": "Вам нужно находиться в воде в неподвижном положении {{duration}}",
+
+  "calculateMentalLayersCleansedSubtitle": "Расчитайте, сколько психических слоёв вы очистите, если будете сидеть неподвижно в воде с определённой температурой (°C) в течении определённого времени",
+  "calculateMentalLayersCleansedDuration": "Сколько минут вы планируете находиться в воде",
+  "calculateMentalLayersCleansedResult1": "После пребывания в воде с температурой {{temperature}} °C на протяжении {{duration}}",
+  "calculateMentalLayersCleansedResult2": "Вы очистите {{mentalLayerAmount}}",
+  "calculateMentalLayersCleansedOverextending": "Перегрузка может дать противоположный эффект",
+
+  "calculateTemperatureTitle": "Расчёт температуры воды",
+  "calculateTemperatureSubtitle": "Расчитайте температуру воды, воздействию которой нужно подвергнуться для очищения указанного количества психических слоёв.",
+  "calculateTemperatureResult1": "Чтобы очистить {{mentalLayerAmount}} за {{duration}}",
+  "calculateTemperatureResult2": "Вам потребуется вода с температурой {{temperature}} °C",
+
+  "extremelyColdWaterDanger": "ОПАСНОСТЬ",
+  "extremelyColdWaterDangerDescription": "Вода с температурой в {{temperature}} °C небезопасна даже для подготовленных людей.",
+  "extremelyColdWaterDangerousDuration": "ОПАСНОСТЬ",
+  "extremelyColdWaterDangerousDurationDescription": "Пребывание в такой воде на протяжении {{duration}} превышает безопасные пределы. Выберите более тёплый источник воды.",
+  "extremelyColdWaterForTrainedSpecialists": "Только подготовленные специалисты должны заниматься в этой воде. Ограничьте пребывание в такой воде менее чем на {{duration}}.",
+  "veryColdWaterWarning": "ПРЕДУПРЕЖДЕНИЕ",
+  "veryColdWaterWarningDescription": "Вода с температурой {{temperature}} °C безопасна только для подготовленных людей.",
+  "veryColdWaterDangerousDuration": "ОПАСНОСТЬ",
+  "veryColdWaterDangerousDurationDescription": "Пребывание в такой воде на протяжении {{duration}} превышает безопасные пределы даже для подготовленных людей. Рассмотрите более тёплый источник воды.",
+  "veryColdWaterTrainedIndividuals": "Тренированным людям следует ограничить пребывание в такой воде менее чем на {{duration}}. Небезопасно для неподготовленных людей.",
+  "coldWaterCaution": "ОСТОРОЖНО",
+  "coldWaterCautionDescription": "Вода с температурой {{temperature}} °C небезопасна для неподготовленных людей.",
+  "coldWaterDangerousDuration": "Пребывание в такой воде на протяжении {{duration}} превышает рекомендуемую продолжительность для подготовленных людей. Повышается риск переохлаждения.",
+  "coldWaterTrainedIndividuals": "Только подготовленные люди должны заниматься в этой воде. Ограничьте пребывание в такой воде менее чем на {{duration}}",
+  "normalWaterDescription": "Вода с температурой {{temperature}} °C является безопасной даже для неподготовленных людей.",
+  "normalWaterLongDuration": "{{duration}} - это продолжительная сессия. Рассмотрите возможность периодических перерывов для отдыха.",
+  "normalWaterSafeForExposure": "Безопасно для пребывания менее чем {{duration}}",
+  "warmWaterNotice": "ПРИМЕЧАНИЕ",
+  "warmWaterNoticeDescription": "Вода с температурой {{temperature}} °C считается тёплой и близка к максимальной безопасной температуре.",
+  "warmWaterDangerousDuration": "Пребывание в такой воде на протяжении {{duration}} превышает рекомендуемую продолжительность. Повышается риск перегрева.",
+  "warmWaterLimitExposure": "Ограничьте непрерывное пребывание до {{duration}} и поддерживайте водный баланс.",
+  "hotWaterDanger": "ОПАСНОСТЬ",
+  "hotWaterDangerDescription": "Вода с температурой {{temperature}} °C превышает максимальную безопасную температуру воды.",
+  "hotWaterDangerousDuration": "ОПАСНОСТЬ",
+  "hotWaterDangerousDurationDescription": "Пребывание в такой воде на протяжении {{duration}} считается небезопасным. Выберите более прохладный источник воды.",
+  "hotWaterNotSuitableForExercising": "Не рекомендуется для упражнений. При необходимости ограничьте пребывание в такой воде менее чем на {{duration}} или охладите воду."
+}

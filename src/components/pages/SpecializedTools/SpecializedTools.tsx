@@ -1,16 +1,21 @@
+'use client';
+
 import React from 'react';
 
 import { MdMiscellaneousServices } from 'react-icons/md';
-import { PageHeading } from '@/app/components/PageHeading/PageHeading';
 import { NavigationContainer } from '../Navigation/components/NavigationContainer/NavigationContainer';
 import { NavigationLinkCard } from '../Navigation/components/NavigationLinkCard/NavigationLinkCard';
+import { PageHeading } from '@/components/PageHeading/PageHeading';
+import { useTranslation } from 'react-i18next';
 
 export const SpecializedTools = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <PageHeading
-        title="Specialized tools"
-        subtitle="Tools that are too specific for any other category"
+        title={t('common:specializedTools')}
+        subtitle={t('common:specializedToolsDescription')}
       />
       <NavigationContainer>
         <NavigationLinkCard

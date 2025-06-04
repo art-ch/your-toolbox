@@ -26,8 +26,8 @@ const config: Config = {
     '<rootDir>/src/hooks/use-mobile.tsx',
     // -------------------- //
 
-    // everything outside components, context and layout folders is tested through children
-    '<rootDir>/src/app/[^/]+\\.(js|jsx|ts|tsx)$',
+    // everything inside app folder is tested through children components. No page have async logic at the moment
+    '<rootDir>/src/app/.*\\.(js|jsx|ts|tsx)$',
 
     '.*\\.model\\.ts$',
     '/index\\.ts$',
@@ -38,9 +38,6 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
   collectCoverageFrom: [
-    'app/components/**/*.{js,jsx,ts,tsx}',
-    'app/context/**/*.{js,jsx,ts,tsx}',
-    'app/layout/**/*.{js,jsx,ts,tsx}',
     'src/**/*.{js,jsx,ts,tsx}',
     '!src/**/*.d.ts',
     '!**/node_modules/**'

@@ -1,0 +1,18 @@
+{
+  "navigation": "Навігація",
+  "navPageDescription": "Тут ви можете знайти усі доступні {{category}}",
+  "tools": "Інструменти",
+  "calculators": "Калькулятори",
+  "calculatorsDescription": "Змусьте комп'ютер робити за вас математику",
+  "calculate": "Розрахувати",
+  "specializedTools": "Спеціалізовані інструменти",
+  "specializedToolsDescription": "Занадто специфічні для інших категорій інструменти ",
+  "about": "Про нас",
+  "checkAvailableTools": "Переглянути доступні інструменти",
+
+  "metadata": {
+    "description": "Змусьте комп'ютер працювати на вас"
+  },
+
+  "byAuthor": ""
+}

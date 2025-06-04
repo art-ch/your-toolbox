@@ -9,12 +9,12 @@ exports[`Navigation component should render correctly 1`] = `
       <h1
         class="text-2xl md:text-4xl font-semibold leading-none tracking-tight"
       >
-        Navigation
+        common:navigation
       </h1>
       <p
         class="mt-3"
       >
-        Find all available tools here
+        common:navPageDescription
       </p>
     </header>
     <nav
@@ -88,13 +88,13 @@ exports[`Navigation component should render correctly 1`] = `
                   />
                 </svg>
               </div>
-              Calculators
+              common:calculators
             </h3>
           </div>
           <div
             class="p-6 pt-0"
           >
-            Make your computer do math for you
+            common:calculatorsDescription
           </div>
         </div>
       </a>
@@ -131,13 +131,13 @@ exports[`Navigation component should render correctly 1`] = `
                   />
                 </svg>
               </div>
-              Specialized tools
+              common:specializedTools
             </h3>
           </div>
           <div
             class="p-6 pt-0"
           >
-            Tools that are too specific for any other category
+            common:specializedToolsDescription
           </div>
         </div>
       </a>

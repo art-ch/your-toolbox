@@ -9,12 +9,12 @@ exports[`Calculators component should render correctly 1`] = `
       <h1
         class="text-2xl md:text-4xl font-semibold leading-none tracking-tight"
       >
-        Calculators
+        common:calculators
       </h1>
       <p
         class="mt-3"
       >
-        Find all available calculators here
+        common:calculatorsDescription
       </p>
     </header>
     <nav
@@ -88,13 +88,13 @@ exports[`Calculators component should render correctly 1`] = `
                   />
                 </svg>
               </div>
-              Ascetic Exercise Duration
+              asceticExerciseDuration:title
             </h3>
           </div>
           <div
             class="p-6 pt-0"
           >
-            Regular exercising boosts your well-being. Use this calculator to determine your workout duration.
+            asceticExerciseDuration:subtitle
           </div>
         </div>
       </a>

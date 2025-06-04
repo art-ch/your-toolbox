@@ -1,11 +1,16 @@
+'use client';
+
 import { Hero } from '@/components/Hero/Hero';
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const NotFound = () => {
+  const { t } = useTranslation();
+
   return (
     <Hero
       title="404"
-      subtitle="Your curiosity is astounding. Though, at the moment we don't have the treasure you seek"
+      subtitle={t('404:subtitle')}
+      buttonText={t('common:checkAvailableTools')}
     />
   );
 };

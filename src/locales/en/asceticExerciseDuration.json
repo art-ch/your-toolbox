@@ -1,0 +1,121 @@
+{
+  "title": "Ascetic Exercise Duration",
+  "subtitle": "Regular exercising boosts your well-being. Use this calculator to determine your workout duration.",
+  "author": "O.G. Torsunov",
+
+  "exerciseType": "Exercise Type",
+  "dynamic": "Dynamic",
+  "static": "Static",
+  "ground": "Ground",
+  "water": "Water",
+
+  "walk": "walk",
+  "run": "run",
+  "walking": "walking",
+  "running": "running",
+
+  "mentalLayerAmount_one": "{{count}} mental layer",
+  "mentalLayerAmount_other": "{{count}} mental layers",
+
+  "duration": "Duration (minutes)",
+  "durationValue": "Please enter duration value",
+  "durationDescription": "How many minutes you plan to walk or run",
+  "mentalLayers": "Mental layers",
+  "mentalLayersValue": "Please enter mental layers value",
+  "mentalLayersDescription": "How many mental layers you want to clean",
+
+  "speed": "Speed (km/h)",
+  "speedValue": "Please enter speed value",
+  "speedDescription": "Your walking or running speed",
+  "temperature": "Temperature",
+  "temperatureValue": "Please enter temperature value",
+  "temperatureDescription": "Water temperature",
+  "allMentalLayers": "all 5 of your mental layers",
+
+  "validation": {
+    "invalidNumber": "Please enter the number",
+
+    "duration": "Duration must be at least 1 munute",
+
+    "mentalLayers": "Value of mental layers should not be less than 1",
+    "mentalLayersMax": "Value of mental layers can not be more than 5",
+    "mentalLayersWholeNumbers": "Only whole numbers are allowed",
+
+    "speedMin": "Speed must be at least 2 km/h (minimal walking speed)",
+    "speedMax": "Speed can't exceed 45 km/h (fastest human sprint)",
+    "validSpeed": "For walking, speed should be 2-7 km/h. For running, speed should be 7-45 km/h."
+  },
+
+  "calculateCleanedMentalLayersTitle": "Calculate Cleaned Mental Layers",
+  "calculateCleanedMentalLayersSubtitle": "Calculate how many mental layers you will have cleaned if you walk or run uninteruptedly at a set speed for a certain amount of time",
+  "movedForDuration": "After {{movement}} for {{duration}}",
+  "movedForDurationResult": "You will have {{mentalLayerAmount}} cleaned",
+  "okayToExerciseMore1": "You have to {{movement}} {{timeToNextCycle}} more to clean 1 more mental layer",
+  "okayToExerciseMore2": "You will have to {{movement}} {{timeTo5Cycles}} more to clean all mental layers",
+  "recommendedExerciseTime": "It is recommended to do this exercise {{onceEvery}} {{recommendedFrequencyDays}}",
+  "recommendedExerciseTimeOverextended1": "It is recommended to limit this exercise to {{recommendedExerciseTime}}",
+  "recommendedExerciseTimeOverextended2": "Avoid overexertion, excessive exercising can be counterproductive.",
+
+  "calculateSpeedTitle": "Calculate Speed",
+  "calculateSpeedSubtitle": "Calculate the speed required to clean a specified number of mental layers while walking or running for a specified amount of time.",
+  "calculateSpeedResult": "You need to {{movement}} with the speed of {{speed}} km/h to clean {{mentalLayerAmount}} in {{duration}}.",
+  "speedHardToAchieve": "That's lightning fast! The current world record for sprint speed is about 45 km/h. Are you aiming to break it? If not, consider choosing a longer time period for a more typical running pace.",
+
+  "calculateTotalTimeTitle": "Calculate Total Time",
+  "calculateTotalTimeSubtitle": "Calculate the time required to clean a specified number of mental layers while walking or running at a specified speed.",
+  "calculateTotalTimeResult": "You have to {{movement}} for {{totalTime}} to clean {{mentalLayerAmount}} at a speed of {{speed}} km/h",
+
+  "calculateDurationFromLayersTitle": "Calculate Duration",
+  "calculateDurationFromLayersSubtitle": "Calculate how long you have to sit in a seated asana pose or stand uninteruptedly to clean a certain amount of mental layers",
+  "calculateDurationFromLayersResult1": "To clean {{mentalLayerAmount}} mental layers",
+  "calculateDurationFromLayersResult2": "You have to sit in a seated asana pose or stand still uninteruptedly for {{duration}}",
+
+  "calculateLayersFromDurationSubtitle": "Calculate how many mental layers you will have cleaned if you sit in a seated asana pose or stand uninteruptedly for a certain amount of time",
+  "calculateLayersFromDurationDescription": "How many minutes you plan to sit or stand",
+  "calculateLayersFromDurationResult1": "After you have sit in a seated asana pose or have standed still uninteruptedly for {{duration}}",
+  "calculateLayersFromDurationResult2": "You will have {{mentalLayerAmount}} cleaned",
+  "calculateLayersFromDurationOverextending": "Overextending can be counterproductive.",
+
+  "calculateExposureTimeTitle": "Calculate Exposure Time",
+  "calculateExposureTimeSubtitle": "Calculate the time required to clean a specified number of mental layers while sitting in a water with specified temperature (°C).",
+  "calculateExposureTimeResult1": "To clean {{mentalLayerAmount}} mental layers in {{temperature}} °C water",
+  "calculateExposureTimeResult2": "You will have to sit still in it for {{duration}}",
+
+  "calculateMentalLayersCleansedSubtitle": "Calculate how many mental layers you will have cleaned if you sit still in a water with a certain temperature (°C) for a certain amount of time",
+  "calculateMentalLayersCleansedDuration": "How many minutes you plan to sit in the water",
+  "calculateMentalLayersCleansedResult1": "After sitting in a water with {{temperature}} °C temperature for {{duration}}",
+  "calculateMentalLayersCleansedResult2": "You will have {{mentalLayerAmount}} cleaned",
+  "calculateMentalLayersCleansedOverextending": "Overextending can be counterproductive.",
+
+  "calculateTemperatureTitle": "Calculate Temperature",
+  "calculateTemperatureSubtitle": "Calculate a water temperature to expose oneself to required to clean a specified number of mental layers.",
+  "calculateTemperatureResult1": "To clean {{mentalLayerAmount}} mental layers in {{duration}}",
+  "calculateTemperatureResult2": "You will require a water with temperature of {{temperature}} °C",
+
+  "extremelyColdWaterDanger": "DANGER",
+  "extremelyColdWaterDangerDescription": "Water at {{temperature}} °C is below the minimum safe temperature even for trained individuals.",
+  "extremelyColdWaterDangerousDuration": "DANGER",
+  "extremelyColdWaterDangerousDurationDescription": "{{duration}} exceeds safe limits. Choose a warmer water source.",
+  "extremelyColdWaterForTrainedSpecialists": "Only trained cold water specialists should exercise in this water. Limit exposure to less than {{duration}}.",
+  "veryColdWaterWarning": "WARNING",
+  "veryColdWaterWarningDescription": "Water at {{temperature}} °C is only safe for trained cold water individuals.",
+  "veryColdWaterDangerousDuration": "DANGER",
+  "veryColdWaterDangerousDurationDescription": "{{duration}} exceeds safe limits even for trained individuals. Consider a warmer water source.",
+  "veryColdWaterTrainedIndividuals": "Trained individuals should limit exposure to less than {{duration}} minutes. Not safe for untrained individuals.",
+  "coldWaterCaution": "CAUTION",
+  "coldWaterCautionDescription": "Water at {{temperature}} °C is below the minimum safe temperature for untrained individuals.",
+  "coldWaterDangerousDuration": "{{duration}} exceeds recommended duration for trained individuals. Risk of hypothermia increases.",
+  "coldWaterTrainedIndividuals": "Only trained individuals should exercise in this water. Limit exposure to less than {{duration}} minutes.",
+  "normalWaterDescription": "Water at {{temperature}} °C is within safe range for untrained individuals.",
+  "normalWaterLongDuration": "{{duration}} is an extended session. Consider taking periodic breaks to rest.",
+  "normalWaterSafeForExposure": "Safe for exposure for up to {{duration}}",
+  "warmWaterNotice": "NOTICE",
+  "warmWaterNoticeDescription": "Water at {{temperature}} °C is warm and approaching maximum safe temperature.",
+  "warmWaterDangerousDuration": "{{duration}} exceeds recommended duration. Risk of overheating increases.",
+  "warmWaterLimitExposure": "Limit continuous exposure to {{duration}} and stay hydrated.",
+  "hotWaterDanger": "DANGER",
+  "hotWaterDangerDescription": "Water at {{temperature}} °C exceeds maximum safe water temperature.",
+  "hotWaterDangerousDuration": "DANGER",
+  "hotWaterDangerousDurationDescription": "{{duration}} is excessive. Choose a cooler water source.",
+  "hotWaterNotSuitableForExercising": "Not recommended for exercising. If necessary, limit exposure to less than {{duration}} or cool the water."
+}

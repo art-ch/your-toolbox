@@ -41,7 +41,7 @@ export const CalculatorForm = <T extends FieldValues, R>({
     return (
       <div className="flex flex-col">
         <h3 className="text-lg font-semibold leading-none tracking-tight pb-1">
-          Result:
+          {t('result')}:
         </h3>
         <div>{renderResult(calculationResult, form)}</div>
       </div>

@@ -24,12 +24,18 @@ export const ExerciseTypeTabs = () => {
 
   return (
     <Tabs defaultValue="dynamic">
-      <TabsList className="my-0 mx-auto">
-        <TabsTrigger value="dynamic" className="cursor-pointer">
+      <TabsList className="my-0 mx-auto bg-white">
+        <TabsTrigger
+          value="dynamic"
+          className="cursor-pointer mx-1 p-4 gap-x-2 text-red-500 data-[state=active]:bg-red-500 data-[state=active]:text-white"
+        >
           <FaPersonRunning />
           {t('dynamic')}
         </TabsTrigger>
-        <TabsTrigger value="static" className="cursor-pointer">
+        <TabsTrigger
+          value="static"
+          className="cursor-pointer mx-1 p-4 gap-x-2 text-indigo-500 data-[state=active]:bg-indigo-500 data-[state=active]:text-white"
+        >
           <FaPerson />
           {t('static')}
         </TabsTrigger>
@@ -43,12 +49,18 @@ export const ExerciseTypeTabs = () => {
       </TabsContent>
       <TabsContent value="static">
         <Tabs defaultValue="static_ground">
-          <TabsList className="my-0 mx-auto">
-            <TabsTrigger value="static_ground" className="cursor-pointer">
+          <TabsList className="my-0 mx-auto bg-white">
+            <TabsTrigger
+              value="static_ground"
+              className="cursor-pointer mx-1 p-4 gap-x-2 text-green-500 data-[state=active]:bg-green-500 data-[state=active]:text-white"
+            >
               <GiMeditation />
               {t('ground')}
             </TabsTrigger>
-            <TabsTrigger value="static_water" className="cursor-pointer">
+            <TabsTrigger
+              value="static_water"
+              className="cursor-pointer mx-1 p-4 gap-x-2 text-cyan-500 data-[state=active]:bg-cyan-500 data-[state=active]:text-white"
+            >
               <FaPersonSwimming />
               {t('water')}
             </TabsTrigger>

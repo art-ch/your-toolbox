@@ -9,6 +9,12 @@ jest.mock('./hooks/useCalculatorFormResult', () => ({
   useCalculatorFormResult: jest.fn()
 }));
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key
+  })
+}));
+
 describe('CalculatorForm', () => {
   const testFormSchema = z.object({
     value1: z.number().min(1),
@@ -107,7 +113,7 @@ describe('CalculatorForm', () => {
         { sum: 15 },
         expect.anything()
       );
-      expect(screen.getByText('Result:')).toBeInTheDocument();
+      expect(screen.getByText(/result/)).toBeInTheDocument();
       expect(screen.getByTestId('result')).toBeInTheDocument();
     });
   });
@@ -123,7 +129,7 @@ describe('CalculatorForm', () => {
       />
     );
 
-    expect(screen.queryByText('Result:')).not.toBeInTheDocument();
+    expect(screen.queryByText('result')).not.toBeInTheDocument();
   });
 
   it('handles form validation errors', async () => {
@@ -145,7 +151,7 @@ describe('CalculatorForm', () => {
 
     expect(mockOnSubmit).not.toHaveBeenCalled();
 
-    expect(screen.queryByText('Result:')).not.toBeInTheDocument();
+    expect(screen.queryByText('result')).not.toBeInTheDocument();
 
     console.error = originalConsoleError;
   });

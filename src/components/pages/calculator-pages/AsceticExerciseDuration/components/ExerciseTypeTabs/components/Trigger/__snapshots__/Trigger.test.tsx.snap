@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Trigger should render 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-2"
+    data-orientation="horizontal"
+    data-slot="tabs"
+    dir="ltr"
+  >
+    <div
+      aria-orientation="horizontal"
+      class="bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]"
+      data-orientation="horizontal"
+      data-slot="tabs-list"
+      role="tablist"
+      style="outline: none;"
+      tabindex="0"
+    >
+      <button
+        aria-controls="radix-«r0»-content-test-exercise"
+        aria-selected="true"
+        class="dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer mx-1 p-4 gap-x-2 text-red-500 data-[state=active]:bg-red-500 data-[state=active]:text-white"
+        data-orientation="horizontal"
+        data-radix-collection-item=""
+        data-slot="tabs-trigger"
+        data-state="active"
+        id="radix-«r0»-trigger-test-exercise"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        <span
+          data-testid="test-icon"
+        >
+          🏃
+        </span>
+        test-exercise
+      </button>
+    </div>
+  </div>
+</div>
+`;

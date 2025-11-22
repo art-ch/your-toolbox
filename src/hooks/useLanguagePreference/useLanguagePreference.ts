@@ -24,6 +24,31 @@ export function useLanguagePreference() {
     }
   }, []);
 
+  // Sync cookie with URL language when pathname changes
+  useEffect(() => {
+    // Extract language from pathname (e.g., /en/page -> en, /fr -> fr)
+    const pathSegments = pathname.split('/').filter(Boolean);
+    const urlLanguage = pathSegments[0] as Language | undefined;
+
+    // If the first segment is a valid language, sync cookie with URL
+    if (urlLanguage && languages.includes(urlLanguage)) {
+      const currentCookieLocale = Cookies.get('NEXT_LOCALE');
+
+      // Update cookie if it doesn't match the URL language
+      // This ensures the cookie reflects the actual locale in the URL
+      // Important for navigation - when user clicks a link to "/",
+      // the middleware will use the cookie to determine the locale
+      if (currentCookieLocale !== urlLanguage) {
+        Cookies.set('NEXT_LOCALE', urlLanguage, {
+          expires: 365,
+          path: '/',
+          sameSite: 'lax'
+        });
+        setPreferredLanguage(urlLanguage);
+      }
+    }
+  }, [pathname]);
+
   // Change language and save preference
   const changeLanguage = (newLanguage: Language) => {
     if (!languages.includes(newLanguage)) {

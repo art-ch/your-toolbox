@@ -5,7 +5,7 @@ import { Link } from '@/components/Link/Link';
 import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('footer');
 
   return (
     <div className="w-full min-h-12 bg-primary flex items-center justify-center">

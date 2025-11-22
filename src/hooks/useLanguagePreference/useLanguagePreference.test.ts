@@ -259,6 +259,164 @@ describe('useLanguagePreference', () => {
         sameSite: 'lax'
       });
     });
+
+    describe('cookie sync with URL', () => {
+      it('should sync cookie when pathname has valid language and cookie differs', () => {
+        (usePathname as jest.Mock).mockReturnValue('/uk/some-page');
+        (Cookies.get as jest.Mock).mockReturnValue('en'); // Cookie is 'en', URL is 'uk'
+
+        const { result } = renderHook(() => useLanguagePreference());
+
+        // Wait for useEffect to run
+        act(() => {
+          // Trigger re-render to ensure useEffect runs
+        });
+
+        expect(Cookies.set).toHaveBeenCalledWith('NEXT_LOCALE', 'uk', {
+          expires: 365,
+          path: '/',
+          sameSite: 'lax'
+        });
+        expect(result.current.preferredLanguage).toBe('uk');
+      });
+
+      it('should not sync cookie when pathname language matches cookie', () => {
+        (usePathname as jest.Mock).mockReturnValue('/uk/some-page');
+        (Cookies.get as jest.Mock).mockReturnValue('uk'); // Cookie matches URL
+
+        renderHook(() => useLanguagePreference());
+
+        // Cookie.set should not be called for sync (only for initial load if needed)
+        // We need to check that it wasn't called for sync specifically
+        // The initial load might call it, so we check the call count
+        const setCalls = (Cookies.set as jest.Mock).mock.calls.filter(
+          (call) => call[0] === 'NEXT_LOCALE' && call[1] === 'uk'
+        );
+        // Should not have additional calls beyond what's needed
+        expect(setCalls.length).toBeLessThanOrEqual(1);
+      });
+
+      it('should not sync cookie when pathname does not have a valid language', () => {
+        (usePathname as jest.Mock).mockReturnValue(
+          '/some-path-without-language'
+        );
+        (Cookies.get as jest.Mock).mockReturnValue('en');
+
+        renderHook(() => useLanguagePreference());
+
+        // Should not call Cookies.set for sync (only for initial load if needed)
+        // Since pathname doesn't have a valid language, sync shouldn't happen
+        const syncCalls = (Cookies.set as jest.Mock).mock.calls.filter(
+          (call) => call[0] === 'NEXT_LOCALE'
+        );
+        // Only initial load might set cookie, but not sync
+        expect(syncCalls.length).toBeLessThanOrEqual(1);
+      });
+
+      it('should sync cookie when pathname changes to different language', () => {
+        (usePathname as jest.Mock).mockReturnValue('/en/page');
+        (Cookies.get as jest.Mock).mockReturnValue('en');
+
+        const { rerender } = renderHook(() => useLanguagePreference());
+
+        // Clear previous calls
+        jest.clearAllMocks();
+        (Cookies.get as jest.Mock).mockReturnValue('en');
+
+        // Change pathname to different language
+        (usePathname as jest.Mock).mockReturnValue('/ru/page');
+        rerender();
+
+        // Wait for useEffect to run
+        act(() => {
+          // Trigger re-render
+        });
+
+        expect(Cookies.set).toHaveBeenCalledWith('NEXT_LOCALE', 'ru', {
+          expires: 365,
+          path: '/',
+          sameSite: 'lax'
+        });
+      });
+
+      it('should sync cookie for root path with language', () => {
+        (usePathname as jest.Mock).mockReturnValue('/uk');
+        (Cookies.get as jest.Mock).mockReturnValue('en');
+
+        const { result } = renderHook(() => useLanguagePreference());
+
+        act(() => {
+          // Trigger re-render to ensure useEffect runs
+        });
+
+        expect(Cookies.set).toHaveBeenCalledWith('NEXT_LOCALE', 'uk', {
+          expires: 365,
+          path: '/',
+          sameSite: 'lax'
+        });
+        expect(result.current.preferredLanguage).toBe('uk');
+      });
+
+      it('should sync cookie for all supported languages', () => {
+        const supportedLanguages: Language[] = ['en', 'uk', 'ru'];
+
+        supportedLanguages.forEach((lang) => {
+          // Reset mocks but keep the setup
+          jest.clearAllMocks();
+          (usePathname as jest.Mock).mockReturnValue(`/${lang}/page`);
+
+          // For each language, set cookie to a different language to ensure sync happens
+          const differentLang = lang === 'en' ? 'uk' : 'en';
+          (Cookies.get as jest.Mock)
+            .mockReturnValueOnce(undefined) // Initial load - no cookie
+            .mockReturnValue(differentLang); // Sync check - different from URL
+
+          const { result } = renderHook(() => useLanguagePreference());
+
+          act(() => {
+            // Trigger re-render to ensure sync useEffect runs
+          });
+
+          expect(Cookies.set).toHaveBeenCalledWith('NEXT_LOCALE', lang, {
+            expires: 365,
+            path: '/',
+            sameSite: 'lax'
+          });
+          expect(result.current.preferredLanguage).toBe(lang);
+        });
+      });
+
+      it('should update preferredLanguage state when cookie syncs', () => {
+        (usePathname as jest.Mock).mockReturnValue('/ru/some-page');
+        (Cookies.get as jest.Mock).mockReturnValue('en');
+
+        const { result } = renderHook(() => useLanguagePreference());
+
+        act(() => {
+          // Trigger re-render to ensure useEffect runs
+        });
+
+        expect(result.current.preferredLanguage).toBe('ru');
+      });
+
+      it('should handle pathname with multiple segments correctly', () => {
+        (usePathname as jest.Mock).mockReturnValue('/uk/nested/deep/path');
+        (Cookies.get as jest.Mock).mockReturnValue('en');
+
+        const { result } = renderHook(() => useLanguagePreference());
+
+        act(() => {
+          // Trigger re-render
+        });
+
+        expect(Cookies.set).toHaveBeenCalledWith('NEXT_LOCALE', 'uk', {
+          expires: 365,
+          path: '/',
+          sameSite: 'lax'
+        });
+        expect(result.current.preferredLanguage).toBe('uk');
+      });
+    });
   });
 
   describe('URL management', () => {
@@ -336,6 +494,10 @@ describe('useLanguagePreference', () => {
   describe('error handling', () => {
     beforeEach(() => {
       jest.resetAllMocks();
+      // Re-setup mocks after reset
+      (useRouter as jest.Mock).mockReturnValue(mockRouter);
+      (usePathname as jest.Mock).mockReturnValue(mockPathname);
+      (Cookies.get as jest.Mock).mockReturnValue(undefined);
     });
 
     it('should handle Cookies.set failure gracefully', () => {

@@ -3,6 +3,8 @@
   "hours_other": "{{count}} hours",
   "minutes_one": "{{count}} minute",
   "minutes_other": "{{count}} minutes",
+  "seconds_one": "{{count}} second",
+  "seconds_other": "{{count}} seconds",
   "days_one": "{{count}} day",
   "days_other": "{{count}} days",
 

@@ -11,6 +11,9 @@ const mockT = jest.fn((key: string, options?: { count?: number }) => {
   if (key === 'time:minutes') {
     return options?.count === 1 ? '1 minute' : `${options?.count} minutes`;
   }
+  if (key === 'time:seconds') {
+    return options?.count === 1 ? '1 second' : `${options?.count} seconds`;
+  }
   if (key === 'time:and') {
     return 'and';
   }
@@ -24,7 +27,7 @@ describe('formatTime', () => {
   };
 
   it('should format 0 minutes correctly', () => {
-    expect(formatTime({ ...defaultProps, totalMinutes: 0 })).toBe('0 minutes');
+    expect(formatTime({ ...defaultProps, totalMinutes: 0 })).toBe('0 seconds');
   });
 
   it('should format 1 minute correctly', () => {
@@ -79,6 +82,39 @@ describe('formatTime', () => {
     );
     expect(formatTime({ ...defaultProps, totalMinutes: 1500 })).toBe(
       '25 hours'
+    );
+  });
+
+  it('should format seconds only correctly', () => {
+    expect(formatTime({ ...defaultProps, totalMinutes: 0.5 })).toBe(
+      '30 seconds'
+    );
+    expect(formatTime({ ...defaultProps, totalMinutes: 0.6 })).toBe(
+      '36 seconds'
+    );
+    expect(formatTime({ ...defaultProps, totalMinutes: 0.7 })).toBe(
+      '42 seconds'
+    );
+  });
+
+  it('should format minutes with seconds correctly', () => {
+    expect(formatTime({ ...defaultProps, totalMinutes: 1.5 })).toBe(
+      '1 minute and 30 seconds'
+    );
+    expect(formatTime({ ...defaultProps, totalMinutes: 30.25 })).toBe(
+      '30 minutes and 15 seconds'
+    );
+  });
+
+  it('should format hours, minutes, and seconds correctly', () => {
+    expect(formatTime({ ...defaultProps, totalMinutes: 60.5 })).toBe(
+      '1 hour and 30 seconds'
+    );
+    expect(formatTime({ ...defaultProps, totalMinutes: 90.75 })).toBe(
+      '1 hour 30 minutes and 45 seconds'
+    );
+    expect(formatTime({ ...defaultProps, totalMinutes: 121.25 })).toBe(
+      '2 hours 1 minute and 15 seconds'
     );
   });
 });

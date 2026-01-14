@@ -29,6 +29,21 @@
   "minutes_accusative_many": "{{count}} хвилин",
   "minutes_accusative_other": "{{count}} хвилин",
 
+  "seconds_one": "{{count}} секунда",
+  "seconds_few": "{{count}} секунди",
+  "seconds_many": "{{count}} секунд",
+  "seconds_other": "{{count}} секунд",
+
+  "seconds_genitive_one": "{{count}} секунди",
+  "seconds_genitive_few": "{{count}} секунд",
+  "seconds_genitive_many": "{{count}} секунд",
+  "seconds_genitive_other": "{{count}} секунд",
+
+  "seconds_accusative_one": "{{count}} секунду",
+  "seconds_accusative_few": "{{count}} секунди",
+  "seconds_accusative_many": "{{count}} секунд",
+  "seconds_accusative_other": "{{count}} секунд",
+
   "days_one": "{{count}} день",
   "days_few": "{{count}} дні",
   "days_many": "{{count}} днів",

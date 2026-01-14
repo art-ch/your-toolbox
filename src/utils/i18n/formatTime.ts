@@ -16,7 +16,8 @@ export function formatTime({
   t,
   language
 }: FormatTimeProps): string {
-  const { hours, minutes } = convertMinutesToHoursAndMinutes(totalMinutes);
+  const { hours, minutes, seconds } =
+    convertMinutesToHoursAndMinutes(totalMinutes);
 
   const hourTranslationKey = applyGrammarCase(
     'time:hours',
@@ -33,13 +34,38 @@ export function formatTime({
   );
 
   const minutePart =
-    minutes > 0 || hours === 0
-      ? t(minuteTranslationKey, { count: minutes })
-      : '';
+    minutes > 0 ? t(minuteTranslationKey, { count: minutes }) : '';
 
-  const connector = hours > 0 && minutes > 0 ? t('time:and') : '';
+  const secondTranslationKey = applyGrammarCase(
+    'time:seconds',
+    language,
+    grammarCaseConfig
+  );
 
-  return `${hourPart} ${connector} ${minutePart}`.trim();
+  const secondPart =
+    seconds > 0 ? t(secondTranslationKey, { count: seconds }) : '';
+
+  const parts = [hourPart, minutePart, secondPart].filter(
+    (part) => part !== ''
+  );
+
+  // If no parts have values, show 0 seconds
+  if (parts.length === 0) {
+    return t(secondTranslationKey, { count: 0 });
+  }
+
+  // If only one part has a value
+  if (parts.length === 1) {
+    return parts[0];
+  }
+
+  // If two parts have values
+  if (parts.length === 2) {
+    return `${parts[0]} ${t('time:and')} ${parts[1]}`.trim();
+  }
+
+  // For 3 parts (hours, minutes, seconds)
+  return `${parts[0]} ${parts[1]} ${t('time:and')} ${parts[2]}`.trim();
 }
 
 export const formatDays = (days: number, t: TFunction) => {

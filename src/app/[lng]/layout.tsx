@@ -9,7 +9,7 @@ import { Footer, Header } from '@/components/layout';
 import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 type GenerateMetadataProps = {
-  params: { lng: string };
+  params: Promise<{ lng: string }>;
 };
 
 export async function generateMetadata({
@@ -42,7 +42,7 @@ export async function generateStaticParams() {
 
 type LanguageLayoutProps = {
   children: React.ReactNode;
-  params: { lng: string };
+  params: Promise<{ lng: string }>;
 };
 
 export default async function LanguageLayout({

@@ -20,7 +20,8 @@ export default defineConfig([
 
     rules: {
       '@typescript-eslint/no-empty-interface': 'off',
-      '@typescript-eslint/no-require-imports': 'off'
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/triple-slash-reference': 'off'
     }
   }
 ]);

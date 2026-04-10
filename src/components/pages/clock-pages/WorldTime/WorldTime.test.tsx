@@ -289,6 +289,7 @@ describe('WorldTime', () => {
 
       expect(screen.getByTestId('world-time-clock')).toHaveAttribute(
         'data-classnames-time',
+        // refers to allertaStencil.className
         expect.stringContaining('className')
       );
     });

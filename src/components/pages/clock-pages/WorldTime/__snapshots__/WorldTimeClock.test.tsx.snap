@@ -7,7 +7,7 @@ exports[`WorldTimeClock should render correctly 1`] = `
     data-testid="world-time-clock"
   >
     <time
-      class="text-2xl"
+      class="text-4xl md:text-5xl lg:text-6xl"
     >
       12-00 00
     </time>

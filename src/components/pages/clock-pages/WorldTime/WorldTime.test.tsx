@@ -289,7 +289,7 @@ describe('WorldTime', () => {
 
       expect(screen.getByTestId('world-time-clock')).toHaveAttribute(
         'data-classnames-time',
-        expect.stringContaining('text-2xl')
+        expect.stringContaining('className')
       );
     });
   });

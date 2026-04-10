@@ -28,7 +28,7 @@ export const WorldTime = () => {
     [datetimeParts]
   );
 
-  const clockClassNames = cn(allertaStencil.className, 'text-2xl sm:text-4xl');
+  const clockClassNames = cn(allertaStencil.className);
 
   const mainContentHeight = fullScreenMode.isFullScreen
     ? 'min-h-screen'

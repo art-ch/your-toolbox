@@ -1,4 +1,4 @@
-import { formatTime } from './formatTime';
+import { formatDays, formatTime } from './formatTime';
 import { TFunction } from 'i18next';
 import { Language } from '@/lib/i18n/types';
 
@@ -16,6 +16,12 @@ const mockT = jest.fn((key: string, options?: { count?: number }) => {
   }
   if (key === 'time:and') {
     return 'and';
+  }
+  if (key === 'time:everyday') {
+    return 'everyday';
+  }
+  if (key === 'time:days') {
+    return options?.count === 1 ? 'everyday' : `${options?.count} days`;
   }
   return key;
 }) as unknown as TFunction;
@@ -116,5 +122,15 @@ describe('formatTime', () => {
     expect(formatTime({ ...defaultProps, totalMinutes: 121.25 })).toBe(
       '2 hours 1 minute and 15 seconds'
     );
+  });
+});
+
+describe('formatDays', () => {
+  it('should format 1 day correctly', () => {
+    expect(formatDays(1, mockT)).toBe('everyday');
+  });
+
+  it('should format multiple days correctly', () => {
+    expect(formatDays(2, mockT)).toBe('2 days');
   });
 });

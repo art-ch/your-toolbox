@@ -8,4 +8,5 @@ export type TranslationNamespace =
   | 'footer'
   | 'time'
   | 'asceticExerciseDuration'
+  | 'worldTime'
   | '404';

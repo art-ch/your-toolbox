@@ -20,8 +20,8 @@ jest.mock('@/utils/i18n/parseLanguage', () => ({
   parseLanguage: jest.fn(() => 'en')
 }));
 
-jest.mock('@/utils/timeUtils', () => ({
-  convertMinutesToHoursAndMinutes: jest.fn((minutes) => {
+jest.mock('@/utils/datetime/convertMinutesToTimeDuration', () => ({
+  convertMinutesToTimeDuration: jest.fn((minutes) => {
     const hours = Math.floor(minutes / 60);
     return { hours, minutes: minutes % 60 };
   })

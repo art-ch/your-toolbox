@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { AppProvider, useAppContext } from './AppContext';
-import { useDrawer } from './hooks/useDrawer/useDrawer';
+import { useDrawer } from './hooks/useDrawer';
 
-jest.mock('./hooks/useDrawer/useDrawer', () => ({
+jest.mock('./hooks/useDrawer', () => ({
   useDrawer: jest.fn()
 }));
 

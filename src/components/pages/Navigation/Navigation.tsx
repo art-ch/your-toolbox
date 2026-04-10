@@ -1,6 +1,6 @@
 'use client';
 
-import { LuCalculator } from 'react-icons/lu';
+import { LuCalculator, LuClock } from 'react-icons/lu';
 import { MdMiscellaneousServices } from 'react-icons/md';
 
 import { NavigationContainer } from './components/NavigationContainer/NavigationContainer';
@@ -25,6 +25,12 @@ export const Navigation = () => {
           icon={<LuCalculator />}
           title={t('common:calculators')}
           subtitle={t('common:calculatorsDescription')}
+        />
+        <NavigationLinkCard
+          href="/time"
+          icon={<LuClock />}
+          title={t('common:clock')}
+          subtitle={t('common:clockDescription')}
         />
         <NavigationLinkCard
           href="/specialized-tools"

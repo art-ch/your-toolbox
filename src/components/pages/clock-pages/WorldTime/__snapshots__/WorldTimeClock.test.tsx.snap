@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WorldTimeClock should render correctly 1`] = `
+<div>
+  <div
+    class="flex justify-center items-center"
+    data-testid="world-time-clock"
+  >
+    <time
+      class="text-2xl"
+    >
+      12-00 00
+    </time>
+  </div>
+</div>
+`;

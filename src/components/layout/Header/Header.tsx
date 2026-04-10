@@ -11,12 +11,19 @@ import { AppDrawerTrigger } from './components/AppDrawerTrigger/AppDrawerTrigger
 import Link from 'next/link';
 import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher';
 import { Language } from '@/lib/i18n/types';
+import { useAppContext } from '@/context/AppContext/AppContext';
 
 export type HeaderProps = {
   language: Language;
 };
 
 export const Header = ({ language }: HeaderProps) => {
+  const { fullScreenMode } = useAppContext();
+
+  if (fullScreenMode.isFullScreen) {
+    return null;
+  }
+
   return (
     <NavigationMenu className="min-w-full shadow-xs py-0.5 justify-normal">
       <div className="min-w-full px-4">

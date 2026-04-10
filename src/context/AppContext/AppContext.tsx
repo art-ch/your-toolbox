@@ -1,17 +1,25 @@
 import { createContext, useContext } from 'react';
-import { DrawerState, useDrawer } from './hooks/useDrawer/useDrawer';
+import { DrawerState, useDrawer } from './hooks/useDrawer';
+import {
+  FullScreenModeState,
+  useFullScreenMode
+} from './hooks/useFullScreenMode';
 
 type AppContextType = {
   drawer: DrawerState;
+  fullScreenMode: FullScreenModeState;
 };
 
 const AppContext = createContext<AppContextType | null>(null);
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const drawer = useDrawer();
+  const fullScreenMode = useFullScreenMode();
 
   return (
-    <AppContext.Provider value={{ drawer }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ drawer, fullScreenMode }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 

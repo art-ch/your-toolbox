@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AuthorMentionType } from '@/types/types';
+import { AuthorMentionType } from '@/types';
 
 import { Link } from '../Link/Link';
 import { useTranslation } from 'react-i18next';

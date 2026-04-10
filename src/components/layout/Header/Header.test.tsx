@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { Header } from './Header';
-import { AppProvider } from '@/context/AppContext/AppContext';
+import { useAppContext } from '@/context/AppContext/AppContext';
 import { ReactNode } from 'react';
 
 // Mock Next.js navigation hooks
@@ -42,13 +42,45 @@ jest.mock('@/hooks/useLanguagePreference/useLanguagePreference', () => ({
   })
 }));
 
+jest.mock('@/context/AppContext/AppContext', () => ({
+  useAppContext: jest.fn()
+}));
+
+const useAppContextMock = useAppContext as jest.Mock;
+
 describe('Header component', () => {
+  const toggleFullScreen = jest.fn();
+
+  const drawer = {
+    open: jest.fn(),
+    close: jest.fn()
+  };
+
+  beforeEach(() => {
+    useAppContextMock.mockImplementation(() => ({
+      fullScreenMode: {
+        isFullScreen: false,
+        toggleFullScreen: toggleFullScreen
+      },
+      drawer
+    }));
+  });
+
   it('should render correctly', () => {
-    const { container } = render(
-      <AppProvider>
-        <Header language="en" />
-      </AppProvider>
-    );
+    const { container } = render(<Header language="en" />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should not render when full screen mode is enabled', () => {
+    useAppContextMock.mockImplementation(() => ({
+      fullScreenMode: {
+        isFullScreen: true,
+        toggleFullScreen: toggleFullScreen
+      }
+    }));
+
+    const { container } = render(<Header language="en" />);
 
     expect(container).toMatchSnapshot();
   });

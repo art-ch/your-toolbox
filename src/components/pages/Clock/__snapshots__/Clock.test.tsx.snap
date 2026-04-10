@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calculators component should render correctly 1`] = `
+<div>
+  <div>
+    <header
+      class="text-center py-3"
+    >
+      <h1
+        class="text-2xl md:text-4xl font-semibold leading-none tracking-tight"
+      >
+        common:clock
+      </h1>
+      <p
+        class="mt-3"
+      >
+        common:clockDescription
+      </p>
+    </header>
+    <nav
+      class="grid gap-5 md:grid-cols-2 lg:grid-cols-3 pt-1 pb-4 md:py-5"
+    >
+      <a
+        href="/clock/world-time"
+      >
+        <div
+          class="rounded-lg border bg-card text-card-foreground shadow-xs min-h-full"
+        >
+          <div
+            class="flex flex-col space-y-1.5 p-6"
+          >
+            <h3
+              class="font-semibold tracking-tight flex gap-2 text-xl md:text-2xl"
+            >
+              <div
+                class="mt-0.5"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <polyline
+                    points="12 6 12 12 16 14"
+                  />
+                </svg>
+              </div>
+              worldTime:title
+            </h3>
+          </div>
+          <div
+            class="p-6 pt-0"
+          >
+            worldTime:subtitle
+          </div>
+        </div>
+      </a>
+    </nav>
+  </div>
+</div>
+`;

@@ -1,4 +1,4 @@
-import { LuCalculator } from 'react-icons/lu';
+import { LuCalculator, LuClock } from 'react-icons/lu';
 import { MdMiscellaneousServices } from 'react-icons/md';
 
 export const APP_DRAWER_CONTENT = [
@@ -10,6 +10,17 @@ export const APP_DRAWER_CONTENT = [
       {
         translationKey: 'asceticExerciseDuration:title',
         url: '/calculators/ascetic-exercise-duration'
+      }
+    ]
+  },
+  {
+    icon: <LuClock />,
+    translationKey: 'common:clock',
+    url: '/clock',
+    menuOptions: [
+      {
+        translationKey: 'worldTime:title',
+        url: '/clock/world-time'
       }
     ]
   },

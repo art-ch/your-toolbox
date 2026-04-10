@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { getTranslations } from '@/lib/i18n/server';
 import { Providers } from '@/app/providers';
 import { AppDrawer } from '@/components/layout/AppDrawer/AppDrawer';
-import { Footer, Header } from '@/components/layout';
+import { Footer, Main, Header } from '@/components/layout';
 import { parseLanguage } from '@/utils/i18n/parseLanguage';
 
 type GenerateMetadataProps = {
@@ -70,9 +70,7 @@ export default async function LanguageLayout({
           <AppDrawer />
           <Header language={language} />
           {/* 44 (height of header and paddings) + 48 (height of footer) = 92 */}
-          <main className="min-h-[calc(100vh-92px)] max-w-(--breakpoint-xl) my-0 mx-auto px-4 sm:px-6 2xl:px-0">
-            {TranslationProvider}
-          </main>
+          <Main>{TranslationProvider}</Main>
           <Footer />
         </Providers>
       </body>

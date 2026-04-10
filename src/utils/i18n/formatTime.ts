@@ -1,5 +1,5 @@
 import { TFunction } from 'i18next';
-import { convertMinutesToHoursAndMinutes } from '@/utils/timeUtils';
+import { convertMinutesToTimeDuration } from '@/utils/datetime/convertMinutesToTimeDuration';
 import { applyGrammarCase, GrammarCaseConfig } from './applyGrammarCase';
 import { Language } from '@/lib/i18n/types';
 
@@ -17,7 +17,7 @@ export function formatTime({
   language
 }: FormatTimeProps): string {
   const { hours, minutes, seconds } =
-    convertMinutesToHoursAndMinutes(totalMinutes);
+    convertMinutesToTimeDuration(totalMinutes);
 
   const hourTranslationKey = applyGrammarCase(
     'time:hours',

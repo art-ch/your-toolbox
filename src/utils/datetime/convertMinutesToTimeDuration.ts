@@ -1,12 +1,8 @@
-export type TimeSegments = {
-  hours: number;
-  minutes: number;
-  seconds: number;
-};
+import { TimeDuration } from '@/types';
 
-export function convertMinutesToHoursAndMinutes(
+export function convertMinutesToTimeDuration(
   totalMinutes: number
-): TimeSegments {
+): TimeDuration {
   const hours = Math.floor(totalMinutes / 60);
   const remainingMinutes = totalMinutes % 60;
   const minutes = Math.floor(remainingMinutes);

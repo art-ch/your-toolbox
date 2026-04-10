@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main component should render correctly 1`] = `
+<div>
+  <main
+    class="relative min-h-[calc(100vh-92px)] my-0 mx-auto px-4 sm:px-6 2xl:px-0 max-w-(--breakpoint-xl)"
+  >
+    Test
+  </main>
+</div>
+`;
+
+exports[`Main component should render correctly when full screen mode is enabled 1`] = `
+<div>
+  <main
+    class="relative min-h-[calc(100vh-92px)] my-0 mx-auto px-4 sm:px-6 2xl:px-0 w-full"
+  >
+    Test
+  </main>
+</div>
+`;

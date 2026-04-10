@@ -99,6 +99,52 @@ exports[`Navigation component should render correctly 1`] = `
         </div>
       </a>
       <a
+        href="/time"
+      >
+        <div
+          class="rounded-lg border bg-card text-card-foreground shadow-xs min-h-full"
+        >
+          <div
+            class="flex flex-col space-y-1.5 p-6"
+          >
+            <h3
+              class="font-semibold tracking-tight flex gap-2 text-xl md:text-2xl"
+            >
+              <div
+                class="mt-0.5"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <polyline
+                    points="12 6 12 12 16 14"
+                  />
+                </svg>
+              </div>
+              common:clock
+            </h3>
+          </div>
+          <div
+            class="p-6 pt-0"
+          >
+            common:clockDescription
+          </div>
+        </div>
+      </a>
+      <a
         href="/specialized-tools"
       >
         <div

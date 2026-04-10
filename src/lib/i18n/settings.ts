@@ -9,6 +9,7 @@ export const namespaces: TranslationNamespace[] = [
   'footer',
   'time',
   'asceticExerciseDuration',
+  'worldTime',
   '404'
 ] as const;
 

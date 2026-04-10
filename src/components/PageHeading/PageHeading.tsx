@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AuthorMention } from '../AuthorMention/AuthorMention';
-import { AuthorMentionType } from '@/types/types';
+import { AuthorMentionType } from '@/types';
 import { cn } from '@/lib/utils';
 
 export type PageTitleProps = {
@@ -53,14 +53,16 @@ export const ToolPageHeading = ({
   subtitle
 }: ToolPageHeadingProps) => {
   return (
-    <header className="flex gap-2 md:gap-4 justify-center py-3">
-      <div className="text-xl sm:text-2xl md:text-4xl pt-0.5">{icon}</div>
-      <PageTitle
-        title={title}
-        authorMention={authorMention}
-        className="text-xl sm:text-2xl"
-      />
-      {subtitle && <p className="mt-3">{subtitle}</p>}
+    <header className="py-3">
+      <div className="flex gap-2 md:gap-4 justify-center">
+        <div className="text-xl sm:text-2xl md:text-4xl pt-0.5">{icon}</div>
+        <PageTitle
+          title={title}
+          authorMention={authorMention}
+          className="text-xl sm:text-2xl"
+        />
+      </div>
+      {subtitle && <p className="text-center mt-3">{subtitle}</p>}
     </header>
   );
 };

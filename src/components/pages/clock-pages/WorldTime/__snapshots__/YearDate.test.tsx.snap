@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`YearDate should render correctly 1`] = `
+<div>
+  <div
+    class="flex justify-between w-full"
+    data-testid="year-date"
+  >
+    <div
+      class="text-2xl"
+    >
+      2026
+    </div>
+    <div>
+      <div
+        class="text-2xl"
+      >
+        04
+        /
+        10
+      </div>
+      <div
+        class="flex justify-around text-[8px] md:text-xs gap-2 md:gap-4"
+      >
+        <div>
+          Month
+        </div>
+        <div>
+          Date
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,4 +1,4 @@
-import { AuthorMentionType } from '@/types/types';
+import { AuthorMentionType } from '@/types';
 import { TFunction } from 'i18next';
 import { Language } from '@/lib/i18n/types';
 

@@ -23,7 +23,7 @@ exports[`Header component should render correctly 1`] = `
         >
           <svg
             aria-hidden="true"
-            class="lucide lucide-align-justify cursor-pointer"
+            class="lucide lucide-text-align-justify cursor-pointer"
             data-testid="app-drawer-trigger"
             fill="none"
             height="24"
@@ -36,13 +36,13 @@ exports[`Header component should render correctly 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              d="M3 5h18"
+            />
+            <path
               d="M3 12h18"
             />
             <path
-              d="M3 18h18"
-            />
-            <path
-              d="M3 6h18"
+              d="M3 19h18"
             />
           </svg>
           <a
@@ -70,7 +70,7 @@ exports[`Header component should render correctly 1`] = `
             class="max-w-fit justify-self-end cursor-pointer"
             data-slot="dropdown-menu-trigger"
             data-state="closed"
-            id="radix-«r1»"
+            id="radix-_r_1_"
             type="button"
           >
             English

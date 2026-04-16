@@ -102,14 +102,14 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
         tabindex="0"
       >
         <button
-          aria-controls="radix-«r0»-content-dynamic"
+          aria-controls="radix-_r_0_-content-dynamic"
           aria-selected="true"
           class="dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer mx-1 p-4 gap-x-2 text-red-500 data-[state=active]:bg-red-500 data-[state=active]:text-white"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-slot="tabs-trigger"
           data-state="active"
-          id="radix-«r0»-trigger-dynamic"
+          id="radix-_r_0_-trigger-dynamic"
           role="tab"
           tabindex="-1"
           type="button"
@@ -130,14 +130,14 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
           dynamic
         </button>
         <button
-          aria-controls="radix-«r0»-content-static"
+          aria-controls="radix-_r_0_-content-static"
           aria-selected="false"
           class="dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 cursor-pointer mx-1 p-4 gap-x-2 text-indigo-500 data-[state=active]:bg-indigo-500 data-[state=active]:text-white"
           data-orientation="horizontal"
           data-radix-collection-item=""
           data-slot="tabs-trigger"
           data-state="inactive"
-          id="radix-«r0»-trigger-static"
+          id="radix-_r_0_-trigger-static"
           role="tab"
           tabindex="-1"
           type="button"
@@ -159,12 +159,12 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
         </button>
       </div>
       <div
-        aria-labelledby="radix-«r0»-trigger-dynamic"
+        aria-labelledby="radix-_r_0_-trigger-dynamic"
         class="flex-1 outline-none"
         data-orientation="horizontal"
         data-slot="tabs-content"
         data-state="active"
-        id="radix-«r0»-content-dynamic"
+        id="radix-_r_0_-content-dynamic"
         role="tabpanel"
         style="animation-duration: 0s;"
         tabindex="0"
@@ -202,17 +202,17 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                       class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
                       data-error="false"
                       data-slot="form-label"
-                      for="«r3»-form-item"
+                      for="_r_3_-form-item"
                     >
                       speed
                       :
                     </label>
                     <input
-                      aria-describedby="«r3»-form-item-description"
+                      aria-describedby="_r_3_-form-item-description"
                       aria-invalid="false"
                       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                       data-slot="form-control"
-                      id="«r3»-form-item"
+                      id="_r_3_-form-item"
                       name="speed"
                       placeholder="speedValue"
                       type="number"
@@ -221,7 +221,7 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                     <p
                       class="text-muted-foreground text-sm"
                       data-slot="form-description"
-                      id="«r3»-form-item-description"
+                      id="_r_3_-form-item-description"
                     >
                       speedDescription
                     </p>
@@ -234,17 +234,17 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                       class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
                       data-error="false"
                       data-slot="form-label"
-                      for="«r4»-form-item"
+                      for="_r_4_-form-item"
                     >
                       duration
                       :
                     </label>
                     <input
-                      aria-describedby="«r4»-form-item-description"
+                      aria-describedby="_r_4_-form-item-description"
                       aria-invalid="false"
                       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                       data-slot="form-control"
-                      id="«r4»-form-item"
+                      id="_r_4_-form-item"
                       name="duration"
                       placeholder="durationValue"
                       type="number"
@@ -253,7 +253,7 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                     <p
                       class="text-muted-foreground text-sm"
                       data-slot="form-description"
-                      id="«r4»-form-item-description"
+                      id="_r_4_-form-item-description"
                     >
                       asceticExerciseDuration:durationDescription
                     </p>
@@ -299,17 +299,17 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                       class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
                       data-error="false"
                       data-slot="form-label"
-                      for="«r5»-form-item"
+                      for="_r_5_-form-item"
                     >
                       mentalLayers
                       :
                     </label>
                     <input
-                      aria-describedby="«r5»-form-item-description"
+                      aria-describedby="_r_5_-form-item-description"
                       aria-invalid="false"
                       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                       data-slot="form-control"
-                      id="«r5»-form-item"
+                      id="_r_5_-form-item"
                       name="mentalLayers"
                       placeholder="mentalLayersValue"
                       type="number"
@@ -318,7 +318,7 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                     <p
                       class="text-muted-foreground text-sm"
                       data-slot="form-description"
-                      id="«r5»-form-item-description"
+                      id="_r_5_-form-item-description"
                     >
                       mentalLayersDescription
                     </p>
@@ -331,17 +331,17 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                       class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
                       data-error="false"
                       data-slot="form-label"
-                      for="«r6»-form-item"
+                      for="_r_6_-form-item"
                     >
                       duration
                       :
                     </label>
                     <input
-                      aria-describedby="«r6»-form-item-description"
+                      aria-describedby="_r_6_-form-item-description"
                       aria-invalid="false"
                       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                       data-slot="form-control"
-                      id="«r6»-form-item"
+                      id="_r_6_-form-item"
                       name="duration"
                       placeholder="durationValue"
                       type="number"
@@ -350,7 +350,7 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                     <p
                       class="text-muted-foreground text-sm"
                       data-slot="form-description"
-                      id="«r6»-form-item-description"
+                      id="_r_6_-form-item-description"
                     >
                       asceticExerciseDuration:durationDescription
                     </p>
@@ -396,17 +396,17 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                       class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
                       data-error="false"
                       data-slot="form-label"
-                      for="«r7»-form-item"
+                      for="_r_7_-form-item"
                     >
                       mentalLayers
                       :
                     </label>
                     <input
-                      aria-describedby="«r7»-form-item-description"
+                      aria-describedby="_r_7_-form-item-description"
                       aria-invalid="false"
                       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                       data-slot="form-control"
-                      id="«r7»-form-item"
+                      id="_r_7_-form-item"
                       name="mentalLayers"
                       placeholder="mentalLayersValue"
                       type="number"
@@ -415,7 +415,7 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                     <p
                       class="text-muted-foreground text-sm"
                       data-slot="form-description"
-                      id="«r7»-form-item-description"
+                      id="_r_7_-form-item-description"
                     >
                       mentalLayersDescription
                     </p>
@@ -428,17 +428,17 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                       class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
                       data-error="false"
                       data-slot="form-label"
-                      for="«r8»-form-item"
+                      for="_r_8_-form-item"
                     >
                       speed
                       :
                     </label>
                     <input
-                      aria-describedby="«r8»-form-item-description"
+                      aria-describedby="_r_8_-form-item-description"
                       aria-invalid="false"
                       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                       data-slot="form-control"
-                      id="«r8»-form-item"
+                      id="_r_8_-form-item"
                       name="speed"
                       placeholder="speedValue"
                       type="number"
@@ -447,7 +447,7 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
                     <p
                       class="text-muted-foreground text-sm"
                       data-slot="form-description"
-                      id="«r8»-form-item-description"
+                      id="_r_8_-form-item-description"
                     >
                       speedDescription
                     </p>
@@ -466,13 +466,13 @@ exports[`AsceticExerciseDuration component should render correctly 1`] = `
         </section>
       </div>
       <div
-        aria-labelledby="radix-«r0»-trigger-static"
+        aria-labelledby="radix-_r_0_-trigger-static"
         class="flex-1 outline-none"
         data-orientation="horizontal"
         data-slot="tabs-content"
         data-state="inactive"
         hidden=""
-        id="radix-«r0»-content-static"
+        id="radix-_r_0_-content-static"
         role="tabpanel"
         tabindex="0"
       />

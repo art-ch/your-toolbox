@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`WorldTime full screen toggle button should render LuShrink icon when in full screen mode 1`] = `
 <div>

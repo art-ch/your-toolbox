@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { middleware } from './middleware';
+import { proxy } from './proxy';
 import { languages, defaultLanguage } from './lib/i18n/settings';
 
 // Mock the NextResponse methods
@@ -41,7 +41,7 @@ describe('Middleware', () => {
       '/images/logo.png'
     ])('should skip middleware for excluded path: %s', (path) => {
       const request = createMockRequest(path);
-      middleware(request);
+      proxy(request);
       expect(NextResponse.next).toHaveBeenCalled();
       expect(NextResponse.redirect).not.toHaveBeenCalled();
     });
@@ -50,7 +50,7 @@ describe('Middleware', () => {
   describe('Locale handling', () => {
     it('should redirect to default language when no locale is present in path', () => {
       const request = createMockRequest('/about');
-      middleware(request);
+      proxy(request);
 
       expect(NextResponse.redirect).toHaveBeenCalledTimes(1);
       expect(NextResponse.redirect).toHaveBeenCalledWith(
@@ -62,7 +62,7 @@ describe('Middleware', () => {
 
     it('should redirect root path to default language', () => {
       const request = createMockRequest('/');
-      middleware(request);
+      proxy(request);
 
       expect(NextResponse.redirect).toHaveBeenCalledTimes(1);
       expect(NextResponse.redirect).toHaveBeenCalledWith(
@@ -75,7 +75,7 @@ describe('Middleware', () => {
     it('should not redirect when valid locale is already in the path', () => {
       for (const locale of languages) {
         const request = createMockRequest(`/${locale}/about`);
-        middleware(request);
+        proxy(request);
 
         expect(NextResponse.next).toHaveBeenCalled();
         expect(NextResponse.redirect).not.toHaveBeenCalled();
@@ -89,7 +89,7 @@ describe('Middleware', () => {
         { name: 'NEXT_LOCALE', value: nonDefaultLocale }
       ]);
 
-      middleware(request);
+      proxy(request);
 
       expect(NextResponse.redirect).toHaveBeenCalledTimes(1);
       expect(NextResponse.redirect).toHaveBeenCalledWith(
@@ -104,7 +104,7 @@ describe('Middleware', () => {
         { name: 'NEXT_LOCALE', value: 'invalid-locale' }
       ]);
 
-      middleware(request);
+      proxy(request);
 
       expect(NextResponse.redirect).toHaveBeenCalledTimes(1);
       expect(NextResponse.redirect).toHaveBeenCalledWith(

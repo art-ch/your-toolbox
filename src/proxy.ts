@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { languages, defaultLanguage } from './lib/i18n/settings';
 import { parseLanguage } from './utils/i18n/parseLanguage';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip for non-HTML requests
